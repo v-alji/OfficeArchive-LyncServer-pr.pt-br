@@ -1,0 +1,315 @@
+---
+title: Configurar rotas de federação e tráfego de mídia
+description: Configurar roteiros de Federação e tráfego de mídia.
+ms.reviewer: ''
+ms.author: serdars
+author: serdarsoysal
+f1.keywords:
+- NOCSH
+TOCTitle: Configure federation routes and media traffic
+ms:assetid: 8b2f5f81-a955-4ad1-ad74-397322ff9521
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ688121(v=OCS.15)
+ms:contentKeyID: 49733720
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: de26f472bddc504ff79e427b5243587f27020c3d
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "49389850"
+---
+# <a name="configure-federation-routes-and-media-traffic"></a><span data-ttu-id="330b6-103">Configurar rotas de federação e tráfego de mídia</span><span class="sxs-lookup"><span data-stu-id="330b6-103">Configure federation routes and media traffic</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="330b6-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="330b6-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="330b6-105">_**Tópico da última modificação:** 2012-10-15_</span><span class="sxs-lookup"><span data-stu-id="330b6-105">_**Topic Last Modified:** 2012-10-15_</span></span>
+
+<span data-ttu-id="330b6-106">A Federação é uma relação de confiança entre dois ou mais domínios SIP que permite que os usuários de organizações separadas se comuniquem entre os limites da rede.</span><span class="sxs-lookup"><span data-stu-id="330b6-106">Federation is a trust relationship between two or more SIP domains that permits users in separate organizations to communicate across network boundaries.</span></span> <span data-ttu-id="330b6-107">Depois de migrar para o pool piloto do Lync Server 2013, você precisará fazer a transição da rota de Federação dos seus servidores do Lync Server 2010 Edge para a rota de Federação do servidor do Lync Server 2013 para servidores de borda.</span><span class="sxs-lookup"><span data-stu-id="330b6-107">After you migrate to your Lync Server 2013 pilot pool, you need to transition from the federation route of your Lync Server 2010 Edge Servers to the federation route of your Lync Server 2013 Edge Servers.</span></span>
+
+<span data-ttu-id="330b6-108">Use os procedimentos a seguir para fazer a transição da rota de Federação e da rota de tráfego de mídia do servidor de borda e do diretor do Lync Server 2010 para o servidor do Lync Server 2013 Edge para uma implantação de um único site.</span><span class="sxs-lookup"><span data-stu-id="330b6-108">Use the following procedures to transition the federation route and the media traffic route from your Lync Server 2010 Edge Server and Director to your Lync Server 2013 Edge Server, for a single-site deployment.</span></span>
+
+<div>
+
+
+> [!IMPORTANT]  
+> <span data-ttu-id="330b6-109">Alterar a rota de Federação e a rota de tráfego de mídia requer que você agende o tempo de inatividade de manutenção para os servidores Lync Server 2013 e Lync Server 2010 Edge.</span><span class="sxs-lookup"><span data-stu-id="330b6-109">Changing the federation route and media traffic route requires that you schedule maintenance downtime for the Lync Server 2013 and Lync Server 2010 Edge Servers.</span></span> <span data-ttu-id="330b6-110">Esse processo de transição inteiro também significa que o acesso federado estará indisponível para a duração da interrupção.</span><span class="sxs-lookup"><span data-stu-id="330b6-110">This entire transition process also means that federated access will be unavailable for the duration of the outage.</span></span> <span data-ttu-id="330b6-111">Você deve programar o tempo de inatividade para um horário em que espera a atividade do usuário mínima.</span><span class="sxs-lookup"><span data-stu-id="330b6-111">You should schedule the downtime for a time when you expect minimal user activity.</span></span> <span data-ttu-id="330b6-112">Você também deve fornecer uma notificação suficiente para seus usuários finais.</span><span class="sxs-lookup"><span data-stu-id="330b6-112">You should also provide sufficient notification to your end users.</span></span> <span data-ttu-id="330b6-113">Planeje-se adequadamente para esta interrupção e defina as expectativas adequadas dentro da sua organização.</span><span class="sxs-lookup"><span data-stu-id="330b6-113">Plan accordingly for this outage and set appropriate expectations within your organization.</span></span>
+
+
+
+</div>
+
+<div>
+
+
+> [!IMPORTANT]  
+> <span data-ttu-id="330b6-114">Se seu servidor de borda herdado do Lync Server 2010 está configurado para usar o mesmo FQDN para o serviço de borda de acesso, serviço de borda de Webconferência e o serviço de borda A/V, os procedimentos desta seção não têm suporte.</span><span class="sxs-lookup"><span data-stu-id="330b6-114">If your legacy Lync Server 2010 Edge Server is configured to use the same FQDN for the Access Edge service, Web Conferencing Edge service, and the A/V Edge service, the procedures in this section are not supported.</span></span> <span data-ttu-id="330b6-115">Se os serviços de borda herdados estiverem configurados para usar o mesmo FQDN, você deve primeiro migrar todos os usuários do Lync Server 2010 para o Lync Server 2013 e, em seguida, encerrar o servidor de borda do Lync Server 2010 antes de habilitar a Federação no servidor do Lync Server 2013 Edge.</span><span class="sxs-lookup"><span data-stu-id="330b6-115">If the legacy Edge services are configured to use the same FQDN, you must first migrate all your users from Lync Server 2010 to Lync Server 2013, then decommission the Lync Server 2010 Edge Server before enabling federation on the Lync Server 2013 Edge Server.</span></span>
+
+
+
+</div>
+
+<div>
+
+
+> [!IMPORTANT]  
+> <span data-ttu-id="330b6-116">Se a sua Federação do XMPP for roteada por meio de um servidor de borda do Lync Server 2013, os usuários herdados do Lync Server 2010 não poderão se comunicar com o parceiro federado do XMPP até que todos os usuários tenham sido movidos para o Lync Server 2013, as políticas de XMPP e os certificados foram con2013 figurados para a atualização do DNS.</span><span class="sxs-lookup"><span data-stu-id="330b6-116">If your XMPP federation is routed through a Lync Server 2013 Edge Server, legacy Lync Server 2010 users will not be able to communicate with the XMPP federated partner until all users have been moved to Lync Server 2013, XMPP policies and certificates have been configured, the XMPP federated partner has been configured on Lync Server 2013, and lastly the DNS entries have been updated.</span></span>
+
+
+
+</div>
+
+<div>
+
+## <a name="to-remove-the-legacy-federation-association-from-lync-server-2013-sites"></a><span data-ttu-id="330b6-117">Para remover a associação de Federação herdada dos sites do Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="330b6-117">To remove the legacy federation association from Lync Server 2013 sites</span></span>
+
+1.  <span data-ttu-id="330b6-118">No servidor de front-end do Lync Server 2013, abra a topologia existente no construtor de topologias.</span><span class="sxs-lookup"><span data-stu-id="330b6-118">On the Lync Server 2013 Front End server, open the existing topology in Topology Builder.</span></span>
+
+2.  <span data-ttu-id="330b6-119">No painel esquerdo, navegue até o nó do site, localizado diretamente abaixo do **Lync Server**.</span><span class="sxs-lookup"><span data-stu-id="330b6-119">In the left pane, navigate to the site node, which is located directly below **Lync Server**.</span></span>
+
+3.  <span data-ttu-id="330b6-120">Clique com o botão direito do mouse no site e, em seguida, clique em **Editar propriedades**.</span><span class="sxs-lookup"><span data-stu-id="330b6-120">Right-click the site and then click **Edit Properties**.</span></span>
+
+4.  <span data-ttu-id="330b6-121">No painel esquerdo, selecione **roteiro de Federação**.</span><span class="sxs-lookup"><span data-stu-id="330b6-121">In the left pane, select **Federation route**.</span></span>
+
+5.  <span data-ttu-id="330b6-122">Em **atribuição de rota de Federação do site**, desmarque a caixa de seleção **habilitar Federação SIP** para desabilitar a rota de Federação por meio do ambiente herdado do Lync Server 2010.</span><span class="sxs-lookup"><span data-stu-id="330b6-122">Under **Site federation route assignment**, clear the **Enable SIP federation** check box to disable the federation route through the legacy Lync Server 2010 environment.</span></span>
+    
+    <span data-ttu-id="330b6-123">![Caixa de diálogo Editar propriedades, página rota de Federação](images/JJ688121.8d755ae0-fc7d-4253-b0db-0cf31b863c55(OCS.15).jpg "Caixa de diálogo Editar propriedades, página rota de Federação")</span><span class="sxs-lookup"><span data-stu-id="330b6-123">![Edit Properties dialog, Federation route page](images/JJ688121.8d755ae0-fc7d-4253-b0db-0cf31b863c55(OCS.15).jpg "Edit Properties dialog, Federation route page")</span></span>
+
+6.  <span data-ttu-id="330b6-124">Clique em **OK** para fechar a página Editar propriedades.</span><span class="sxs-lookup"><span data-stu-id="330b6-124">Click **OK** to close the Edit Properties page.</span></span>
+
+7.  <span data-ttu-id="330b6-125">No **Construtor de topologias**, selecione o nó superior do **Lync Server**.</span><span class="sxs-lookup"><span data-stu-id="330b6-125">From **Topology Builder**, select the top node **Lync Server**.</span></span>
+
+8.  <span data-ttu-id="330b6-126">No menu **ação** , clique em **publicar topologia**.</span><span class="sxs-lookup"><span data-stu-id="330b6-126">From the **Action** menu, click **Publish Topology**.</span></span>
+
+9.  <span data-ttu-id="330b6-127">Clique em **Avançar** para concluir o processo de publicação e, em seguida, clique em **concluir** quando o processo de publicação estiver concluído.</span><span class="sxs-lookup"><span data-stu-id="330b6-127">Click **Next** to complete the publishing process and then click **Finish** when the publishing process has completed.</span></span>
+
+</div>
+
+<div>
+
+## <a name="to-configure-the-legacy-edge-server-as-a-non-federating-edge-server"></a><span data-ttu-id="330b6-128">Para configurar o servidor de borda herdado como um servidor de borda não federativo</span><span class="sxs-lookup"><span data-stu-id="330b6-128">To configure the legacy Edge Server as a non-federating Edge Server</span></span>
+
+1.  <span data-ttu-id="330b6-129">No painel esquerdo, navegue até o nó do **Lync Server 2010** e, em seguida, para o nó de **pools de borda** .</span><span class="sxs-lookup"><span data-stu-id="330b6-129">In the left pane, navigate to the **Lync Server 2010** node and then to the **Edge pools** node.</span></span>
+
+2.  <span data-ttu-id="330b6-130">Clique com o botão direito do mouse no servidor de borda e, em seguida, clique em **Editar propriedades**.</span><span class="sxs-lookup"><span data-stu-id="330b6-130">Right-click the Edge server, and then click **Edit Properties**.</span></span>
+
+3.  <span data-ttu-id="330b6-131">Selecione **geral** no painel esquerdo.</span><span class="sxs-lookup"><span data-stu-id="330b6-131">Select **General** in the left pane.</span></span>
+
+4.  <span data-ttu-id="330b6-132">Desmarque a caixa de seleção **habilitar Federação para este pool de bordas (porta 5061)** e selecione **OK** para fechar a página.</span><span class="sxs-lookup"><span data-stu-id="330b6-132">Clear the **Enable federation for this Edge pool (port 5061)** check box entry and select **OK** to close the page.</span></span>
+    
+    <span data-ttu-id="330b6-133">![Editar propriedades, geral, limpar habilitar Federação](images/JJ688121.3be2c8c0-9ed9-4544-bafd-b7694271fafc(OCS.15).jpg "Editar propriedades, geral, limpar habilitar Federação")</span><span class="sxs-lookup"><span data-stu-id="330b6-133">![Edit Properties, General, clear Enable federation](images/JJ688121.3be2c8c0-9ed9-4544-bafd-b7694271fafc(OCS.15).jpg "Edit Properties, General, clear Enable federation")</span></span>
+
+5.  <span data-ttu-id="330b6-134">No menu **ação** , selecione **publicar topologia** e clique em **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="330b6-134">From the **Action** menu, select **Publish Topology**, and then click **Next**.</span></span>
+
+6.  <span data-ttu-id="330b6-135">Quando o **Assistente de publicação** for concluído, clique em **concluir** para fechar o assistente.</span><span class="sxs-lookup"><span data-stu-id="330b6-135">When the **Publishing wizard** completes, click **Finish** to close the wizard.</span></span>
+
+7.  <span data-ttu-id="330b6-136">Verifique se a Federação para o servidor de borda herdada está desabilitada.</span><span class="sxs-lookup"><span data-stu-id="330b6-136">Verify federation for the legacy Edge server is disabled.</span></span>
+    
+    <span data-ttu-id="330b6-137">![Construtor de topologia, pool de bordas, agrupamento desabilitado](images/JJ688121.a2948438-d51a-4aeb-9eaa-d899ca950758(OCS.15).jpg "Construtor de topologia, pool de bordas, agrupamento desabilitado")</span><span class="sxs-lookup"><span data-stu-id="330b6-137">![Topology Builder, Edge pool, federation disabled](images/JJ688121.a2948438-d51a-4aeb-9eaa-d899ca950758(OCS.15).jpg "Topology Builder, Edge pool, federation disabled")</span></span>
+
+</div>
+
+<div>
+
+## <a name="to-configure-certificates-on-the-lync-server-2010-edge-server"></a><span data-ttu-id="330b6-138">Para configurar certificados no servidor de borda do Lync Server 2010</span><span class="sxs-lookup"><span data-stu-id="330b6-138">To configure certificates on the Lync Server 2010 Edge Server</span></span>
+
+1.  <span data-ttu-id="330b6-139">Exportar o certificado de proxy de acesso externo, com a chave privada, do servidor de borda do Lync Server 2010 herdado.</span><span class="sxs-lookup"><span data-stu-id="330b6-139">Export the external Access Proxy certificate, with the private key, from the legacy Lync Server 2010 Edge Server.</span></span>
+
+2.  <span data-ttu-id="330b6-140">No servidor de borda do Lync Server 2013, importe o certificado de proxy externo do Access da etapa anterior.</span><span class="sxs-lookup"><span data-stu-id="330b6-140">On the Lync Server 2013 Edge Server, import the Access Proxy external certificate from the previous step.</span></span>
+
+3.  <span data-ttu-id="330b6-141">Atribua o certificado de proxy externo do Access à interface externa do Lync Server 2013 do servidor de borda.</span><span class="sxs-lookup"><span data-stu-id="330b6-141">Assign the Access Proxy external certificate to the Lync Server 2013 external interface of the Edge Server.</span></span>
+
+4.  <span data-ttu-id="330b6-142">O certificado de interface interna do servidor de borda do Lync Server 2013 deve ser solicitado de uma autoridade de certificação confiável e atribuído.</span><span class="sxs-lookup"><span data-stu-id="330b6-142">The internal interface certificate of the Lync Server 2013 Edge Server should be requested from a trusted CA and assigned.</span></span>
+
+</div>
+
+<div>
+
+## <a name="to-change-lync-server-2010-federation-route-to-use-lync-server-2013-edge-server"></a><span data-ttu-id="330b6-143">Para alterar a rota de Federação do Lync Server 2010 para usar o Lync Server 2013 Edge Server</span><span class="sxs-lookup"><span data-stu-id="330b6-143">To change Lync Server 2010 federation route to use Lync Server 2013 Edge Server</span></span>
+
+1.  <span data-ttu-id="330b6-144">No construtor de topologia, no painel esquerdo, navegue até o nó do **Lync Server 2013** e, em seguida, para o nó de **pools de borda** .</span><span class="sxs-lookup"><span data-stu-id="330b6-144">From Topology Builder, in the left pane, navigate to the **Lync Server 2013** node and then to the **Edge pools** node.</span></span>
+
+2.  <span data-ttu-id="330b6-145">Clique com o botão direito do mouse no servidor de borda e, em seguida, clique em **Editar propriedades**.</span><span class="sxs-lookup"><span data-stu-id="330b6-145">Right-click the Edge server, and then click **Edit Properties**.</span></span>
+
+3.  <span data-ttu-id="330b6-146">Selecione **geral** no painel esquerdo.</span><span class="sxs-lookup"><span data-stu-id="330b6-146">Select **General** in the left pane.</span></span>
+
+4.  <span data-ttu-id="330b6-147">Marque a entrada da caixa de seleção para **habilitar a Federação para este pool de bordas (porta 5061)** e clique em **OK** para fechar a página.</span><span class="sxs-lookup"><span data-stu-id="330b6-147">Select the check box entry for **Enable federation for this Edge pool (port 5061)** and then click **OK** to close the page.</span></span>
+    
+    <span data-ttu-id="330b6-148">![Caixa de diálogo Editar propriedades, página Geral](images/JJ688121.cc79a88c-cce4-4cab-80ad-4f70325dc7c4(OCS.15).jpg "Caixa de diálogo Editar propriedades, página Geral")</span><span class="sxs-lookup"><span data-stu-id="330b6-148">![Edit Properties dialog, General page](images/JJ688121.cc79a88c-cce4-4cab-80ad-4f70325dc7c4(OCS.15).jpg "Edit Properties dialog, General page")</span></span>
+
+5.  <span data-ttu-id="330b6-149">No menu **ação** , selecione **publicar topologia** e clique em **Avançar**.</span><span class="sxs-lookup"><span data-stu-id="330b6-149">From the **Action** menu, select **Publish Topology**, and then click **Next**.</span></span>
+
+6.  <span data-ttu-id="330b6-150">Quando o **Assistente de publicação** for concluído, clique em **concluir** para fechar o assistente.</span><span class="sxs-lookup"><span data-stu-id="330b6-150">When the **Publishing wizard** completes, click **Finish** to close the wizard.</span></span>
+
+7.  <span data-ttu-id="330b6-151">Verifique se a **Federação (porta 5061)** está definida como **Enabled**.</span><span class="sxs-lookup"><span data-stu-id="330b6-151">Verify **Federation (port 5061)** is set to **Enabled**.</span></span>
+    
+    <span data-ttu-id="330b6-152">![Construtor de topologia, pool de bordas, agrupamento habilitado](images/JJ688121.e8ccdada-23f4-47e5-a99d-5bf795fefc48(OCS.15).jpg "Construtor de topologia, pool de bordas, agrupamento habilitado")</span><span class="sxs-lookup"><span data-stu-id="330b6-152">![Topology Builder, Edge pool, Federation enabled](images/JJ688121.e8ccdada-23f4-47e5-a99d-5bf795fefc48(OCS.15).jpg "Topology Builder, Edge pool, Federation enabled")</span></span>
+
+</div>
+
+<div>
+
+## <a name="to-update-lync-server-2013-edge-server-federation-next-hop"></a><span data-ttu-id="330b6-153">Para atualizar o Lync Server 2013 o próximo nó de Federação do servidor de borda</span><span class="sxs-lookup"><span data-stu-id="330b6-153">To update Lync Server 2013 Edge Server federation next hop</span></span>
+
+1.  <span data-ttu-id="330b6-154">No construtor de topologia, no painel esquerdo, navegue até o nó do **Lync Server 2013** e, em seguida, para o nó de **pools de borda** .</span><span class="sxs-lookup"><span data-stu-id="330b6-154">From Topology Builder, in the left pane, navigate to the **Lync Server 2013** node and then to the **Edge pools** node.</span></span>
+
+2.  <span data-ttu-id="330b6-155">Expanda o nó, clique com o botão direito do mouse no servidor de borda listado e, em seguida, clique em **Editar propriedades**.</span><span class="sxs-lookup"><span data-stu-id="330b6-155">Expand the node, right-click the Edge Server listed, and then click **Edit Properties**.</span></span>
+
+3.  <span data-ttu-id="330b6-156">Na página **geral** , em **seleção do próximo salto**, selecione na lista suspensa o pool do Lync Server 2013.</span><span class="sxs-lookup"><span data-stu-id="330b6-156">On the **General** page, under **Next hop selection**, select from the drop-down list the Lync Server 2013  pool.</span></span>
+    
+    <span data-ttu-id="330b6-157">![Caixa de diálogo Editar propriedades, página de próximo salto](images/JJ688121.5741b9a8-e729-4457-9f62-38f08a2c5b02(OCS.15).jpg "Caixa de diálogo Editar propriedades, página de próximo salto")</span><span class="sxs-lookup"><span data-stu-id="330b6-157">![Edit Properties dialog, Next hop page](images/JJ688121.5741b9a8-e729-4457-9f62-38f08a2c5b02(OCS.15).jpg "Edit Properties dialog, Next hop page")</span></span>
+
+4.  <span data-ttu-id="330b6-158">Clique em **OK** para fechar a página Editar propriedades.</span><span class="sxs-lookup"><span data-stu-id="330b6-158">Click **OK** to close the Edit Properties page.</span></span>
+
+5.  <span data-ttu-id="330b6-159">No **Construtor de topologias**, selecione o nó superior do **Lync Server** .</span><span class="sxs-lookup"><span data-stu-id="330b6-159">From **Topology Builder**, select the top node **Lync Server** .</span></span>
+
+6.  <span data-ttu-id="330b6-160">No menu **ação** , clique em **publicar topologia** e conclua o assistente.</span><span class="sxs-lookup"><span data-stu-id="330b6-160">From the **Action** menu, click **Publish Topology** and complete the wizard.</span></span>
+
+</div>
+
+<div>
+
+## <a name="to-configure-lync-server-2013-edge-server-outbound-media-path"></a><span data-ttu-id="330b6-161">Para configurar o caminho da mídia de saída do servidor de borda do Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="330b6-161">To configure Lync Server 2013 Edge Server outbound media path</span></span>
+
+1.  <span data-ttu-id="330b6-162">No construtor de topologia, no painel esquerdo, navegue até o nó do **Lync Server 2013** e, em seguida, para o pool abaixo de **servidores front-end da edição padrão** ou **pools front-ends do Enterprise Edition**.</span><span class="sxs-lookup"><span data-stu-id="330b6-162">From Topology Builder, in the left pane, navigate to the **Lync Server 2013** node and then to the pool below **Standard Edition Front End Servers** or **Enterprise Edition Front End pools**.</span></span>
+
+2.  <span data-ttu-id="330b6-163">Clique com o botão direito do mouse no pool e, em seguida, clique em **Editar propriedades**.</span><span class="sxs-lookup"><span data-stu-id="330b6-163">Right-click the pool, and then click **Edit Properties**.</span></span>
+
+3.  <span data-ttu-id="330b6-164">Na seção **associações** , marque a caixa de seleção **associar o pool de bordas (para componentes de mídia)** .</span><span class="sxs-lookup"><span data-stu-id="330b6-164">In the **Associations** section, select the **Associate Edge pool (for media components)** check box.</span></span>
+    
+    <span data-ttu-id="330b6-165">![Editar propriedades, geral, associar pool de bordas](images/JJ688121.fd9b18ca-fda2-4764-9bf0-726bf39f6a12(OCS.15).jpg "Editar propriedades, geral, associar pool de bordas")</span><span class="sxs-lookup"><span data-stu-id="330b6-165">![Edit Properties, General, Associate Edge pool](images/JJ688121.fd9b18ca-fda2-4764-9bf0-726bf39f6a12(OCS.15).jpg "Edit Properties, General, Associate Edge pool")</span></span>
+
+4.  <span data-ttu-id="330b6-166">Na caixa suspensa, selecione o servidor de borda do Lync Server 2013.</span><span class="sxs-lookup"><span data-stu-id="330b6-166">From the drop down box, select the Lync Server 2013 Edge Server.</span></span>
+
+5.  <span data-ttu-id="330b6-167">Clique em **OK** para fechar a página **Editar propriedades** .</span><span class="sxs-lookup"><span data-stu-id="330b6-167">Click **OK** to close the **Edit Properties** page.</span></span>
+
+</div>
+
+<div>
+
+## <a name="to-turn-on-lync-server-2013-edge-server-federation"></a><span data-ttu-id="330b6-168">Para ativar a Federação do servidor de borda do Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="330b6-168">To turn on Lync Server 2013 Edge Server federation</span></span>
+
+1.  <span data-ttu-id="330b6-169">No construtor de topologia, no painel esquerdo, navegue até o nó do **Lync Server 2013** e, em seguida, para o nó de **pools de borda** .</span><span class="sxs-lookup"><span data-stu-id="330b6-169">From Topology Builder, in the left pane, navigate to the **Lync Server 2013** node and then to the **Edge pools** node.</span></span>
+
+2.  <span data-ttu-id="330b6-170">Expanda o nó, clique com o botão direito do mouse no servidor de borda listado e, em seguida, clique em **Editar propriedades**.</span><span class="sxs-lookup"><span data-stu-id="330b6-170">Expand the node, right-click the Edge Server listed, and then click **Edit Properties**.</span></span>
+    
+    <div>
+    
+
+    > [!NOTE]  
+    > <span data-ttu-id="330b6-171">A Federação só pode ser habilitada para um único pool de bordas.</span><span class="sxs-lookup"><span data-stu-id="330b6-171">Federation can only be enabled for a single Edge pool.</span></span> <span data-ttu-id="330b6-172">Se você tiver vários pools de bordas, selecione um para usá-lo como o pool de bordas de Federação.</span><span class="sxs-lookup"><span data-stu-id="330b6-172">If you have multiple Edge pools, select one to use as the federating Edge pool.</span></span>
+
+    
+    </div>
+
+3.  <span data-ttu-id="330b6-173">Na página **geral** , verifique se a configuração **habilitar Federação para este pool de bordas (porta 5061)** está marcada.</span><span class="sxs-lookup"><span data-stu-id="330b6-173">On the **General** page, verify the **Enable federation for this Edge pool (Port 5061)** setting is checked.</span></span>
+    
+    <span data-ttu-id="330b6-174">![Caixa de diálogo Editar propriedades, página Geral](images/JJ688121.cc79a88c-cce4-4cab-80ad-4f70325dc7c4(OCS.15).jpg "Caixa de diálogo Editar propriedades, página Geral")</span><span class="sxs-lookup"><span data-stu-id="330b6-174">![Edit Properties dialog, General page](images/JJ688121.cc79a88c-cce4-4cab-80ad-4f70325dc7c4(OCS.15).jpg "Edit Properties dialog, General page")</span></span>
+
+4.  <span data-ttu-id="330b6-175">Clique em **OK** para fechar a página Editar propriedades.</span><span class="sxs-lookup"><span data-stu-id="330b6-175">Click **OK** to close the Edit Properties page.</span></span>
+
+5.  <span data-ttu-id="330b6-176">Em seguida, navegue até o nó do site.</span><span class="sxs-lookup"><span data-stu-id="330b6-176">Next, navigate to the site node.</span></span>
+
+6.  <span data-ttu-id="330b6-177">Clique com o botão direito do mouse no site e, em seguida, clique em **Editar propriedades**.</span><span class="sxs-lookup"><span data-stu-id="330b6-177">Right-click the site, and then click **Edit Properties**.</span></span>
+
+7.  <span data-ttu-id="330b6-178">No painel esquerdo, clique em **rota de Federação**.</span><span class="sxs-lookup"><span data-stu-id="330b6-178">In the left pane, click **Federation route**.</span></span>
+
+8.  <span data-ttu-id="330b6-179">Em **atribuição de rota de Federação do site**, selecione **habilitar Federação SIP** e, em seguida, na lista Selecione o servidor de borda do Lync Server 2013 listado.</span><span class="sxs-lookup"><span data-stu-id="330b6-179">Under **Site federation route assignment**, select **Enable SIP federation**, and then from the list select the Lync Server 2013 Edge Server listed.</span></span>
+    
+    <span data-ttu-id="330b6-180">![Editar propriedades, página de roteiro de Federação](images/JJ688121.c50c13b8-0859-4e3e-8793-45c431a5b4b5(OCS.15).jpg "Editar propriedades, página de roteiro de Federação")</span><span class="sxs-lookup"><span data-stu-id="330b6-180">![Edit Properties, Federation route page](images/JJ688121.c50c13b8-0859-4e3e-8793-45c431a5b4b5(OCS.15).jpg "Edit Properties, Federation route page")</span></span>
+
+9.  <span data-ttu-id="330b6-181">Clique em **OK** para fechar a página **Editar propriedades** .</span><span class="sxs-lookup"><span data-stu-id="330b6-181">Click **OK** to close the **Edit Properties** page.</span></span>
+    
+    <span data-ttu-id="330b6-182">Para implantações em vários locais, conclua este procedimento em cada site.</span><span class="sxs-lookup"><span data-stu-id="330b6-182">For multi-site deployments, complete this procedure at each site.</span></span>
+
+</div>
+
+<div>
+
+## <a name="to-publish-edge-server-configuration-changes"></a><span data-ttu-id="330b6-183">Para publicar as alterações de configuração do servidor de borda</span><span class="sxs-lookup"><span data-stu-id="330b6-183">To publish Edge Server configuration changes</span></span>
+
+1.  <span data-ttu-id="330b6-184">No **Construtor de topologias**, selecione o nó superior do **Lync Server** .</span><span class="sxs-lookup"><span data-stu-id="330b6-184">From **Topology Builder**, select the top node **Lync Server** .</span></span>
+
+2.  <span data-ttu-id="330b6-185">No menu **ação** , selecione **publicar topologia** e conclua o assistente.</span><span class="sxs-lookup"><span data-stu-id="330b6-185">From the **Action** menu, select **Publish Topology** and complete the wizard.</span></span>
+
+3.  <span data-ttu-id="330b6-186">Aguarde até que a replicação do Active Directory ocorra em todos os pools da implantação.</span><span class="sxs-lookup"><span data-stu-id="330b6-186">Wait for Active Directory replication to occur to all pools in the deployment.</span></span>
+    
+    <div>
+    
+
+    > [!NOTE]  
+    > <span data-ttu-id="330b6-187">Você pode ver a seguinte mensagem:</span><span class="sxs-lookup"><span data-stu-id="330b6-187">You may see the following message:</span></span><BR><span data-ttu-id="330b6-188"><STRONG>Aviso: a topologia contém mais de um servidor de borda federado. Isso pode ocorrer durante a migração para uma versão mais recente do produto. Nesse caso, apenas um servidor de borda seria usado ativamente para Federação. Verifique se o registro SRV DNS externo aponta para o servidor de borda correto. Se você quiser implantar várias bordas de servidor de borda para ativar simultaneamente (ou seja, não um cenário de migração), verifique se todos os parceiros federados estão usando o Lync Server. Verifique se o registro SRV DNS externo lista todos os servidores de borda habilitados para Federação.</STRONG></span><span class="sxs-lookup"><span data-stu-id="330b6-188"><STRONG>Warning: The topology contains more than one Federated Edge Server. This can occur during migration to a more recent version of the product. In that case, only one Edge Server would be actively used for federation. Verify that the external DNS SRV record points to the correct Edge Server. If you want to deploy multiple federation Edge Server to be active concurrently (that is, not a migration scenario), verify that all federated partners are using Lync Server. Verify that the external DNS SRV record lists all federation enabled Edge Servers.</STRONG></span></span><BR><span data-ttu-id="330b6-189">Este aviso é esperado e pode ser ignorado com segurança.</span><span class="sxs-lookup"><span data-stu-id="330b6-189">This warning is expected and can be safely ignored.</span></span>
+
+    
+    </div>
+
+</div>
+
+<div>
+
+## <a name="to-configure-lync-server-2013-edge-server"></a><span data-ttu-id="330b6-190">Para configurar o servidor de borda do Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="330b6-190">To configure Lync Server 2013 Edge Server</span></span>
+
+1.  <span data-ttu-id="330b6-191">Reúna todos os servidores do Lync Server 2013 Edge online.</span><span class="sxs-lookup"><span data-stu-id="330b6-191">Bring all of the Lync Server 2013 Edge Servers online.</span></span>
+
+2.  <span data-ttu-id="330b6-192">Atualize as regras de roteamento do firewall externo ou as configurações do balanceador de carga de hardware para enviar o tráfego SIP para acesso externo (geralmente a porta 443) e a Federação (geralmente a porta 5061) para o servidor do Lync 2013, em vez do servidor de borda herdado.</span><span class="sxs-lookup"><span data-stu-id="330b6-192">Update the external firewall routing rules or the hardware load balancer settings to send SIP traffic for external access (usually port 443) and federation (usually port 5061) to the Lync Server 2013 Edge Server, instead of the legacy Edge Server.</span></span>
+    
+    <div>
+    
+
+    > [!NOTE]  
+    > <span data-ttu-id="330b6-193">Se você não tiver um balanceador de carga de hardware, será necessário atualizar o registro DNS a para que a Federação seja resolvida para o novo servidor de borda de acesso do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="330b6-193">If you do not have a hardware load balancer, you need to update the DNS A record for federation to resolve to the new Lync Server Access Edge server.</span></span> <span data-ttu-id="330b6-194">Para fazer isso com o mínimo de interrupção, reduza o valor TLL do FQDN do servidor de borda de acesso externo do Lync Server, para que, quando o DNS for atualizado, aponte para a nova borda de acesso do Lync Server, a Federação e o acesso remoto sejam atualizados rapidamente.</span><span class="sxs-lookup"><span data-stu-id="330b6-194">To accomplish this with minimum disruption, reduce the TLL value for the external Lync Server Access Edge FQDN so that when DNS is updated to point to the new Lync Server Access Edge, federation and remote access will be updated quickly.</span></span>
+
+    
+    </div>
+
+3.  <span data-ttu-id="330b6-195">Em seguida, interrompa a **borda de acesso do Lync Server** de cada computador do servidor de borda.</span><span class="sxs-lookup"><span data-stu-id="330b6-195">Next, stop the **Lync Server Access Edge** from each Edge Server computer.</span></span>
+
+4.  <span data-ttu-id="330b6-196">Em cada computador do servidor de borda herdado, abra o applet de **Serviços** nas **Ferramentas administrativas**.</span><span class="sxs-lookup"><span data-stu-id="330b6-196">From each legacy Edge Server computer, open the **Services** applet from the **Administrative Tools**.</span></span>
+
+5.  <span data-ttu-id="330b6-197">Na lista serviços, localize a **borda de acesso do Lync Server**.</span><span class="sxs-lookup"><span data-stu-id="330b6-197">In the services list, find **Lync Server Access Edge**.</span></span>
+
+6.  <span data-ttu-id="330b6-198">Clique com o botão direito do mouse no nome dos serviços e, em seguida, selecione **parar** para interromper o serviço.</span><span class="sxs-lookup"><span data-stu-id="330b6-198">Right-click the services name, and then select **Stop** to stop the service.</span></span>
+
+7.  <span data-ttu-id="330b6-199">Defina o tipo de inicialização como **desabilitado**.</span><span class="sxs-lookup"><span data-stu-id="330b6-199">Set the Startup type to **Disabled**.</span></span>
+
+8.  <span data-ttu-id="330b6-200">Clique em **OK** para fechar a janela **Propriedades** .</span><span class="sxs-lookup"><span data-stu-id="330b6-200">Click **OK** to close the **Properties** window.</span></span>
+
+<span data-ttu-id="330b6-201"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="330b6-201"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
