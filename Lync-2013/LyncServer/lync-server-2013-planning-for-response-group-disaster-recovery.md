@@ -1,0 +1,267 @@
+---
+title: 'Lync Server 2013: Planejamento para recuperação de desastre de grupos de resposta'
+description: 'Lync Server 2013: planejando a recuperação de desastres do grupo de resposta.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Planning for response group disaster recovery
+ms:assetid: 14e0f5dc-77cd-42cd-a9c9-4d0da38fb1cf
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ204699(v=OCS.15)
+ms:contentKeyID: 48183482
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 5294ddf7dbd42d95c5eb17acd6be6a5abc7a5917
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "49390458"
+---
+# <a name="planning-for-response-group-disaster-recovery-in-lync-server-2013"></a><span data-ttu-id="27d7b-103">Planejamento para recuperação de desastre de grupos de resposta no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="27d7b-103">Planning for response group disaster recovery in Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="27d7b-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="27d7b-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="27d7b-105">_**Tópico da última modificação:** 2012-11-01_</span><span class="sxs-lookup"><span data-stu-id="27d7b-105">_**Topic Last Modified:** 2012-11-01_</span></span>
+
+<span data-ttu-id="27d7b-106">Esta seção descreve algumas maneiras de preparar grupos de resposta para recuperação de desastres e fornece uma visão geral do processo de recuperação de desastres.</span><span class="sxs-lookup"><span data-stu-id="27d7b-106">This section describes some ways to prepare response groups for disaster recovery and provides an overview of the disaster recovery process.</span></span>
+
+<div>
+
+## <a name="preparing-for-response-group-disaster-recovery"></a><span data-ttu-id="27d7b-107">Preparando-se para recuperação de desastre do grupo de resposta</span><span class="sxs-lookup"><span data-stu-id="27d7b-107">Preparing for Response Group Disaster Recovery</span></span>
+
+<span data-ttu-id="27d7b-108">Lembre-se do seguinte ao preparar-se para e realizar procedimentos de recuperação de desastres.</span><span class="sxs-lookup"><span data-stu-id="27d7b-108">Keep the following in mind when you prepare for and carry out disaster recovery procedures.</span></span>
+
+<div>
+
+
+> [!NOTE]  
+> <span data-ttu-id="27d7b-109">Em um ambiente de coexistência, somente os grupos de resposta do Lync Server 2013 são compatíveis com os procedimentos de recuperação de desastre descritos neste documento.</span><span class="sxs-lookup"><span data-stu-id="27d7b-109">In a coexistence environment, only the Lync Server 2013 response groups are supported for the disaster recovery procedures described in this document.</span></span>
+
+
+
+</div>
+
+  - <span data-ttu-id="27d7b-110">Planeje a recuperação de desastres quando você fizer o planejamento da capacidade.</span><span class="sxs-lookup"><span data-stu-id="27d7b-110">Plan for disaster recovery when you do your capacity planning.</span></span> <span data-ttu-id="27d7b-111">Para a capacidade de recuperação de desastres, cada pool em um pool emparelhado deve ser capaz de manipular as cargas de trabalho de todos os grupos de resposta em ambos os pools.</span><span class="sxs-lookup"><span data-stu-id="27d7b-111">For disaster recovery capacity, each pool in a paired pool should be able to handle the workloads of all the response groups in both pools.</span></span> <span data-ttu-id="27d7b-112">Para obter detalhes sobre o planejamento da capacidade do grupo de resposta, consulte [planejamento de capacidade para o grupo de resposta no Lync Server 2013](lync-server-2013-capacity-planning-for-response-group.md).</span><span class="sxs-lookup"><span data-stu-id="27d7b-112">For details about Response Group capacity planning, see [Capacity planning for Response Group in Lync Server 2013](lync-server-2013-capacity-planning-for-response-group.md).</span></span>
+
+  - <span data-ttu-id="27d7b-113">Faça cópias regulares de backup de todas as configurações do grupo de resposta em todos os pools de front-ends nos quais você implantou o aplicativo de grupo de resposta usando o procedimento de exportação descrito neste documento.</span><span class="sxs-lookup"><span data-stu-id="27d7b-113">Take regular backup copies of all the response group configurations in all the Front End pools where you deployed the Response Group application by using the export procedure described in this document.</span></span> <span data-ttu-id="27d7b-114">Para obter detalhes, consulte [procedimentos de recuperação de desastres de grupo de resposta no Lync Server 2013](lync-server-2013-response-group-disaster-recovery-procedures.md).</span><span class="sxs-lookup"><span data-stu-id="27d7b-114">For details, see [Response group disaster recovery procedures in Lync Server 2013](lync-server-2013-response-group-disaster-recovery-procedures.md).</span></span> <span data-ttu-id="27d7b-115">Mantenha as cópias de backup em um local seguro.</span><span class="sxs-lookup"><span data-stu-id="27d7b-115">Keep the backup copies in a safe location.</span></span>
+
+  - <span data-ttu-id="27d7b-116">Mantenha uma cópia de backup separada de todos os arquivos de áudio originais que você usou para o aplicativo do grupo de resposta, incluindo qualquer gravação e arquivos de música em espera.</span><span class="sxs-lookup"><span data-stu-id="27d7b-116">Keep a separate backup copy of all the original audio files you used for the Response Group application, including any recordings and music-on-hold files.</span></span> <span data-ttu-id="27d7b-117">Mantenha os arquivos de backup em um local seguro.</span><span class="sxs-lookup"><span data-stu-id="27d7b-117">Keep the backup files in a safe location.</span></span>
+
+  - <span data-ttu-id="27d7b-118">Para a recuperação de desastre do Lync Server 2013, todas as configurações de grupo de resposta devem ter nomes exclusivos em toda a sua implantação.</span><span class="sxs-lookup"><span data-stu-id="27d7b-118">For Lync Server 2013 disaster recovery, all Response Group settings must have unique names across your deployment.</span></span> <span data-ttu-id="27d7b-119">Esse requisito se aplica a fluxos de trabalho, filas, grupos de agente, conjuntos de feriados e horas de negócios.</span><span class="sxs-lookup"><span data-stu-id="27d7b-119">This requirement applies to workflows, queues, agent groups, holiday sets, and hours of business.</span></span> <span data-ttu-id="27d7b-120">Você deve verificar se esse requisito é atendido quando os pools primário e de backup ainda estão ativos e antes de você precisar iniciar qualquer procedimento de failover.</span><span class="sxs-lookup"><span data-stu-id="27d7b-120">You should verify that this requirement is met when the primary and backup pools are still active, and before you need to initiate any failover procedure.</span></span> <span data-ttu-id="27d7b-121">Se você encontrar conflitos de nome ao importar dados do grupo de resposta para o pool de backup, a importação falhará.</span><span class="sxs-lookup"><span data-stu-id="27d7b-121">If you encounter name conflicts while importing response group data to the backup pool, the import fails.</span></span> <span data-ttu-id="27d7b-122">Para concluir o procedimento de importação e failover, você precisa resolver os conflitos de nome renomeando o objeto do grupo de resposta no pool de backup ou usando o cmdlet **Import-CsRgsConfiguration** com o parâmetro – ResolveNameConflicts para resolver automaticamente o conflito, acrescentando um número exclusivo de identificação ao objeto do grupo de resposta.</span><span class="sxs-lookup"><span data-stu-id="27d7b-122">To complete the import and failover procedure, you need to resolve the name conflicts by renaming the response group object in the backup pool or by using the **Import-CsRgsConfiguration** cmdlet with the –ResolveNameConflicts parameter to automatically resolve the conflict by appending a unique identifying number to the response group object.</span></span>
+
+  - <span data-ttu-id="27d7b-123">Em geral, recomendamos que você realize backups diários, mas se você tiver um grande volume de alterações, talvez queira agendar backups mais frequentes.</span><span class="sxs-lookup"><span data-stu-id="27d7b-123">In general, we recommend that you perform daily backups, but if you have a high volume of changes, you might want to schedule more frequent backups.</span></span> <span data-ttu-id="27d7b-124">A quantidade de informações que você pode perder no caso de um desastre depende da frequência dos backups, bem como da frequência e do volume das alterações.</span><span class="sxs-lookup"><span data-stu-id="27d7b-124">The amount of information you can lose in the event of a disaster depends on the frequency of your backups, as well as the frequency and volume of changes.</span></span>
+
+  - <span data-ttu-id="27d7b-125">É possível importar grupos de resposta para um pool de backup antes que ocorra um desastre ou operação de failover.</span><span class="sxs-lookup"><span data-stu-id="27d7b-125">It is possible to import response groups to a backup pool before a disaster or failover operation occurs.</span></span> <span data-ttu-id="27d7b-126">A importação de grupos de resposta com antecedência reduz o tempo de inatividade, pois o serviço do grupo de resposta do Lync Server pode ser restaurado no pool de backup assim que as chamadas são roteadas para o pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-126">Importing response groups in advance reduces downtime, because the Lync Server Response Group service can be restored in the backup pool as soon as calls are routed to the backup pool.</span></span>
+    
+    <div>
+    
+
+    > [!NOTE]  
+    > <span data-ttu-id="27d7b-127">O aplicativo de grupo de resposta não pode alcançar nenhum agente hospedado em um pool inativo até que o failover seja concluído.</span><span class="sxs-lookup"><span data-stu-id="27d7b-127">The Response Group application cannot reach any agents homed in an inactive pool until failover is complete.</span></span> <span data-ttu-id="27d7b-128">Durante esse período, o aplicativo do grupo de resposta processa chamadas como se esses agentes não estiverem disponíveis.</span><span class="sxs-lookup"><span data-stu-id="27d7b-128">During this time, the Response Group application processes calls as if those agents are unavailable.</span></span>
+
+    
+    </div>
+
+</div>
+
+<div>
+
+## <a name="response-group-disaster-recovery-process"></a><span data-ttu-id="27d7b-129">Processo de recuperação de desastre do grupo de resposta</span><span class="sxs-lookup"><span data-stu-id="27d7b-129">Response Group Disaster Recovery Process</span></span>
+
+<span data-ttu-id="27d7b-130">Em caso de desastre, você pode recuperar grupos de resposta usando um dos seguintes métodos de recuperação:</span><span class="sxs-lookup"><span data-stu-id="27d7b-130">In the event of a disaster, you can recover response groups by using either of the following recovery approaches:</span></span>
+
+  - <span data-ttu-id="27d7b-131">Faça failover para um pool de backup e, em seguida, faça failback para o pool original.</span><span class="sxs-lookup"><span data-stu-id="27d7b-131">Fail over to a backup pool and then fail back to the original pool.</span></span>
+
+  - <span data-ttu-id="27d7b-132">Failover para um pool de backup, crie um novo pool com um nome de domínio totalmente qualificado (FQDN) diferente e, em seguida, importe os grupos de resposta para o novo pool.</span><span class="sxs-lookup"><span data-stu-id="27d7b-132">Fail over to a backup pool, create a new pool with a different fully qualified domain name (FQDN), and then import the response groups to the new pool.</span></span>
+
+<span data-ttu-id="27d7b-133">Durante a fase de failover da recuperação de desastres, os grupos de resposta residem em vários pools: no pool primário (que não está disponível) e no pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-133">During the failover phase of disaster recovery, the response groups reside in multiple pools: in the primary pool (which is unavailable) and in the backup pool.</span></span> <span data-ttu-id="27d7b-134">Os grupos de resposta em ambos os pools têm o mesmo nome e o mesmo proprietário (o pool primário), mas têm pais diferentes.</span><span class="sxs-lookup"><span data-stu-id="27d7b-134">The response groups in both pools have the same name and the same owner (the primary pool), but they have different parents.</span></span>
+
+<span data-ttu-id="27d7b-135">Ao recuperar criando um novo pool com um FQDN diferente, você precisa atribuir o novo pool como o proprietário dos grupos de resposta quando importá-los.</span><span class="sxs-lookup"><span data-stu-id="27d7b-135">When you recover by creating a new pool with a different FQDN, you need to assign the new pool as the owner of the response groups when you import them.</span></span> <span data-ttu-id="27d7b-136">A propriedade dos grupos de resposta permanece com o pool original, a menos que você reatribua explicitamente a propriedade usando o parâmetro – OverwriteOwner com o cmdlet **Import-CsRgsConfiguration** .</span><span class="sxs-lookup"><span data-stu-id="27d7b-136">Ownership of response groups remains with the original pool unless or until you explicitly reassign ownership by using the –OverwriteOwner parameter with the **Import-CsRgsConfiguration** cmdlet.</span></span>
+
+<div>
+
+
+> [!NOTE]  
+> <span data-ttu-id="27d7b-137">Você também precisará usar o parâmetro – OverwriteOwner se reconstruiu o pool durante a recuperação (isto é, o banco de dados do grupo de resposta está vazio), seja ou não use o mesmo FQDN.</span><span class="sxs-lookup"><span data-stu-id="27d7b-137">You also need to use the –OverwriteOwner parameter if you rebuilt the pool during the recovery (that is, the Response Group database is empty), whether or not you use the same FQDN.</span></span> <span data-ttu-id="27d7b-138">Você não precisará usar o parâmetro – OverwriteOwner se você não reconstruou o pool, mas ele é permitido para usar esse parâmetro sempre que você importar grupos de resposta de volta para o pool primário.</span><span class="sxs-lookup"><span data-stu-id="27d7b-138">You do not need to use the –OverwriteOwner parameter if you did not rebuild the pool, but it is permissible to use this parameter whenever you import response groups back to the primary pool.</span></span>
+
+
+
+</div>
+
+<span data-ttu-id="27d7b-139">Você pode definir apenas um conjunto de configurações de grupo de resposta em nível de aplicativo por pool.</span><span class="sxs-lookup"><span data-stu-id="27d7b-139">You can define only one set of application-level Response Group configuration settings per pool.</span></span> <span data-ttu-id="27d7b-140">Essas configurações incluem a configuração de música em espera padrão, o arquivo de áudio de música em espera padrão, o período de cortesia do agente e a configuração do contexto de chamada.</span><span class="sxs-lookup"><span data-stu-id="27d7b-140">These settings include the default music-on-hold configuration, the default music-on-hold audio file, the agent ringback grace period, and the call context configuration.</span></span> <span data-ttu-id="27d7b-141">Para exibir essas definições de configuração, execute o cmdlet **Get-CsRgsConfiguration** .</span><span class="sxs-lookup"><span data-stu-id="27d7b-141">To view these configuration settings, run the **Get-CsRgsConfiguration** cmdlet.</span></span> <span data-ttu-id="27d7b-142">Para obter detalhes sobre o cmdlet **Get-CsRgsConfiguration** , consulte [Get-CsRgsConfiguration](https://docs.microsoft.com/powershell/module/skype/Get-CsRgsConfiguration).</span><span class="sxs-lookup"><span data-stu-id="27d7b-142">For details about the **Get-CsRgsConfiguration** cmdlet, see [Get-CsRgsConfiguration](https://docs.microsoft.com/powershell/module/skype/Get-CsRgsConfiguration).</span></span>
+
+<span data-ttu-id="27d7b-143">Você pode transferir essas configurações no nível do aplicativo de um pool para outro usando o cmdlet **Import-CsRgsConfiguration** com o parâmetro – ReplaceExistingSettings, mas fazer isso substitui as configurações no pool de destino.</span><span class="sxs-lookup"><span data-stu-id="27d7b-143">You can transfer these application-level settings from one pool to another by using the **Import-CsRgsConfiguration** cmdlet with the –ReplaceExistingSettings parameter, but doing so overrides the settings in the destination pool.</span></span>
+
+<div>
+
+
+> [!IMPORTANT]  
+> <span data-ttu-id="27d7b-144">Essa restrição sobre a transferência de configurações para outro pool é verdadeira apenas para as configurações no nível do aplicativo e o arquivo de áudio padrão de música em espera.</span><span class="sxs-lookup"><span data-stu-id="27d7b-144">This constraint about transferring settings to another pool is true only for the application-level settings and the default music-on-hold audio file.</span></span> <span data-ttu-id="27d7b-145">Ele não se aplica a grupos de agente, filas, fluxos de trabalho, horários comerciais e conjuntos de feriados.</span><span class="sxs-lookup"><span data-stu-id="27d7b-145">It does not apply to agent groups, queues, workflows, business hours, and holiday sets.</span></span>
+
+
+
+</div>
+
+<span data-ttu-id="27d7b-146">Se você não quiser substituir as configurações no nível do aplicativo no pool de backup durante um desastre e se o pool primário não puder ser recuperado, as configurações do nível do aplicativo do pool primário serão perdidas.</span><span class="sxs-lookup"><span data-stu-id="27d7b-146">If you don't want to replace the application-level settings in the backup pool during a disaster and the primary pool can't be recovered, the application-level settings from the primary pool will be lost.</span></span> <span data-ttu-id="27d7b-147">Se você precisar criar um novo pool para substituir o pool primário durante a recuperação, seja com o mesmo FQDN ou com um FQDN diferente, não será possível recuperar as configurações originais do nível do aplicativo.</span><span class="sxs-lookup"><span data-stu-id="27d7b-147">If you need to create a new pool to replace the primary pool during recovery, either with the same FQDN or with a different FQDN, you can't recover the original application-level settings.</span></span> <span data-ttu-id="27d7b-148">Nesse caso, você precisará configurar o novo pool com essas configurações e incluir o arquivo de áudio de música em espera.</span><span class="sxs-lookup"><span data-stu-id="27d7b-148">In this case, you need to configure the new pool with these settings and include the music-on-hold audio file.</span></span>
+
+<span data-ttu-id="27d7b-149">Se você decidir usar o cmdlet **Import-CsRgsConfiguration** para transferir configurações em nível de aplicativo do pool primário para o pool de backup durante um desastre, poderá transferir as configurações do pool de backup para o novo pool durante a recuperação da mesma forma que as transferiu do pool primário para o pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-149">If you decide to use the **Import-CsRgsConfiguration** cmdlet to transfer application-level settings from the primary pool to the backup pool during a disaster, you can then transfer the settings from the backup pool to the new pool during recovery in the same way that you transferred them from the primary pool to the backup pool.</span></span>
+
+<span data-ttu-id="27d7b-150">A tabela a seguir mostra uma visão geral das etapas envolvidas na recuperação de grupos de resposta.</span><span class="sxs-lookup"><span data-stu-id="27d7b-150">The following table is an overview of the steps involved in recovering response groups.</span></span>
+
+<span data-ttu-id="27d7b-151">Para obter detalhes sobre como executar essas etapas, consulte [procedimentos de recuperação de desastres de grupo de resposta no Lync Server 2013](lync-server-2013-response-group-disaster-recovery-procedures.md).</span><span class="sxs-lookup"><span data-stu-id="27d7b-151">For details about performing these steps, see [Response group disaster recovery procedures in Lync Server 2013](lync-server-2013-response-group-disaster-recovery-procedures.md).</span></span>
+
+### <a name="response-group-disaster-recovery-steps"></a><span data-ttu-id="27d7b-152">Etapas de recuperação de desastre do grupo de resposta</span><span class="sxs-lookup"><span data-stu-id="27d7b-152">Response Group Disaster Recovery Steps</span></span>
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span data-ttu-id="27d7b-153">Fase</span><span class="sxs-lookup"><span data-stu-id="27d7b-153">Phase</span></span></th>
+<th><span data-ttu-id="27d7b-154">Etapas</span><span class="sxs-lookup"><span data-stu-id="27d7b-154">Steps</span></span></th>
+<th><span data-ttu-id="27d7b-155">Grupos e funções necessários</span><span class="sxs-lookup"><span data-stu-id="27d7b-155">Required groups and roles</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><span data-ttu-id="27d7b-156">Antes da interrupção</span><span class="sxs-lookup"><span data-stu-id="27d7b-156">Before outage</span></span></p></td>
+<td><p><span data-ttu-id="27d7b-157">Com base em rotina, execute o cmdlet <strong>Export-CsRgsConfiguration</strong> para criar backups de todas as configurações do grupo de resposta em todos os pools front-ends em que o aplicativo do grupo de resposta é implantado.</span><span class="sxs-lookup"><span data-stu-id="27d7b-157">On a routine basis, run the <strong>Export-CsRgsConfiguration</strong> cmdlet to create backups of all Response Group configurations in all Front End pools where Response Group application is deployed.</span></span></p></td>
+<td><p><span data-ttu-id="27d7b-158">RTCUniversalServerAdmins</span><span class="sxs-lookup"><span data-stu-id="27d7b-158">RTCUniversalServerAdmins</span></span></p>
+<p><span data-ttu-id="27d7b-159">CsResponseGroupAdministrator</span><span class="sxs-lookup"><span data-stu-id="27d7b-159">CsResponseGroupAdministrator</span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="27d7b-160">Durante a interrupção</span><span class="sxs-lookup"><span data-stu-id="27d7b-160">During outage</span></span></p></td>
+<td><p><span data-ttu-id="27d7b-161">Execute o cmdlet <strong>Import-CsRgsConfiguration</strong> para importar o backup da configuração do serviço de grupo de resposta do Lync Server do pool primário para o pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-161">Run the <strong>Import-CsRgsConfiguration</strong> cmdlet to import the backed up Lync Server Response Group service configuration from the primary pool to the backup pool.</span></span></p>
+<div>
+
+> [!NOTE]  
+> <span data-ttu-id="27d7b-162">Use o parâmetro – ReplaceExistingSettings se você deseja substituir as configurações de grupo de resposta no nível do aplicativo no pool de backup com as configurações do pool primário.</span><span class="sxs-lookup"><span data-stu-id="27d7b-162">Use the –ReplaceExistingSettings parameter if you want to replace application-level Response Group settings in the backup pool with the settings from the primary pool.</span></span> <span data-ttu-id="27d7b-163">Se você não transferir as configurações no nível do aplicativo do pool primário para o pool de backup e o pool primário não puder ser recuperado, as configurações do pool primário serão perdidas.</span><span class="sxs-lookup"><span data-stu-id="27d7b-163">If you do not transfer the application-level settings from the primary pool to the backup pool, and the primary pool can't be recovered, you will lose the settings from the primary pool.</span></span>
+
+
+</div></td>
+<td><p><span data-ttu-id="27d7b-164">RTCUniversalServerAdmins</span><span class="sxs-lookup"><span data-stu-id="27d7b-164">RTCUniversalServerAdmins</span></span></p>
+<p><span data-ttu-id="27d7b-165">CsResponseGroupAdministrator</span><span class="sxs-lookup"><span data-stu-id="27d7b-165">CsResponseGroupAdministrator</span></span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="27d7b-166">Após a importação</span><span class="sxs-lookup"><span data-stu-id="27d7b-166">After importing</span></span></p></td>
+<td><p><span data-ttu-id="27d7b-167">Execute cmdlets do grupo de resposta com o parâmetro – ShowAll (para exibir todos os grupos de resposta) ou o parâmetro – Owner (para exibir somente os grupos de resposta importados) para verificar se todas as configurações do grupo de resposta foram importadas para o pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-167">Run Response Group cmdlets with either the –ShowAll parameter (to display all response groups) or the –Owner parameter (to display only imported response groups) to verify that all response group configurations were imported to the backup pool.</span></span></p>
+<div>
+
+> [!IMPORTANT]  
+> <span data-ttu-id="27d7b-168">Se você não usar o parâmetro – ShowAll ou o parâmetro – Owner, os grupos de resposta que você importou para o pool de backup não serão listados nos resultados retornados pelos cmdlets.</span><span class="sxs-lookup"><span data-stu-id="27d7b-168">If you do not use either the –ShowAll parameter or the –Owner parameter, the response groups that you imported to the backup pool will not be listed in the results returned by the cmdlets.</span></span>
+
+
+</div>
+<p><span data-ttu-id="27d7b-169">Execute os seguintes cmdlets:</span><span class="sxs-lookup"><span data-stu-id="27d7b-169">Run the following cmdlets:</span></span></p>
+<ul>
+<li><p><span data-ttu-id="27d7b-170"><strong>Get-CsRgsWorkflow</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-170"><strong>Get-CsRgsWorkflow</strong></span></span></p></li>
+<li><p><span data-ttu-id="27d7b-171"><strong>Get-CsRgsQueue</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-171"><strong>Get-CsRgsQueue</strong></span></span></p></li>
+<li><p><span data-ttu-id="27d7b-172"><strong>Get-CsRgsAgentGroup</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-172"><strong>Get-CsRgsAgentGroup</strong></span></span></p></li>
+<li><p><span data-ttu-id="27d7b-173"><strong>Get-CsRgsHoursOfBusiness</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-173"><strong>Get-CsRgsHoursOfBusiness</strong></span></span></p></li>
+<li><p><span data-ttu-id="27d7b-174"><strong>Get-CsRgsHolidaySet</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-174"><strong>Get-CsRgsHolidaySet</strong></span></span></p></li>
+</ul></td>
+<td><p><span data-ttu-id="27d7b-175">RTCUniversalServerAdmins</span><span class="sxs-lookup"><span data-stu-id="27d7b-175">RTCUniversalServerAdmins</span></span></p>
+<p><span data-ttu-id="27d7b-176">CsResponseGroupAdministrator</span><span class="sxs-lookup"><span data-stu-id="27d7b-176">CsResponseGroupAdministrator</span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="27d7b-177">Após o failover</span><span class="sxs-lookup"><span data-stu-id="27d7b-177">After failover</span></span></p></td>
+<td><ul>
+<li><p><span data-ttu-id="27d7b-178">Faça uma chamada de teste para um grupo de resposta que foi importado para o pool de backup e verifique se a chamada está manipulada corretamente.</span><span class="sxs-lookup"><span data-stu-id="27d7b-178">Place a test call to a response group that was imported to the backup pool and verify that the call is handled correctly.</span></span></p></li>
+<li><p><span data-ttu-id="27d7b-179">Todos os agentes formais devem entrar novamente em seus grupos formais no pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-179">All formal agents must sign in again to their formal groups on backup pool.</span></span></p></li>
+<li><p><span data-ttu-id="27d7b-180">Gerenciar alterações de configuração:</span><span class="sxs-lookup"><span data-stu-id="27d7b-180">Manage configuration changes:</span></span></p>
+<p><span data-ttu-id="27d7b-181">Grupos de resposta no pool de backup, sejam importados para o pool de backup ou pertencentes ao pool de backup, podem ser modificados normalmente durante a interrupção.</span><span class="sxs-lookup"><span data-stu-id="27d7b-181">Response groups in the backup pool, whether imported to the backup pool or owned by the backup pool, can be modified as usual during the outage.</span></span></p>
+<div>
+
+> [!IMPORTANT]  
+> <span data-ttu-id="27d7b-182">Você deve usar o Shell de gerenciamento do Lync Server para gerenciar os grupos de resposta importados para o pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-182">You must use Lync Server Management Shell to manage the response groups that you imported to the backup pool.</span></span> <span data-ttu-id="27d7b-183">Você não pode usar o painel de controle do Lync Server para gerenciar esses grupos de resposta enquanto eles estiverem no pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-183">You cannot use Lync Server Control Panel to manage these response groups while they are in the backup pool.</span></span>
+
+
+</div></li>
+</ul></td>
+<td><p><span data-ttu-id="27d7b-184">Não disponível</span><span class="sxs-lookup"><span data-stu-id="27d7b-184">N/A</span></span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="27d7b-185">Após a recuperação, antes do failback</span><span class="sxs-lookup"><span data-stu-id="27d7b-185">After recovery, before failback</span></span></p></td>
+<td><p><span data-ttu-id="27d7b-186">Execute o cmdlet <strong>Export-CsRgsConfiguration</strong> especificando o parâmetro-source como o pool de backup e o parâmetro – Owner como o pool primário para exportar os grupos de resposta pertencentes ao pool primário do pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-186">Run the <strong>Export-CsRgsConfiguration</strong> cmdlet specifying the -Source parameter as the backup pool and the –Owner parameter as the primary pool to export the response groups owned by the primary pool from the backup pool.</span></span></p></td>
+<td><p><span data-ttu-id="27d7b-187">RTCUniversalServerAdmins</span><span class="sxs-lookup"><span data-stu-id="27d7b-187">RTCUniversalServerAdmins</span></span></p>
+<p><span data-ttu-id="27d7b-188">CsResponseGroupAdministrator</span><span class="sxs-lookup"><span data-stu-id="27d7b-188">CsResponseGroupAdministrator</span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="27d7b-189">Após o failback</span><span class="sxs-lookup"><span data-stu-id="27d7b-189">After failback</span></span></p></td>
+<td><ul>
+<li><p><span data-ttu-id="27d7b-190">Execute o cmdlet <strong>Import-CsRgsConfiguration</strong> para importar os grupos de resposta de volta para o pool primário.</span><span class="sxs-lookup"><span data-stu-id="27d7b-190">Run the <strong>Import-CsRgsConfiguration</strong> cmdlet to import the response groups back to the primary pool.</span></span></p>
+<div>
+
+> [!NOTE]  
+> <span data-ttu-id="27d7b-191">Se o pool primário não puder ser recuperado e você implantar um novo pool para substituí-lo, use o parâmetro – ReplaceExistingSettings para transferir as configurações no nível do aplicativo do pool de backup para o novo pool.</span><span class="sxs-lookup"><span data-stu-id="27d7b-191">If the primary pool can't be recovered and you deploy a new pool to replace it, use the –ReplaceExistingSettings parameter to transfer the application-level settings from the backup pool to the new pool.</span></span> <span data-ttu-id="27d7b-192">Se você não transferir as configurações do pool de backup, o novo pool vai usar as configurações padrão.</span><span class="sxs-lookup"><span data-stu-id="27d7b-192">If you do not transfer the settings from the backup pool, the new pool will use the default settings.</span></span>
+
+
+</div></li>
+<li><p><span data-ttu-id="27d7b-193">Execute os seguintes cmdlets com o parâmetro – ShowAll (para exibir todos os grupos de resposta) ou o parâmetro – Owner (para exibir somente os grupos de resposta importados) para verificar se todas as configurações do grupo de resposta foram importadas com êxito de volta para o pool primário:</span><span class="sxs-lookup"><span data-stu-id="27d7b-193">Run the following cmdlets with either the –ShowAll parameter (to display all response groups) or the –Owner parameter (to display only imported response groups) to verify that all response group configurations were successfully imported back to the primary pool:</span></span></p>
+<ul>
+<li><p><span data-ttu-id="27d7b-194"><strong>Get-CsRgsWorkflow</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-194"><strong>Get-CsRgsWorkflow</strong></span></span></p></li>
+<li><p><span data-ttu-id="27d7b-195"><strong>Get-CsRgsQueue</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-195"><strong>Get-CsRgsQueue</strong></span></span></p></li>
+<li><p><span data-ttu-id="27d7b-196"><strong>Get-CsRgsAgentGroup</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-196"><strong>Get-CsRgsAgentGroup</strong></span></span></p></li>
+<li><p><span data-ttu-id="27d7b-197"><strong>Get-CsRgsHoursOfBusiness</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-197"><strong>Get-CsRgsHoursOfBusiness</strong></span></span></p></li>
+<li><p><span data-ttu-id="27d7b-198"><strong>Get-CsRgsHolidaySet</strong></span><span class="sxs-lookup"><span data-stu-id="27d7b-198"><strong>Get-CsRgsHolidaySet</strong></span></span></p></li>
+</ul></li>
+<li><p><span data-ttu-id="27d7b-199">Faça uma chamada de teste para um grupo de resposta que foi importado de volta para o pool primário e verifique se a chamada está manipulada corretamente.</span><span class="sxs-lookup"><span data-stu-id="27d7b-199">Place a test call to a response group that was imported back to the primary pool and verify that the call is handled correctly.</span></span></p></li>
+<li><p><span data-ttu-id="27d7b-200">Opcionalmente, execute o cmdlet <strong>Export-CsRgsConfiguration</strong> no pool de backup com o parâmetro – RemoveExportedConfiguration para remover os grupos de resposta pertencentes ao pool primário do pool de backup.</span><span class="sxs-lookup"><span data-stu-id="27d7b-200">Optionally, run the <strong>Export-CsRgsConfiguration</strong> cmdlet on the backup pool with the –RemoveExportedConfiguration parameter to remove the response groups owned by the primary pool from the backup pool.</span></span></p></li>
+</ul></td>
+<td><p><span data-ttu-id="27d7b-201">RTCUniversalServerAdmins</span><span class="sxs-lookup"><span data-stu-id="27d7b-201">RTCUniversalServerAdmins</span></span></p>
+<p><span data-ttu-id="27d7b-202">CsResponseGroupAdministrator</span><span class="sxs-lookup"><span data-stu-id="27d7b-202">CsResponseGroupAdministrator</span></span></p></td><span data-ttu-id="27d7b-203">
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="27d7b-203">
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
