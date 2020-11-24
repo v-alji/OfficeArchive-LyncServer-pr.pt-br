@@ -1,0 +1,144 @@
+---
+title: 'Lync Server 2013: processo de implantação para retirada de chamadas em grupo'
+description: 'Lync Server 2013: processo de implantação para retirada de chamadas em grupo.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Deployment process for Group Call Pickup
+ms:assetid: 082daeac-e667-4e2d-b78d-8e0901f9f0e9
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ945615(v=OCS.15)
+ms:contentKeyID: 51541444
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 2a01409b257c685ae71dfdb13074f2d8ea590cd9
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "49390257"
+---
+# <a name="deployment-process-for-group-call-pickup-in-lync-server-2013"></a><span data-ttu-id="e909d-103">Processo de implantação para retirada de chamadas em grupo no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="e909d-103">Deployment process for Group Call Pickup in Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="e909d-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="e909d-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="e909d-105">_**Tópico da última modificação:** 2013-02-25_</span><span class="sxs-lookup"><span data-stu-id="e909d-105">_**Topic Last Modified:** 2013-02-25_</span></span>
+
+<span data-ttu-id="e909d-106">Esta seção fornece uma visão geral das etapas envolvidas na implantação da retirada de chamadas em grupo.</span><span class="sxs-lookup"><span data-stu-id="e909d-106">This section provides an overview of the steps involved in deploying Group Call Pickup.</span></span> <span data-ttu-id="e909d-107">Você deve implantar a edição Enterprise ou Standard Edition com o Enterprise Voice antes de configurar o recebimento de chamadas em grupo.</span><span class="sxs-lookup"><span data-stu-id="e909d-107">You must deploy Enterprise Edition or Standard Edition with Enterprise Voice before you configure Group Call Pickup.</span></span> <span data-ttu-id="e909d-108">Os componentes necessários para o recebimento de chamadas em grupo são instalados e habilitados durante a implantação do Enterprise Voice.</span><span class="sxs-lookup"><span data-stu-id="e909d-108">The components required by Group Call Pickup are installed and enabled when you deploy Enterprise Voice.</span></span>
+
+### <a name="group-call-pickup-deployment-process"></a><span data-ttu-id="e909d-109">Processo de implantação do Recebimento de chamada de grupo</span><span class="sxs-lookup"><span data-stu-id="e909d-109">Group Call Pickup Deployment Process</span></span>
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span data-ttu-id="e909d-110">Fase</span><span class="sxs-lookup"><span data-stu-id="e909d-110">Phase</span></span></th>
+<th><span data-ttu-id="e909d-111">Etapas</span><span class="sxs-lookup"><span data-stu-id="e909d-111">Steps</span></span></th>
+<th><span data-ttu-id="e909d-112">Grupos e funções necessários</span><span class="sxs-lookup"><span data-stu-id="e909d-112">Required groups and roles</span></span></th>
+<th><span data-ttu-id="e909d-113">Documentação de Implantação</span><span class="sxs-lookup"><span data-stu-id="e909d-113">Deployment documentation</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><span data-ttu-id="e909d-114">Habilitar a ferramenta SEFAUtil Resource Kit na topologia</span><span class="sxs-lookup"><span data-stu-id="e909d-114">Enable the SEFAUtil resource kit tool in the topology</span></span></p></td>
+<td><ol>
+<li><p><span data-ttu-id="e909d-115">Use o cmdlet <strong>New-CsTrustedApplicationPool</strong> para criar um novo pool de aplicativo confiável.</span><span class="sxs-lookup"><span data-stu-id="e909d-115">Use the <strong>New-CsTrustedApplicationPool</strong> cmdlet to create a new trusted application pool.</span></span></p></li>
+<li><p><span data-ttu-id="e909d-116">Use o cmdlet <strong>New-CsTrustedApplication</strong> para especificar a ferramenta SEFAUtil como aplicativo confiável.</span><span class="sxs-lookup"><span data-stu-id="e909d-116">Use the <strong>New-CsTrustedApplication</strong> cmdlet to specify the SEFAUtil tool as trusted application.</span></span></p></li>
+<li><p><span data-ttu-id="e909d-117">Execute o cmdlet <strong>Enable-CsTopology</strong> para ativar a topologia.</span><span class="sxs-lookup"><span data-stu-id="e909d-117">Run the <strong>Enable-CsTopology</strong> cmdlet to enable the topology.</span></span></p></li>
+<li><p><span data-ttu-id="e909d-118">Instale as ferramentas do Resource Kit em um servidor front-end que está no pool de aplicativos confiáveis criado na etapa 1.</span><span class="sxs-lookup"><span data-stu-id="e909d-118">Install the resource kit tools on a Front End Server that is in the trusted application pool created in step 1.</span></span></p></li>
+<li><p><span data-ttu-id="e909d-119">Verifique se o SEFAUtil está executando corretamente ao executá-lo para exibir as configurações de encaminhamento de chamada de um usuário na implantação.</span><span class="sxs-lookup"><span data-stu-id="e909d-119">Verify that SEFAUtil is running correctly by running it to display the call forwarding settings of a user in the deployment.</span></span></p></li>
+</ol></td>
+<td><p><span data-ttu-id="e909d-120">RTCUniversalServerAdmins</span><span class="sxs-lookup"><span data-stu-id="e909d-120">RTCUniversalServerAdmins</span></span></p></td>
+<td><p><span data-ttu-id="e909d-121"><a href="lync-server-2013-deploy-the-sefautil-tool.md">Deploy the SEFAUtil tool in Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="e909d-121"><a href="lync-server-2013-deploy-the-sefautil-tool.md">Deploy the SEFAUtil tool in Lync Server 2013</a></span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="e909d-122">Configure os intervalos de número para recebimento de chamada na tabela de órbita de estacionamento de chamada</span><span class="sxs-lookup"><span data-stu-id="e909d-122">Configure call pickup number ranges in the call park orbit table</span></span></p></td>
+<td><p><span data-ttu-id="e909d-123">Use o cmdlet <strong>New-CSCallParkOrbit</strong> para criar intervalos de números de recebimento de chamadas na tabela órbitas do estacionamento de chamada e atribuir os intervalos de recebimento de chamada ao tipo GroupPickup.</span><span class="sxs-lookup"><span data-stu-id="e909d-123">Use the <strong>New-CSCallParkOrbit</strong> cmdlet to create call pickup number ranges in the call park orbit table and assign the call pickup ranges the type GroupPickup.</span></span></p>
+<div>
+
+> [!NOTE]  
+> <span data-ttu-id="e909d-124">Você deve usar o Shell de gerenciamento do Lync Server para criar, modificar, remover e exibir os intervalos de números de retirada de chamadas em grupo na tabela órbita do estacionamento de chamada.</span><span class="sxs-lookup"><span data-stu-id="e909d-124">You must use Lync Server Management Shell to create, modify, remove, and view Group Call Pickup number ranges in the call park orbit table.</span></span> <span data-ttu-id="e909d-125">Os intervalos de números de retirada de chamadas em grupo não estão disponíveis no painel de controle do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="e909d-125">Group Call Pickup number ranges are not available in Lync Server Control Panel.</span></span>
+
+
+</div>
+<div>
+
+> [!NOTE]  
+> <span data-ttu-id="e909d-p103">Para uma integração perfeita aos planos de discagem existentes, os intervalos de número são normalmente configurados como um bloco de ramais virtuais. A atribuição dos números de Discagem Direta de Entrada (DID) como números de intervalos  na tabela de órbita de estacionamento de chamada não é suportada.</span><span class="sxs-lookup"><span data-stu-id="e909d-p103">For seamless integration with existing dial plans, number ranges are typically configured as a block of virtual extensions. Assigning Direct Inward Dialing (DID) numbers as range numbers in the call park orbit table is not supported.</span></span>
+
+
+</div></td>
+<td><p><span data-ttu-id="e909d-128">RTCUniversalServerAdmins</span><span class="sxs-lookup"><span data-stu-id="e909d-128">RTCUniversalServerAdmins</span></span></p>
+<p><span data-ttu-id="e909d-129">CsVoiceAdministrator</span><span class="sxs-lookup"><span data-stu-id="e909d-129">CsVoiceAdministrator</span></span></p>
+<p><span data-ttu-id="e909d-130">CsServerAdministrator</span><span class="sxs-lookup"><span data-stu-id="e909d-130">CsServerAdministrator</span></span></p>
+<p><span data-ttu-id="e909d-131">CsAdministrator</span><span class="sxs-lookup"><span data-stu-id="e909d-131">CsAdministrator</span></span></p></td>
+<td><p><span data-ttu-id="e909d-132"><a href="lync-server-2013-configure-call-pickup-group-numbers.md">Configurar números de grupo de recebimento de chamadas no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="e909d-132"><a href="lync-server-2013-configure-call-pickup-group-numbers.md">Configure call pickup group numbers in Lync Server 2013</a></span></span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="e909d-133">Atribuir um número de recebimento de chamadas aos usuários e habilitar o recebimento de chamadas em grupo para os usuários</span><span class="sxs-lookup"><span data-stu-id="e909d-133">Assign a call pickup number to users, and enable Group Call Pickup for the users</span></span></p></td>
+<td><p><span data-ttu-id="e909d-134">Use o parâmetro/enablegrouppickup na ferramenta do kit de recursos do SEFAUtil para habilitar o recebimento de chamadas em grupo e atribuir um número de recebimento de chamadas para os usuários.</span><span class="sxs-lookup"><span data-stu-id="e909d-134">Use the /enablegrouppickup parameter in the SEFAUtil resource kit tool to enable Group Call Pickup and assign a call pickup number for users.</span></span></p></td>
+<td><p>-</p></td>
+<td><p><span data-ttu-id="e909d-135"><a href="lync-server-2013-enable-group-call-pickup-for-users-and-assign-a-group-number.md">Habilitar o recebimento de chamadas em grupo para usuários no Lync Server 2013 e atribuir um número de grupo</a></span><span class="sxs-lookup"><span data-stu-id="e909d-135"><a href="lync-server-2013-enable-group-call-pickup-for-users-and-assign-a-group-number.md">Enable Group Call Pickup for users in Lync Server 2013 and assign a group number</a></span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="e909d-136">Notifique os usuários do número de recebimento de chamada atribuído e qualquer outro número de interesse</span><span class="sxs-lookup"><span data-stu-id="e909d-136">Notify users of their assigned call pickup number and any other number of interest</span></span></p></td>
+<td><p><span data-ttu-id="e909d-137">Como qualquer usuário pode recuperar uma chamada feita para um usuário de recebimento de chamada em grupo, os usuários podem querer monitorar mais de um grupo.</span><span class="sxs-lookup"><span data-stu-id="e909d-137">Because any user can retrieve a call made to a Group Call Pickup user, users may want to monitor more than one group.</span></span></p></td>
+<td><p>-</p></td>
+<td><p><span data-ttu-id="e909d-138"><a href="lync-server-2013-communicate-group-call-pickup-assignment-to-users.md">Comunicar as atribuições de recebimento de chamadas em grupo aos usuários no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="e909d-138"><a href="lync-server-2013-communicate-group-call-pickup-assignment-to-users.md">Communicate Group Call Pickup assignments to users in Lync Server 2013</a></span></span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="e909d-139">Verificar sua implantação de retirada de chamadas em grupo</span><span class="sxs-lookup"><span data-stu-id="e909d-139">Verify your Group Call Pickup deployment</span></span></p></td>
+<td><p><span data-ttu-id="e909d-140">Teste fazer e receber chamadas para garantir que a configuração funcione conforme o esperado.</span><span class="sxs-lookup"><span data-stu-id="e909d-140">Test placing and retrieving calls to make sure that your configuration works as expected.</span></span></p></td>
+<td><p>-</p></td>
+<td><p><span data-ttu-id="e909d-141"><a href="lync-server-2013-optional-verify-the-group-call-pickup-deployment.md">Adicionais Verificar a implantação da retirada de chamadas em grupo no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="e909d-141"><a href="lync-server-2013-optional-verify-the-group-call-pickup-deployment.md">(Optional) Verify the Group Call Pickup deployment in Lync Server 2013</a></span></span></p></td>
+</tr><span data-ttu-id="e909d-142">
+</tbody>
+</table>
+
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="e909d-142">
+</tbody>
+</table>
+
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
