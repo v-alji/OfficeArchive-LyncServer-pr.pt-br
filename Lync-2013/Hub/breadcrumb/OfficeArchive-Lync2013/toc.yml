@@ -1,0 +1,9 @@
+- name: Docs
+  href: /
+  items:
+    - name: Versões anteriores
+      href: /previous-versions/
+      items:
+        - name: Servidor Lync
+          tocHref: /
+          topicHref: /previous-versions/office/lync-server-2013/index

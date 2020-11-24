@@ -1,0 +1,96 @@
+---
+title: 'Lync Server 2013: Planejamento para acesso de usuário externo'
+description: 'Lync Server 2013: planejando o acesso de usuários externos.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Planning for external user access
+ms:assetid: ea098933-eff5-461e-aba3-e7f128784dc2
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Gg399048(v=OCS.15)
+ms:contentKeyID: 48185903
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: b8f1854791ed837b963d4c80f3467e4e89555592
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "49389686"
+---
+# <a name="planning-for-external-user-access-in-lync-server-2013"></a>Planejamento para acesso de usuário externo no Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2013-01-19_
+
+As comunicações na maioria das organizações envolvem serviços e usuários que não estão dentro da sua rede interna. Esses serviços e usuários incluem funcionários que estão temporariamente ou permanentemente externos, funcionários de organizações de clientes ou parceiros, pessoas que usam serviços de mensagens instantâneas (IM) públicas e clientes potenciais, parceiros e usuários anônimos que você convidar para reuniões e apresentações. Nesta documentação, essas pessoas são chamadas coletivamente como *usuários externos*.
+
+Com o Microsoft Lync Server 2013, os usuários em sua organização podem usar mensagens instantâneas e presença para se comunicar com usuários externos, e podem participar de conferências de áudio/vídeo (A/V) e conferência via Web com seus funcionários externos e outros tipos de usuários externos. Você também pode dar suporte ao acesso externo de dispositivos móveis e do Enterprise Voice. Os usuários externos que não são membros da sua organização podem participar de reuniões do Lync Server 2013, permitindo participantes anônimos.
+
+Para dar suporte à comunicação no firewall da sua organização, implante o servidor de borda do Lync Server 2013 na sua rede de perímetro (também conhecido como DMZ, zona desmilitarizada e sub-rede filtrada). O servidor de borda controla como os usuários de fora do firewall podem se conectar à sua implantação interna do Lync Server 2013. Ele também controla comunicações com usuários externos que se originam dentro do firewall.
+
+Dependendo dos seus requisitos, você pode implantar um ou mais servidores de borda em um ou mais locais. Esta seção descreve os cenários de acesso de usuários externos no Lync Server 2013, e explica como planejar a topologia de borda e de proxy inversa.
+
+<div>
+
+
+> [!NOTE]  
+> Embora você precise de um servidor de borda para dar suporte a acesso de usuário externo e de voz, esta seção enfoca o suporte para mensagens instantâneas, presença, conferência A/V, Federação, conferência via Web e Lync Mobile. Para obter detalhes sobre o suporte para Enterprise Voice, consulte <A href="lync-server-2013-planning-for-enterprise-voice.md">planejamento para Enterprise Voice no Lync Server 2013</A> na documentação de planejamento.
+
+
+
+</div>
+
+<div>
+
+## <a name="in-this-section"></a>Nesta seção
+
+  - [Alterações no Lync Server 2013 que afetam o planejamento do Servidor de Borda](lync-server-2013-changes-in-lync-server-that-affect-edge-server-planning.md)
+
+  - [Requisitos do sistema para componentes de acesso de usuário externo para Lync Server 2013](lync-server-2013-system-requirements-for-external-user-access-components.md)
+
+  - [Visão geral de acesso de usuário externo no Lync Server 2013](lync-server-2013-overview-of-external-user-access.md)
+
+  - [Compreendendo a descoberta automática no Lync Server 2013](lync-server-2013-understanding-autodiscover.md)
+
+  - [Escolhendo uma topologia no Lync Server 2013](lync-server-2013-choosing-a-topology.md)
+
+  - [Coleta de dados no Lync Server 2013](lync-server-2013-data-collection.md)
+
+  - [Determinar requisitios de DNS para Lync Server 2013](lync-server-2013-determine-dns-requirements.md)
+
+  - [Determinar firewall A/V externo e requisitos de porta para Lync Server 2013](lync-server-2013-determine-external-a-v-firewall-and-port-requirements.md)
+
+  - [Planejar certificados do Servidor de Borda no Lync Server 2013](lync-server-2013-plan-for-edge-server-certificates.md)
+
+  - [Cenários de acesso de usuário externo no Lync Server 2013](lync-server-2013-scenarios-for-external-user-access.md)
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
