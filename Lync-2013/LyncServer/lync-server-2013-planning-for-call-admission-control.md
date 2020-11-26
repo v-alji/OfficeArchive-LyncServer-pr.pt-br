@@ -1,0 +1,98 @@
+---
+title: 'Lync Server 2013: Planejamento para controle de admissão de chamada'
+description: 'Lync Server 2013: planejando o controle de admissão de chamadas.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Planning for call admission control (CAC)
+ms:assetid: ca367138-adf5-4119-bc40-5ddf335ed22f
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Gg398842(v=OCS.15)
+ms:contentKeyID: 48185652
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: afbc3ca411fcf0a3a1c869a23cddccdb87f09ed6
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49437039"
+---
+# <a name="planning-for-call-admission-control-in-lync-server-2013"></a><span data-ttu-id="632bc-103">Planejamento para controle de admissão de chamada no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="632bc-103">Planning for call admission control in Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="632bc-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="632bc-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="632bc-105">_**Tópico da última modificação:** 2012-09-21_</span><span class="sxs-lookup"><span data-stu-id="632bc-105">_**Topic Last Modified:** 2012-09-21_</span></span>
+
+<span data-ttu-id="632bc-106">Para aplicativos de comunicação unificada (UC) com base em IP, como telefonia, vídeo e compartilhamento de aplicativos, a largura de banda disponível de redes corporativas não é geralmente considerada um fator de limitação em ambientes LAN.</span><span class="sxs-lookup"><span data-stu-id="632bc-106">For unified communications (UC) applications that are IP-based, such as telephony, video, and application sharing, the available bandwidth of enterprise networks is not generally considered to be a limiting factor within LAN environments.</span></span> <span data-ttu-id="632bc-107">Entretanto, nos links WAN que interconectam locais, a largura de banda de rede pode ser limitada.</span><span class="sxs-lookup"><span data-stu-id="632bc-107">However, on WAN links that interconnect sites, network bandwidth can be limited.</span></span> <span data-ttu-id="632bc-108">Quando um influxo de tráfego de rede se inscreve em um link de WAN, mecanismos atuais, como enfileiramento, buffer e descarte de pacotes, são usados para solucionar o congestionamento.</span><span class="sxs-lookup"><span data-stu-id="632bc-108">When an influx of network traffic oversubscribes a WAN link, current mechanisms such as queuing, buffering, and packet dropping are used to resolve the congestion.</span></span> <span data-ttu-id="632bc-109">O tráfego extra costuma ser adiado até que o congestionamento da rede facilite ou, se necessário, o tráfego seja cancelado.</span><span class="sxs-lookup"><span data-stu-id="632bc-109">The extra traffic is typically delayed until the network congestion eases or, if necessary, the traffic is dropped.</span></span> <span data-ttu-id="632bc-110">Para tráfego de dados convencionais em tais situações, o cliente de recebimento pode recuperar.</span><span class="sxs-lookup"><span data-stu-id="632bc-110">For conventional data traffic in such situations, the receiving client can recover.</span></span> <span data-ttu-id="632bc-111">Para tráfego em tempo real, como comunicação unificada, o congestionamento da rede não pode ser resolvido dessa maneira, porque o tráfego de comunicação unificado é sensível à latência e à perda de pacotes.</span><span class="sxs-lookup"><span data-stu-id="632bc-111">For real-time traffic such as unified communications, network congestion cannot be resolved in this manner, because the unified communications traffic is sensitive to both latency and packet loss.</span></span> <span data-ttu-id="632bc-112">O congestionamento na WAN pode resultar em uma má qualidade da experiência (QoE) para os usuários.</span><span class="sxs-lookup"><span data-stu-id="632bc-112">Congestion on the WAN can result in a poor Quality of Experience (QoE) for users.</span></span> <span data-ttu-id="632bc-113">Para tráfego em tempo real em condições congestionadas, é melhor negar chamadas do que fornecer conexões com baixa qualidade.</span><span class="sxs-lookup"><span data-stu-id="632bc-113">For real-time traffic in congested conditions, it is better to deny calls than to provide connections with poor quality.</span></span>
+
+<span data-ttu-id="632bc-114">O controle de admissão de chamadas (CAC) determina se há largura de banda de rede suficiente para estabelecer uma sessão de tempo real de qualidade aceitável.</span><span class="sxs-lookup"><span data-stu-id="632bc-114">Call admission control (CAC) determines whether there is sufficient network bandwidth to establish a real-time session of acceptable quality.</span></span> <span data-ttu-id="632bc-115">No Lync Server 2013, o CAC controla o tráfego em tempo real somente para áudio e vídeo, mas não afeta o tráfego de dados.</span><span class="sxs-lookup"><span data-stu-id="632bc-115">In Lync Server 2013, CAC controls real-time traffic only for audio and video, but it does not affect data traffic.</span></span> <span data-ttu-id="632bc-116">Se o caminho de WAN padrão não tiver a largura de banda necessária, o CAC pode tentar direcionar a chamada por meio de um caminho da Internet ou da rede telefônica pública comutada (PSTN).</span><span class="sxs-lookup"><span data-stu-id="632bc-116">If the default WAN path does not have the required bandwidth, CAC can attempt to route the call through an Internet path or the public switched telephone network (PSTN).</span></span> <span data-ttu-id="632bc-117">O CAC está disponível apenas no Lync Server.</span><span class="sxs-lookup"><span data-stu-id="632bc-117">CAC is available only in Lync Server.</span></span>
+
+<span data-ttu-id="632bc-118">Esta seção descreve a funcionalidade de controle de admissão de chamadas e explica como planejar o CAC.</span><span class="sxs-lookup"><span data-stu-id="632bc-118">This section describes the call admission control functionality and explains how to plan for CAC.</span></span>
+
+<div>
+
+
+> [!NOTE]  
+> <span data-ttu-id="632bc-119">O Lync Server tem três recursos avançados do Enterprise Voice: controle de admissão de chamadas (CAC), serviços de emergência (E9-1-1) e bypass de mídia.</span><span class="sxs-lookup"><span data-stu-id="632bc-119">Lync Server has three advanced Enterprise Voice features: call admission control (CAC), emergency services (E9-1-1), and media bypass.</span></span> <span data-ttu-id="632bc-120">Para obter uma visão geral do planejamento de informações comuns a todos esses três recursos, consulte <A href="lync-server-2013-network-settings-for-the-advanced-enterprise-voice-features.md">configurações de rede para os recursos avançados de voz empresarial no Lync Server 2013</A>.</span><span class="sxs-lookup"><span data-stu-id="632bc-120">For an overview of planning information that is common to all three of these features, see <A href="lync-server-2013-network-settings-for-the-advanced-enterprise-voice-features.md">Network settings for the advanced Enterprise Voice features in Lync Server 2013</A>.</span></span>
+
+
+
+</div>
+
+<div>
+
+## <a name="in-this-section"></a><span data-ttu-id="632bc-121">Nesta seção</span><span class="sxs-lookup"><span data-stu-id="632bc-121">In This Section</span></span>
+
+  - [<span data-ttu-id="632bc-122">Visão geral do controle de admissão de chamadas no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="632bc-122">Overview of call admission control in Lync Server 2013</span></span>](lync-server-2013-overview-of-call-admission-control.md)
+
+  - [<span data-ttu-id="632bc-123">Definindo seus requisitos de controle de admissão de chamadas no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="632bc-123">Defining your requirements for call admission control in Lync Server 2013</span></span>](lync-server-2013-defining-your-requirements-for-call-admission-control.md)
+
+  - [<span data-ttu-id="632bc-124">Exemplo: reunindo seus requisitos de controle de admissão de chamadas no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="632bc-124">Example: Gathering your requirements for call admission control in Lync Server 2013</span></span>](lync-server-2013-example-of-gathering-your-requirements-for-call-admission-control.md)
+
+  - [<span data-ttu-id="632bc-125">Componentes e topologias para CAC no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="632bc-125">Components and topologies for CAC in Lync Server 2013</span></span>](lync-server-2013-components-and-topologies-for-cac.md)
+
+  - [<span data-ttu-id="632bc-126">Práticas recomendadas para controle de admissão de chamada no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="632bc-126">Best practices for call admission control in Lync Server 2013</span></span>](lync-server-2013-best-practices-for-call-admission-control.md)
+
+  - [<span data-ttu-id="632bc-127">Lista de verificação de implantação para controle de admissão de chamada no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="632bc-127">Deployment checklist for call admission control in Lync Server 2013</span></span>](lync-server-2013-deployment-checklist-for-call-admission-control.md)
+
+<span data-ttu-id="632bc-128"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="632bc-128"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+

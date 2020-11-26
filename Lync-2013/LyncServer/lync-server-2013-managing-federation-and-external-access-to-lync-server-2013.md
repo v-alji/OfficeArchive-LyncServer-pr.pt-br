@@ -1,0 +1,249 @@
+---
+title: 'Lync Server 2013: Gerenciando de federação e acesso externo ao Lync Server 2013'
+description: 'Lync Server 2013: gerenciamento de Federação e acesso externo ao Lync Server 2013.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Managing federation and external access to Lync Server 2013
+ms:assetid: 26f806c1-f284-4637-b06b-06270336c540
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Gg520966(v=OCS.15)
+ms:contentKeyID: 48183665
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: d1d389c7490fd1884631ed2fc184d590eb42141b
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49437452"
+---
+# <a name="managing-federation-and-external-access-to-lync-server-2013"></a><span data-ttu-id="c5f65-103">Gerenciando de federação e acesso externo ao Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="c5f65-103">Managing federation and external access to Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="c5f65-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="c5f65-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="c5f65-105">_**Tópico da última modificação:** 2013-10-07_</span><span class="sxs-lookup"><span data-stu-id="c5f65-105">_**Topic Last Modified:** 2013-10-07_</span></span>
+
+<span data-ttu-id="c5f65-106">Implantar um servidor de borda ou um pool de bordas é o primeiro passo para dar suporte a usuários externos.</span><span class="sxs-lookup"><span data-stu-id="c5f65-106">Deploying an Edge Server or Edge pool is the first step to supporting external users.</span></span> <span data-ttu-id="c5f65-107">Para obter detalhes sobre a implantação de servidores de borda, consulte [implantando o acesso de usuários externos no Lync Server 2013](lync-server-2013-deploying-external-user-access.md) na documentação de implantação.</span><span class="sxs-lookup"><span data-stu-id="c5f65-107">For details about deploying Edge Servers, see [Deploying external user access in Lync Server 2013](lync-server-2013-deploying-external-user-access.md) in the Deployment documentation.</span></span>
+
+<span data-ttu-id="c5f65-108">Após a instalação e a configuração da implantação interna do Lync Server 2013, os usuários internos em sua organização podem colaborar com outros usuários internos que tenham contas SIP nos serviços de domínio Active Directory (AD DS).</span><span class="sxs-lookup"><span data-stu-id="c5f65-108">After installing and configuring your internal deployment of Lync Server 2013, internal users in your organization can collaborate with other internal users who have SIP accounts in your Active Directory Domain Services (AD DS).</span></span> <span data-ttu-id="c5f65-109">A colaboração pode incluir o envio e o recebimento de mensagens instantâneas e a atualização do status de presença e a participação em conferências (também conhecidas como "reuniões").</span><span class="sxs-lookup"><span data-stu-id="c5f65-109">Collaboration can include sending and receiving instant messages, and update of presence status and participating in conferences (also known as "meetings").</span></span> <span data-ttu-id="c5f65-110">Você habilita e configura o acesso de usuários externos para controlar se os usuários externos com suporte podem colaborar com usuários internos do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="c5f65-110">You enable and configure external user access to control whether supported external users can collaborate with internal Lync Server users.</span></span> <span data-ttu-id="c5f65-111">Os usuários externos podem incluir usuários remotos da implantação, usuários federados (incluindo usuários com suporte de provedores de serviços de mensagens instantâneas públicas), Federação do XMPP e participantes anônimos em conferências.</span><span class="sxs-lookup"><span data-stu-id="c5f65-111">External users can include remote users of your deployment, federated users (including supported users of public instant messaging (IM) service providers), XMPP federation and anonymous participants in conferences.</span></span>
+
+<span data-ttu-id="c5f65-112">Se a sua implantação incluía a instalação de um servidor de borda do Lync Server 2013 ou um pool de bordas, o escopo dos possíveis tipos de comunicação será amplamente expandido com várias opções para acesso de usuário externo, comunicação com membros de outros domínios federados SIP, provedores federados SIP e usuários federados XMPP.</span><span class="sxs-lookup"><span data-stu-id="c5f65-112">If your deployment included the installation of a Lync Server 2013 Edge Server or an Edge pool, the scope of possible communication types is greatly expanded with a number of options for external user access, communication with members of other SIP federated domains, SIP federated providers, and XMPP federated users.</span></span> <span data-ttu-id="c5f65-113">Depois de configurar o servidor de borda ou o pool de bordas, habilite os tipos de acesso de usuário externo que você deseja fornecer e configure as políticas para controlar o acesso externo.</span><span class="sxs-lookup"><span data-stu-id="c5f65-113">After setting up the Edge Server or Edge pool, you enable the types of external user access that you want to provide, and configure the policies to control for the external access.</span></span> <span data-ttu-id="c5f65-114">No Lync Server 2013, habilite e configure o acesso de usuários externos e políticas usando o painel de controle do Lync Server, o Shell de gerenciamento do Lync Server ou ambos, de acordo com os requisitos da tarefa.</span><span class="sxs-lookup"><span data-stu-id="c5f65-114">In Lync Server 2013, you enable and configure external user access and policies using the Lync Server Control Panel, the Lync Server Management Shell or both, based on the task requirements.</span></span> <span data-ttu-id="c5f65-115">Para obter detalhes sobre essas ferramentas de gerenciamento, consulte [Ferramentas administrativas do Lync server 2013](lync-server-2013-lync-server-administrative-tools.md) na documentação de operações, no [Shell de gerenciamento do Lync Server 2013](lync-server-2013-lync-server-management-shell.md) na documentação de operações e [Instale as ferramentas administrativas do Lync Server 2013](lync-server-2013-install-lync-server-administrative-tools.md) na documentação de operações.</span><span class="sxs-lookup"><span data-stu-id="c5f65-115">For details about these management tools, see [Lync Server 2013 administrative tools](lync-server-2013-lync-server-administrative-tools.md) in the Operations documentation, [Lync Server 2013 Management Shell](lync-server-2013-lync-server-management-shell.md) in the Operations documentation, and [Install Lync Server 2013 administrative tools](lync-server-2013-install-lync-server-administrative-tools.md) in the Operations documentation.</span></span>
+
+<div>
+
+
+> [!IMPORTANT]  
+> <span data-ttu-id="c5f65-116">Ao projetar sua configuração e políticas para acesso de usuário externo, você deve entender a precedência de políticas e como as políticas são aplicadas.</span><span class="sxs-lookup"><span data-stu-id="c5f65-116">When you design your configuration and policies for external user access, you must understand the precedence of policies and how the policies are applied.</span></span> <span data-ttu-id="c5f65-117">As configurações de política do Lync Server aplicadas em um nível de política podem substituir as configurações aplicadas em outro nível de política.</span><span class="sxs-lookup"><span data-stu-id="c5f65-117">Lync Server policy settings that are applied at one policy level can override settings that are applied at another policy level.</span></span> <span data-ttu-id="c5f65-118">A precedência da política do Lync Server é: a política do usuário (maior influência) substitui uma política do site e uma política de site substitui uma política global (influência mínima).</span><span class="sxs-lookup"><span data-stu-id="c5f65-118">Lync Server policy precedence is: User policy (most influence) overrides a Site policy, and then a Site policy overrides a Global policy (least influence).</span></span> <span data-ttu-id="c5f65-119">Isso significa que, quanto mais perto a definição de política estiver do objeto que ela está afetando, maior será sua influência sobre o objeto.</span><span class="sxs-lookup"><span data-stu-id="c5f65-119">This means that the closer the policy setting is to the object that the policy is affecting, the more influence it has on the object.</span></span>
+
+
+
+</div>
+
+<span data-ttu-id="c5f65-120">Por padrão, nenhuma política é configurada para dar suporte ao acesso externo do usuário, incluindo acesso de usuário remoto, acesso de usuário federado, mesmo que você já tenha habilitado o acesso de usuário externo à sua organização.</span><span class="sxs-lookup"><span data-stu-id="c5f65-120">By default, no policies are configured to support external user access, including remote user access, federated user access, even if you have already enabled external user access support for your organization.</span></span> <span data-ttu-id="c5f65-121">Para controlar o uso de acesso de usuário externo, você deve configurar uma ou mais políticas, especificando o tipo de acesso de usuário externo com suporte para cada política.</span><span class="sxs-lookup"><span data-stu-id="c5f65-121">To control the use of external user access, you must configure one or more policies, specifying the type of external user access supported for each policy.</span></span> <span data-ttu-id="c5f65-122">Isso inclui as seguintes políticas de acesso externo:</span><span class="sxs-lookup"><span data-stu-id="c5f65-122">This includes the following external access policies:</span></span>
+
+  - <span data-ttu-id="c5f65-123">**Política global**   A política global é criada quando você implanta seus servidores de borda.</span><span class="sxs-lookup"><span data-stu-id="c5f65-123">**Global policy**   The global policy is created when you deploy your Edge Servers.</span></span> <span data-ttu-id="c5f65-124">Por padrão, nenhuma opção de acesso de usuário externo está habilitada na política global.</span><span class="sxs-lookup"><span data-stu-id="c5f65-124">By default, no external user access options are enabled in the global policy.</span></span> <span data-ttu-id="c5f65-125">Para dar suporte ao acesso de usuário externo no nível global, configure a política global para dar suporte a um ou mais tipos de opções de acesso de usuário externo.</span><span class="sxs-lookup"><span data-stu-id="c5f65-125">To support external user access at the global level, you configure the global policy to support one or more types of external user access options.</span></span> <span data-ttu-id="c5f65-126">A política global aplica-se a todos os usuários em sua organização, mas políticas de site e políticas de usuário substituem a política global.</span><span class="sxs-lookup"><span data-stu-id="c5f65-126">The global policy applies to all users in your organization, but site policies and user policies override the global policy.</span></span> <span data-ttu-id="c5f65-127">Se você excluir a política global, não a removerá.</span><span class="sxs-lookup"><span data-stu-id="c5f65-127">If you delete the global policy, you do not remove it.</span></span> <span data-ttu-id="c5f65-128">Em vez disso, redefina-o para a configuração padrão.</span><span class="sxs-lookup"><span data-stu-id="c5f65-128">Instead, you reset it to the default setting.</span></span>
+
+  - <span data-ttu-id="c5f65-129">**Política do site**   Você pode criar e configurar uma ou mais políticas de site para limitar o suporte ao acesso de usuários externos a sites específicos.</span><span class="sxs-lookup"><span data-stu-id="c5f65-129">**Site policy**   You can create and configure one or more site policies to limit support for external user access to specific sites.</span></span> <span data-ttu-id="c5f65-130">A configuração no site substitui a política global, mas somente para o site específico coberto pela política de site.</span><span class="sxs-lookup"><span data-stu-id="c5f65-130">The configuration in the site policy overrides the global policy, but only for the specific site covered by the site policy.</span></span> <span data-ttu-id="c5f65-131">Por exemplo, se você habilitar o acesso de usuário remoto na política global, poderá especificar uma política de site que desabilite o acesso de usuário remoto para um site específico.</span><span class="sxs-lookup"><span data-stu-id="c5f65-131">For example, if you enable remote user access in the global policy, you might specify a site policy that disables remote user access for a specific site.</span></span> <span data-ttu-id="c5f65-132">Por padrão, uma política de site é aplicada a todos os usuários do site, mas você pode atribuir uma política de usuário a um usuário para substituir a configuração de política do site.</span><span class="sxs-lookup"><span data-stu-id="c5f65-132">By default, a site policy is applied to all users of that site, but you can assign a user policy to a user to override the site policy setting.</span></span>
+
+  - <span data-ttu-id="c5f65-133">**Política de usuário**   Você pode criar e configurar uma ou mais políticas de usuário para limitar o suporte para acesso de usuário remoto a usuários específicos.</span><span class="sxs-lookup"><span data-stu-id="c5f65-133">**User policy**   You can create and configure one or more user policies to limit support for remote user access to specific users.</span></span> <span data-ttu-id="c5f65-134">A configuração na política de usuário substitui a política global e do site, mas somente para os usuários específicos aos quais a política de usuário está atribuída.</span><span class="sxs-lookup"><span data-stu-id="c5f65-134">The configuration in the user policy overrides the global and site policy, but only for the specific users to whom the user policy is assigned.</span></span> <span data-ttu-id="c5f65-135">Por exemplo, se você habilitar o acesso de usuário remoto na política global e na política do site, poderá especificar uma política de usuário que desabilite o acesso de usuário remoto e atribua essa política de usuário a usuários específicos.</span><span class="sxs-lookup"><span data-stu-id="c5f65-135">For example, if you enable remote user access in the global policy and site policy, you might specify a user policy that disables remote user access and then assign that user policy to specific users.</span></span> <span data-ttu-id="c5f65-136">Se você criar uma política de usuário, deverá aplicá-la a um ou mais usuários antes de entrar em vigor.</span><span class="sxs-lookup"><span data-stu-id="c5f65-136">If you create a user policy, you must apply it to one or more users before it takes effect.</span></span>
+
+<span data-ttu-id="c5f65-137">Para determinar quais configurações de configuração e quais diretivas você precisa criar ou editar, consulte os seguintes pontos de decisão:</span><span class="sxs-lookup"><span data-stu-id="c5f65-137">To determine which configuration settings and which policies you need to create or edit, refer to the following decision points:</span></span>
+
+<span data-ttu-id="c5f65-138">**Você deseja permitir que usuários internos e externos do seu domínio possam colaborar usando mensagens instantâneas, conferências da Web e áudio/vídeo?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-138">**Do you want to allow internal and external users of your domain to be able to collaborate using instant messaging, Web conferencing, and Audio/Video?**</span></span>
+
+<span data-ttu-id="c5f65-139">Defina as configurações conforme detalhado nos tópicos [Configurar políticas para controlar o acesso de usuários remotos no Lync server 2013](lync-server-2013-configure-policies-to-control-remote-user-access.md)e [habilitar ou desabilitar a conectividade de mensagens de chat públicas e de Federação no Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md)</span><span class="sxs-lookup"><span data-stu-id="c5f65-139">Configure the settings as detailed in the topics [Configure policies to control remote user access in Lync Server 2013](lync-server-2013-configure-policies-to-control-remote-user-access.md), and [Enable or disable federation and public IM connectivity in Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md)</span></span>
+
+<span data-ttu-id="c5f65-140">**Deseja permitir que usuários anônimos participem e sejam convidados para conferências hospedadas pelos usuários na sua implantação?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-140">**Do you want to allow anonymous users to attend and be invited to conferences hosted by users in your deployment?**</span></span>
+
+<span data-ttu-id="c5f65-141">Defina as configurações como detalhados no tópico [atribuir políticas de conferência para dar suporte a usuários anônimos no Lync server 2013](lync-server-2013-assign-conferencing-policies-to-support-anonymous-users.md), [criar ou modificar uma política de conferência no Lync Server 2013](lync-server-2013-create-or-modify-a-conferencing-policy.md) e [configurações de política de conferência para o Lync Server 2013](lync-server-2013-conferencing-policy-settings-reference.md)</span><span class="sxs-lookup"><span data-stu-id="c5f65-141">Configure the settings as detailed in the topic [Assign conferencing policies to support anonymous users in Lync Server 2013](lync-server-2013-assign-conferencing-policies-to-support-anonymous-users.md), [Create or modify a conferencing policy in Lync Server 2013](lync-server-2013-create-or-modify-a-conferencing-policy.md) and [Conferencing policy settings reference for Lync Server 2013](lync-server-2013-conferencing-policy-settings-reference.md)</span></span>
+
+<span data-ttu-id="c5f65-142">**Deseja permitir que os usuários se comuniquem com os contatos do domínio federado do SIP?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-142">**Do you want to allow users to communicate with SIP Federated Domain contacts?**</span></span>
+
+<span data-ttu-id="c5f65-143">Defina as configurações conforme detalhado nos tópicos [Configurar políticas para controlar o acesso de usuários federados no Lync server 2013](lync-server-2013-configure-policies-to-control-federated-user-access.md), [habilitar ou desabilitar a conectividade de mensagens de chat públicas e Federação no Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md)e [gerenciar domínios federados SIP para sua organização no Lync Server 2013](lync-server-2013-manage-sip-federated-domains-for-your-organization.md)</span><span class="sxs-lookup"><span data-stu-id="c5f65-143">Configure the settings as detailed in the topics [Configure policies to control federated user access in Lync Server 2013](lync-server-2013-configure-policies-to-control-federated-user-access.md), [Enable or disable federation and public IM connectivity in Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md), and [Manage SIP federated domains for your organization in Lync Server 2013](lync-server-2013-manage-sip-federated-domains-for-your-organization.md)</span></span>
+
+<span data-ttu-id="c5f65-144">**Se você habilitou a comunicação com domínios de Federação SIP, deseja habilitar comunicações com contatos de parceiro federado do XMPP?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-144">**If you have enabled communication with SIP Federation Domains, do you want to enable communications with XMPP Federated Partner contacts?**</span></span>
+
+<span data-ttu-id="c5f65-145">Defina as configurações conforme detalhado no tópico [Configurar políticas para controlar o acesso de usuários federados do XMPP no Lync server 2013](lync-server-2013-configure-policies-to-control-xmpp-federated-user-access.md) e [gerenciar XMPP parceiros federados no Lync Server 2013](lync-server-2013-manage-xmpp-federated-partners-for-your-organization.md).</span><span class="sxs-lookup"><span data-stu-id="c5f65-145">Configure the settings as detailed in the topic [Configure policies to control XMPP federated user access in Lync Server 2013](lync-server-2013-configure-policies-to-control-xmpp-federated-user-access.md) and [Manage XMPP federated partners in Lync Server 2013](lync-server-2013-manage-xmpp-federated-partners-for-your-organization.md).</span></span>
+
+<span data-ttu-id="c5f65-146">**Se você tiver habilitado a comunicação com domínios federados SIP, deseja habilitar a descoberta automática de Federação SIP?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-146">**If you have enabled communication with SIP Federated Domains, do you want to enable SIP Federation automatic discovery?**</span></span>
+
+<span data-ttu-id="c5f65-147">Defina as configurações conforme detalhado no tópico [habilitar ou desabilitar a descoberta de parceiros de Federação no Lync Server 2013](lync-server-2013-enable-or-disable-discovery-of-federation-partners.md).</span><span class="sxs-lookup"><span data-stu-id="c5f65-147">Configure the settings as detailed in the topic [Enable or disable discovery of federation partners in Lync Server 2013](lync-server-2013-enable-or-disable-discovery-of-federation-partners.md).</span></span>
+
+<span data-ttu-id="c5f65-148">**Se você habilitou a comunicação com domínios de Federação SIP, deseja habilitar o envio de um aviso de isenção de responsabilidade a contatos federados notificando que você usa o arquivamento e que as comunicações podem ser arquivadas?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-148">**If you have enabled communication with SIP Federation Domains, do you want to enable sending a disclaimer to Federated contacts notifying them that you use archiving and that communications may be archived?**</span></span>
+
+<span data-ttu-id="c5f65-149">Defina as configurações conforme detalhado no tópico [habilitar ou desabilitar o envio de uma isenção de arquivamento para parceiros federados no Lync Server 2013](lync-server-2013-enable-or-disable-sending-an-archiving-disclaimer-to-federated-partners.md).</span><span class="sxs-lookup"><span data-stu-id="c5f65-149">Configure the settings as detailed in the topic [Enable or disable sending an Archiving disclaimer to federated partners in Lync Server 2013](lync-server-2013-enable-or-disable-sending-an-archiving-disclaimer-to-federated-partners.md).</span></span>
+
+<span data-ttu-id="c5f65-150">**Você deseja permitir que os usuários se comuniquem com provedores federados SIP que permitem a comunicação com provedores públicos, como Windows Live Messenger, AOL e Yahoo \! ?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-150">**Do you want to allow users to communicate with SIP Federated Providers that enable communication with public providers, such as Windows Live Messenger, AOL, and Yahoo\!?**</span></span>
+
+<span data-ttu-id="c5f65-151">Defina as configurações conforme detalhado nos tópicos [Configurar políticas para controlar o acesso de usuários públicos no Lync server 2013](lync-server-2013-configure-policies-to-control-public-user-access.md)[habilite ou desabilite a conectividade e a conectividade de mensagens de chat públicas no Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md)e [crie ou edite provedores federados SIP públicos no Lync Server 2013](lync-server-2013-create-or-edit-public-sip-federated-providers.md).</span><span class="sxs-lookup"><span data-stu-id="c5f65-151">Configure the settings as detailed in the topics [Configure policies to control public user access in Lync Server 2013](lync-server-2013-configure-policies-to-control-public-user-access.md)[Enable or disable federation and public IM connectivity in Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md), and [Create or edit public SIP federated providers in Lync Server 2013](lync-server-2013-create-or-edit-public-sip-federated-providers.md).</span></span>
+
+<div>
+
+
+> [!IMPORTANT]  
+> <UL>
+> <LI>
+> <P><span data-ttu-id="c5f65-152">A partir de 1º de setembro de 2012, a licença de assinatura de usuário da conectividade de mensagem de chat pública do Microsoft Lync ("PIC USL") não está mais disponível para compra de contratos novos ou de renovação.</span><span class="sxs-lookup"><span data-stu-id="c5f65-152">As of September 1st, 2012, the Microsoft Lync Public IM Connectivity User Subscription License (“PIC USL”) is no longer available for purchase for new or renewing agreements.</span></span> <span data-ttu-id="c5f65-153">Os clientes com licenças ativas poderão continuar a federar-se com o Yahoo!</span><span class="sxs-lookup"><span data-stu-id="c5f65-153">Customers with active licenses will be able to continue to federate with Yahoo!</span></span> <span data-ttu-id="c5f65-154">Messenger até a data de encerramento do serviço.</span><span class="sxs-lookup"><span data-stu-id="c5f65-154">Messenger until the service shut down date.</span></span> <span data-ttu-id="c5f65-155">Uma data de fim da vida útil de junho de 2014 para AOL e Yahoo!</span><span class="sxs-lookup"><span data-stu-id="c5f65-155">An end of life date of June 2014 for AOL and Yahoo!</span></span> <span data-ttu-id="c5f65-156">foi anunciado.</span><span class="sxs-lookup"><span data-stu-id="c5f65-156">has been announced.</span></span> <span data-ttu-id="c5f65-157">Para obter detalhes, consulte <A href="lync-server-2013-support-for-public-instant-messenger-connectivity.md">suporte para conectividade de mensagens instantâneas públicas no Lync Server 2013</A>.</span><span class="sxs-lookup"><span data-stu-id="c5f65-157">For details, see <A href="lync-server-2013-support-for-public-instant-messenger-connectivity.md">Support for public instant messenger connectivity in Lync Server 2013</A>.</span></span></P>
+> <LI>
+> <P><span data-ttu-id="c5f65-158">O PIC USL é uma licença de assinatura por usuário por mês necessária para o Lync Server ou o Office Communications Server se federar com o Yahoo!</span><span class="sxs-lookup"><span data-stu-id="c5f65-158">The PIC USL is a per-user per-month subscription license that is required for Lync Server or Office Communications Server to federate with Yahoo!</span></span> <span data-ttu-id="c5f65-159">Spam.</span><span class="sxs-lookup"><span data-stu-id="c5f65-159">Messenger.</span></span> <span data-ttu-id="c5f65-160">A capacidade da Microsoft de oferecer esse serviço por meio do suporte do Yahoo!, o contrato subjacente para o qual está prestes a ser enrolado.</span><span class="sxs-lookup"><span data-stu-id="c5f65-160">Microsoft’s ability to provide this service has been contingent upon support from Yahoo!, the underlying agreement for which is winding down.</span></span></P>
+> <LI>
+> <P><span data-ttu-id="c5f65-161">Mais do que nunca, o Lync é uma ferramenta poderosa para a conexão entre organizações e pessoas ao redor do mundo.</span><span class="sxs-lookup"><span data-stu-id="c5f65-161">More than ever, Lync is a powerful tool for connecting across organizations and with individuals around the world.</span></span> <span data-ttu-id="c5f65-162">A Federação com o Windows Live Messenger não requer licenças de usuário/dispositivo adicionais além da CAL padrão do Lync.</span><span class="sxs-lookup"><span data-stu-id="c5f65-162">Federation with Windows Live Messenger requires no additional user/device licenses beyond the Lync Standard CAL.</span></span> <span data-ttu-id="c5f65-163">A Federação do Skype será adicionada a essa lista, permitindo que os usuários do Lync atinjam centenas de milhões de pessoas com mensagens instantâneas e voz.</span><span class="sxs-lookup"><span data-stu-id="c5f65-163">Skype federation will be added to this list, enabling Lync users to reach hundreds of millions of people with IM and voice.</span></span></P></LI></UL>
+
+
+
+</div>
+
+<span data-ttu-id="c5f65-164">**Você deseja permitir que os usuários se comuniquem com provedores federados SIP que sejam provedores hospedados que executam o Microsoft 365, o Microsoft Lync Online e o Microsoft Lync Online 2010?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-164">**Do you want to allow users to communicate with SIP Federated Providers that are hosted providers running Microsoft 365, Microsoft Lync Online, and Microsoft Lync Online 2010?**</span></span>
+
+<span data-ttu-id="c5f65-165">Defina as configurações conforme detalhado nos tópicos [criar ou editar provedores federados SIP públicos no Lync server 2013](lync-server-2013-create-or-edit-public-sip-federated-providers.md), [habilitar ou desabilitar a conectividade de mensagens de chat públicas e a Federação no Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md) e [criar ou editar provedores federados do SIP Federated Lync Server 2013](lync-server-2013-create-or-edit-hosted-sip-federated-providers.md)</span><span class="sxs-lookup"><span data-stu-id="c5f65-165">Configure the settings as detailed in the topics [Create or edit public SIP federated providers in Lync Server 2013](lync-server-2013-create-or-edit-public-sip-federated-providers.md), [Enable or disable federation and public IM connectivity in Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md) and [Create or edit hosted SIP federated providers Lync Server 2013](lync-server-2013-create-or-edit-hosted-sip-federated-providers.md)</span></span>
+
+<span data-ttu-id="c5f65-166">**A implantação está configurada em um domínio dividido (também conhecido como híbrido), no qual alguns usuários têm o servidor primário em uma implantação local e outros usuários estão configurados com um servidor primário em um ambiente online?**</span><span class="sxs-lookup"><span data-stu-id="c5f65-166">**Is your deployment configured in a split (also known as a hybrid) domain, where some users have their home server in an on-premise deployment, and other users are configured with a home server in an online environment?**</span></span>
+
+<span data-ttu-id="c5f65-167">Defina as configurações conforme detalhado nos tópicos [Configurar políticas para controlar o acesso de usuários federados no Lync server 2013](lync-server-2013-configure-policies-to-control-federated-user-access.md), [habilitar ou desabilitar a conectividade de mensagens de chat públicas e a Federação no Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md) e [criar ou editar provedores federados do SIP Federated Lync Server 2013](lync-server-2013-create-or-edit-hosted-sip-federated-providers.md)</span><span class="sxs-lookup"><span data-stu-id="c5f65-167">Configure the settings as detailed in the topics [Configure policies to control federated user access in Lync Server 2013](lync-server-2013-configure-policies-to-control-federated-user-access.md), [Enable or disable federation and public IM connectivity in Lync Server 2013](lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md) and [Create or edit hosted SIP federated providers Lync Server 2013](lync-server-2013-create-or-edit-hosted-sip-federated-providers.md)</span></span>
+
+<span data-ttu-id="c5f65-168">Se preferir uma tabela que liste os requisitos:</span><span class="sxs-lookup"><span data-stu-id="c5f65-168">If you prefer a table that lists the requirements:</span></span>
+
+
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span data-ttu-id="c5f65-169">Guia em Federação e acesso externo (na horizontal) Federação ou tipo de acesso externo (down)</span><span class="sxs-lookup"><span data-stu-id="c5f65-169">Tab in Federation and External Access (Across) Federation or External Access Type (Down)</span></span></th>
+<th><span data-ttu-id="c5f65-170">Política de Acesso Externo</span><span class="sxs-lookup"><span data-stu-id="c5f65-170">External Access Policy</span></span></th>
+<th><span data-ttu-id="c5f65-171">Configuração de borda de acesso</span><span class="sxs-lookup"><span data-stu-id="c5f65-171">Access Edge Config</span></span></th>
+<th><span data-ttu-id="c5f65-172">Domínios federados SIP</span><span class="sxs-lookup"><span data-stu-id="c5f65-172">SIP Federated Domains</span></span></th>
+<th><span data-ttu-id="c5f65-173">Provedores Federados SIP</span><span class="sxs-lookup"><span data-stu-id="c5f65-173">SIP Federated Providers</span></span></th>
+<th><span data-ttu-id="c5f65-174">Parceiro federado do XMPP</span><span class="sxs-lookup"><span data-stu-id="c5f65-174">XMPP Federated Partner</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><span data-ttu-id="c5f65-175">Usuários remotos</span><span class="sxs-lookup"><span data-stu-id="c5f65-175">Remote Users</span></span></p></td>
+<td><p><span data-ttu-id="c5f65-176"><a href="lync-server-2013-configure-policies-to-control-remote-user-access.md">Configurar políticas para controle de acesso de usuário remoto no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-176"><a href="lync-server-2013-configure-policies-to-control-remote-user-access.md">Configure policies to control remote user access in Lync Server 2013</a></span></span></p></td>
+<td><p><span data-ttu-id="c5f65-177"><a href="lync-server-2013-enable-or-disable-remote-user-access.md">Habilitar ou desabilitar acesso de usuário remoto no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-177"><a href="lync-server-2013-enable-or-disable-remote-user-access.md">Enable or disable remote user access in Lync Server 2013</a></span></span></p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="c5f65-178">Contatos federados SIP</span><span class="sxs-lookup"><span data-stu-id="c5f65-178">SIP Federated Contacts</span></span></p></td>
+<td><p><span data-ttu-id="c5f65-179"><a href="lync-server-2013-configure-policies-to-control-federated-user-access.md">Configurar políticas para controlar acesso de usuário federado no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-179"><a href="lync-server-2013-configure-policies-to-control-federated-user-access.md">Configure policies to control federated user access in Lync Server 2013</a></span></span></p></td>
+<td><p><span data-ttu-id="c5f65-180"><a href="lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md">Habilitar ou desabilitar federação e conectividade de IM pública no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-180"><a href="lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md">Enable or disable federation and public IM connectivity in Lync Server 2013</a></span></span></p>
+<p><span data-ttu-id="c5f65-181"><a href="lync-server-2013-enable-or-disable-discovery-of-federation-partners.md">Habilitar ou desabilitar descoberta de parceiros de federação no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-181"><a href="lync-server-2013-enable-or-disable-discovery-of-federation-partners.md">Enable or disable discovery of federation partners in Lync Server 2013</a></span></span></p>
+<p><span data-ttu-id="c5f65-182"><a href="lync-server-2013-enable-or-disable-sending-an-archiving-disclaimer-to-federated-partners.md">Habilitar ou desabilitar o envio de um aviso de isenção de responsabilidade de Arquivamento a parceiros federados no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-182"><a href="lync-server-2013-enable-or-disable-sending-an-archiving-disclaimer-to-federated-partners.md">Enable or disable sending an Archiving disclaimer to federated partners in Lync Server 2013</a></span></span></p></td>
+<td><p><span data-ttu-id="c5f65-183"><a href="lync-server-2013-manage-sip-federated-domains-for-your-organization.md">Gerenciar domínios SIP federados para sua organização no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-183"><a href="lync-server-2013-manage-sip-federated-domains-for-your-organization.md">Manage SIP federated domains for your organization in Lync Server 2013</a></span></span></p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="c5f65-184">XMPP contatos federados</span><span class="sxs-lookup"><span data-stu-id="c5f65-184">XMPP Federated Contacts</span></span></p></td>
+<td><p><span data-ttu-id="c5f65-185"><a href="lync-server-2013-configure-policies-to-control-federated-user-access.md">Configurar políticas para controlar acesso de usuário federado no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-185"><a href="lync-server-2013-configure-policies-to-control-federated-user-access.md">Configure policies to control federated user access in Lync Server 2013</a></span></span></p>
+<p><span data-ttu-id="c5f65-186"><a href="lync-server-2013-configure-policies-to-control-xmpp-federated-user-access.md">Configurar políticas para controlar o acesso de usuário federado no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-186"><a href="lync-server-2013-configure-policies-to-control-xmpp-federated-user-access.md">Configure policies to control XMPP federated user access in Lync Server 2013</a></span></span></p></td>
+<td><p><span data-ttu-id="c5f65-187"><a href="lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md">Habilitar ou desabilitar federação e conectividade de IM pública no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-187"><a href="lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md">Enable or disable federation and public IM connectivity in Lync Server 2013</a></span></span></p></td>
+<td></td>
+<td></td>
+<td><p><span data-ttu-id="c5f65-188"><a href="lync-server-2013-manage-xmpp-federated-partners-for-your-organization.md">Gerenciar parceiros XMPP federados no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-188"><a href="lync-server-2013-manage-xmpp-federated-partners-for-your-organization.md">Manage XMPP federated partners in Lync Server 2013</a></span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="c5f65-189">Dividir domínio/usuários híbridos</span><span class="sxs-lookup"><span data-stu-id="c5f65-189">Split Domain / Hybrid Users</span></span></p></td>
+<td><p><span data-ttu-id="c5f65-190"><a href="lync-server-2013-configure-policies-to-control-federated-user-access.md">Configurar políticas para controlar acesso de usuário federado no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-190"><a href="lync-server-2013-configure-policies-to-control-federated-user-access.md">Configure policies to control federated user access in Lync Server 2013</a></span></span></p></td>
+<td><p><span data-ttu-id="c5f65-191"><a href="lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md">Habilitar ou desabilitar federação e conectividade de IM pública no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-191"><a href="lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md">Enable or disable federation and public IM connectivity in Lync Server 2013</a></span></span></p></td>
+<td></td>
+<td><p><span data-ttu-id="c5f65-192"><a href="lync-server-2013-create-or-edit-hosted-sip-federated-providers.md">Criar ou editar provedores hospedados federados SIP no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-192"><a href="lync-server-2013-create-or-edit-hosted-sip-federated-providers.md">Create or edit hosted SIP federated providers Lync Server 2013</a></span></span></p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="c5f65-193">Contatos do serviço público de mensagens instantâneas</span><span class="sxs-lookup"><span data-stu-id="c5f65-193">Public IM Service Contacts</span></span></p></td>
+<td><p><span data-ttu-id="c5f65-194"><a href="lync-server-2013-configure-policies-to-control-public-user-access.md">Configurar políticas para controlar o acesso de usuário público no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-194"><a href="lync-server-2013-configure-policies-to-control-public-user-access.md">Configure policies to control public user access in Lync Server 2013</a></span></span></p></td>
+<td><p><span data-ttu-id="c5f65-195"><a href="lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md">Habilitar ou desabilitar federação e conectividade de IM pública no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-195"><a href="lync-server-2013-enable-or-disable-federation-and-public-im-connectivity.md">Enable or disable federation and public IM connectivity in Lync Server 2013</a></span></span></p></td>
+<td></td>
+<td><p><span data-ttu-id="c5f65-196"><a href="lync-server-2013-create-or-edit-public-sip-federated-providers.md">Criar ou editar fornecedores SIP públicos federados no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-196"><a href="lync-server-2013-create-or-edit-public-sip-federated-providers.md">Create or edit public SIP federated providers in Lync Server 2013</a></span></span></p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="c5f65-197">Acesso de usuário anônimo a reuniões e conferências</span><span class="sxs-lookup"><span data-stu-id="c5f65-197">Anonymous user access to meetings and conferences</span></span></p></td>
+<td></td>
+<td><p><span data-ttu-id="c5f65-198"><a href="lync-server-2013-assign-conferencing-policies-to-support-anonymous-users.md">Atribuir políticas de conferência para suporte de usuários anônimos no Lync Server 2013</a></span><span class="sxs-lookup"><span data-stu-id="c5f65-198"><a href="lync-server-2013-assign-conferencing-policies-to-support-anonymous-users.md">Assign conferencing policies to support anonymous users in Lync Server 2013</a></span></span></p>
+<div>
+
+> [!NOTE]  
+> <span data-ttu-id="c5f65-199">Você também deve considerar as seguintes configurações de configuração em políticas de conferência: <A href="lync-server-2013-create-or-modify-a-conferencing-policy.md">criar ou modificar uma política de conferência no Lync server 2013</A> e <A href="lync-server-2013-conferencing-policy-settings-reference.md">a referência de configurações de política de conferência para o Lync Server 2013</A></span><span class="sxs-lookup"><span data-stu-id="c5f65-199">You must also consider the following configuration settings under Conferencing policies: <A href="lync-server-2013-create-or-modify-a-conferencing-policy.md">Create or modify a conferencing policy in Lync Server 2013</A> and <A href="lync-server-2013-conferencing-policy-settings-reference.md">Conferencing policy settings reference for Lync Server 2013</A></span></span>
+
+
+</div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<span data-ttu-id="c5f65-200">Você pode definir as configurações de acesso de usuário externo, incluindo as políticas que deseja usar para controlar o acesso de usuários externos, mesmo que você não tenha habilitado o acesso de usuários externos para a sua organização.</span><span class="sxs-lookup"><span data-stu-id="c5f65-200">You can configure external user access settings, including any policies that you want to use to control external user access, even if you have not enabled external user access for your organization.</span></span> <span data-ttu-id="c5f65-201">No entanto, as políticas e outras configurações que você configura estão em vigor apenas quando você tem acesso de usuário externo habilitado para sua organização.</span><span class="sxs-lookup"><span data-stu-id="c5f65-201">However, the policies and other settings that you configure are in effect only when you have external user access enabled for your organization.</span></span> <span data-ttu-id="c5f65-202">Os usuários externos não podem se comunicar com os usuários da sua organização quando o acesso ao usuário externo estiver desabilitado ou se nenhuma política de acesso externo do usuário estiver configurada para dar suporte a ele.</span><span class="sxs-lookup"><span data-stu-id="c5f65-202">External users cannot communicate with users of your organization when external user access is disabled or if no external user access policies are configured to support it.</span></span>
+
+<span data-ttu-id="c5f65-203">Sua implantação de borda autentica os tipos de usuários externos (exceto para usuários anônimos, que são autenticados pelo ID de conferência e uma chave de acesso que é enviada para o participante anônimo ao criar a conferência e convidar participantes) e controla o acesso com base na forma como você configura o suporte de borda.</span><span class="sxs-lookup"><span data-stu-id="c5f65-203">Your edge deployment authenticates the types of external users (except for anonymous users, who are authenticated by the conference ID and a passkey that is sent to the anonymous participant when you create the conference and invite participants) and controls access based on how you configure your edge support.</span></span> <span data-ttu-id="c5f65-204">Para controlar a comunicação, você pode configurar uma ou mais políticas e definir configurações que definem como os usuários dentro e fora da sua implantação se comunicam uns com os outros.</span><span class="sxs-lookup"><span data-stu-id="c5f65-204">In order to control communications, you can configure one or more policies and configure settings that define how users inside and outside your deployment communicate with each other.</span></span> <span data-ttu-id="c5f65-205">As políticas e configurações incluem a política global padrão para acesso ao usuário externo, além das políticas de site e de usuário que você pode criar e configurar para habilitar um ou mais tipos de acesso de usuários externos para sites ou usuários específicos.</span><span class="sxs-lookup"><span data-stu-id="c5f65-205">The policies and settings include the default global policy for external user access, in addition to site and user policies that you can create and configure to enable one or more types of external user access for specific sites or users.</span></span>
+
+<div>
+
+## <a name="in-this-section"></a><span data-ttu-id="c5f65-206">Nesta seção</span><span class="sxs-lookup"><span data-stu-id="c5f65-206">In This Section</span></span>
+
+  - [<span data-ttu-id="c5f65-207">Gerenciar política de acesso externo no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="c5f65-207">Manage external access policy in Lync Server 2013</span></span>](lync-server-2013-manage-external-access-policy-for-your-organization.md)
+
+  - [<span data-ttu-id="c5f65-208">Gerenciar configuração da borda de acesso para sua organização no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="c5f65-208">Manage Access Edge Configuration for your organization in Lync Server 2013</span></span>](lync-server-2013-manage-access-edge-configuration-for-your-organization.md)
+
+  - [<span data-ttu-id="c5f65-209">Gerenciar domínios SIP federados para sua organização no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="c5f65-209">Manage SIP federated domains for your organization in Lync Server 2013</span></span>](lync-server-2013-manage-sip-federated-domains-for-your-organization.md)
+
+  - [<span data-ttu-id="c5f65-210">Gerenciar fornecedores SIP federados para sua organização no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="c5f65-210">Manage SIP federated providers for your organization in Lync Server 2013</span></span>](lync-server-2013-manage-sip-federated-providers-for-your-organization.md)
+
+  - [<span data-ttu-id="c5f65-211">Gerenciar parceiros XMPP federados no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="c5f65-211">Manage XMPP federated partners in Lync Server 2013</span></span>](lync-server-2013-manage-xmpp-federated-partners-for-your-organization.md)
+
+  - [<span data-ttu-id="c5f65-212">Configurando o suporte de Federação para um cliente do Lync Online no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="c5f65-212">Configuring federation support for a Lync Online customer in Lync Server 2013</span></span>](lync-server-2013-configuring-federation-support-for-a-lync-online-customer.md)
+
+<span data-ttu-id="c5f65-213"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="c5f65-213"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
