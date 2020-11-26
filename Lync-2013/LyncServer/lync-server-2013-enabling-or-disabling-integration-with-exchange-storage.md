@@ -1,0 +1,105 @@
+---
+title: 'Lync Server 2013: habilitando ou desabilitando a integração com o armazenamento do Exchange'
+description: 'Lync Server 2013: habilitando ou desabilitando a integração com o armazenamento do Exchange.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Enabling or disabling integration with Exchange storage
+ms:assetid: c08b9ba5-04f6-452a-b44c-c130f1564a34
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ205228(v=OCS.15)
+ms:contentKeyID: 48185295
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 42d140bd99bdc4aa86bea2f6ad310c4e06f06faf
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49428773"
+---
+# <a name="enabling-or-disabling-integration-of-lync-server-2013-with-exchange-storage"></a><span data-ttu-id="49852-103">Habilitando ou desabilitando a integração do Lync Server 2013 com armazenamento do Exchange</span><span class="sxs-lookup"><span data-stu-id="49852-103">Enabling or disabling integration of Lync Server 2013 with Exchange storage</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="49852-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="49852-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="49852-105">_**Tópico da última modificação:** 2012-10-09_</span><span class="sxs-lookup"><span data-stu-id="49852-105">_**Topic Last Modified:** 2012-10-09_</span></span>
+
+<span data-ttu-id="49852-106">No painel de controle do Lync Server 2013, você usa configurações de arquivamento para habilitar e desabilitar a integração com o armazenamento do Exchange.</span><span class="sxs-lookup"><span data-stu-id="49852-106">In Lync Server 2013 Control Panel, you use Archiving configurations to enable and disable integration with Exchange storage.</span></span> <span data-ttu-id="49852-107">Isso inclui as seguintes configurações de arquivamento:</span><span class="sxs-lookup"><span data-stu-id="49852-107">This includes the following Archiving configurations:</span></span>
+
+  - <span data-ttu-id="49852-108">Uma configuração global criada por padrão quando você implanta o Lync Server 2013.</span><span class="sxs-lookup"><span data-stu-id="49852-108">A global configuration that is created by default when you deploy Lync Server 2013.</span></span>
+
+  - <span data-ttu-id="49852-109">Configurações opcionais de nível de site e de pool que você pode criar e usar para especificar como o arquivamento é implementado para sites ou pools específicos.</span><span class="sxs-lookup"><span data-stu-id="49852-109">Optional site-level and pool-level configurations that you can create and use to specify how archiving is implemented for specific sites or pools.</span></span>
+
+<span data-ttu-id="49852-110">Para obter detalhes sobre como as configurações de arquivamento são implementadas, incluindo quais opções você pode especificar e a hierarquia de configurações de arquivamento, consulte [como o arquivamento funciona no Lync Server 2013](lync-server-2013-how-archiving-works.md) na documentação de planejamento, documentação de implantação ou documentação de operações.</span><span class="sxs-lookup"><span data-stu-id="49852-110">For details about how Archiving configurations are implemented, including which options you can specify and the hierarchy of Archiving configurations, see [How Archiving works in Lync Server 2013](lync-server-2013-how-archiving-works.md) in the Planning documentation, Deployment documentation, or Operations documentation.</span></span>
+
+<div>
+
+## <a name="to-enable-or-disable-integration-with-microsoft-exchange-storage"></a><span data-ttu-id="49852-111">Para habilitar ou desabilitar a integração com o armazenamento do Microsoft Exchange</span><span class="sxs-lookup"><span data-stu-id="49852-111">To enable or disable integration with Microsoft Exchange storage</span></span>
+
+1.  <span data-ttu-id="49852-112">Usando uma conta de usuário atribuída à função CsArchivingAdministrator ou CsAdministrator, faça logon em qualquer computador de sua implantação interna.</span><span class="sxs-lookup"><span data-stu-id="49852-112">From a user account that is assigned to the CsArchivingAdministrator or CsAdministrator role, log on to any computer in your internal deployment.</span></span>
+
+2.  <span data-ttu-id="49852-113">Abra uma janela do navegador e, em seguida, insira a URL de administração para abrir o painel de controle do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="49852-113">Open a browser window, and then enter the Admin URL to open the Lync Server Control Panel.</span></span> <span data-ttu-id="49852-114">Para obter detalhes sobre os diferentes métodos que você pode usar para iniciar o painel de controle do Lync Server, consulte [abrir ferramentas administrativas do Lync server 2013](lync-server-2013-open-lync-server-administrative-tools.md).</span><span class="sxs-lookup"><span data-stu-id="49852-114">For details about the different methods you can use to start Lync Server Control Panel, see [Open Lync Server 2013 administrative tools](lync-server-2013-open-lync-server-administrative-tools.md).</span></span>
+
+3.  <span data-ttu-id="49852-115">Na barra de navegação da esquerda, clique em **Monitoramento e Arquivamento**, e depois, clique em **Configuração de Arquivamento**.</span><span class="sxs-lookup"><span data-stu-id="49852-115">In the left navigation bar, click **Monitoring and Archiving**, and then click **Archiving Configuration**.</span></span>
+
+4.  <span data-ttu-id="49852-116">Clique no nome da configuração apropriada de pool, site ou global na lista de configurações de arquivamento, clique em **Editar**, **Mostrar detalhes** e faça o seguinte:</span><span class="sxs-lookup"><span data-stu-id="49852-116">Click the name of the appropriate global, site, or pool configuration in the list of archiving configurations, click **Edit**, click **Show details**, and then do the following:</span></span>
+    
+      - <span data-ttu-id="49852-117">Para habilitar a integração com o armazenamento do Exchange 2013, marque a caixa de seleção **integração do Microsoft Exchange** .</span><span class="sxs-lookup"><span data-stu-id="49852-117">To enable integration with Exchange 2013 storage, select the **Microsoft Exchange integration** check box.</span></span>
+    
+      - <span data-ttu-id="49852-118">Para desabilitar a integração com o armazenamento do Exchange 2013, desmarque a caixa de seleção **integração do Microsoft Exchange** .</span><span class="sxs-lookup"><span data-stu-id="49852-118">To disable integration with Exchange 2013 storage, clear the **Microsoft Exchange integration** check box.</span></span>
+
+5.  <span data-ttu-id="49852-119">Clique em **Confirmar**.</span><span class="sxs-lookup"><span data-stu-id="49852-119">Click **Commit**.</span></span>
+
+</div>
+
+<div>
+
+## <a name="see-also"></a><span data-ttu-id="49852-120">Confira também</span><span class="sxs-lookup"><span data-stu-id="49852-120">See Also</span></span>
+
+
+[<span data-ttu-id="49852-121">Como o arquivamento funciona no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="49852-121">How Archiving works in Lync Server 2013</span></span>](lync-server-2013-how-archiving-works.md)  
+
+
+[<span data-ttu-id="49852-122">Gerenciando opções de configuração de arquivamento no Lync Server 2013 para sua organização, sites e pools</span><span class="sxs-lookup"><span data-stu-id="49852-122">Managing Archiving configuration options in Lync Server 2013 for your organization, sites, and pools</span></span>](lync-server-2013-managing-archiving-configuration-options-for-your-organization-sites-and-pools.md)  
+  
+
+<span data-ttu-id="49852-123"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="49852-123"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
