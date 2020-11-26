@@ -1,0 +1,81 @@
+---
+title: 'Lync Server 2013: Integração de ferramentas de gerenciamento de Chat Persistente'
+description: 'Lync Server 2013: integração de ferramentas de gerenciamento de chat persistentes.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Integration of Persistent Chat management tools
+ms:assetid: 5231aec7-5046-4052-800b-3b63806b9558
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ688057(v=OCS.15)
+ms:contentKeyID: 49733651
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 55ca6403aca43b9bb197f925add9e73dde8e6493
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49426869"
+---
+# <a name="integration-of-persistent-chat-management-tools-in-lync-server-2013"></a><span data-ttu-id="63c19-103">Integração de ferramentas de gerenciamento de Chat Persistente no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="63c19-103">Integration of Persistent Chat management tools in Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="63c19-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="63c19-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="63c19-105">_**Tópico da última modificação:** 2012-08-16_</span><span class="sxs-lookup"><span data-stu-id="63c19-105">_**Topic Last Modified:** 2012-08-16_</span></span>
+
+<span data-ttu-id="63c19-106">O Lync Server 2013 simplifica a administração do servidor de chat persistente integrando suas ferramentas de administração com as ferramentas usadas para o restante do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="63c19-106">Lync Server 2013 simplifies the administration of Persistent Chat Server by integrating its administration tools with the tools used for the rest of Lync Server.</span></span>
+
+<span data-ttu-id="63c19-107">O servidor de chat persistente inclui uma experiência de interface do usuário administrativa integrada com o painel de controle do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="63c19-107">Persistent Chat Server includes an administrative user interface experience integrated with the Lync Server Control Panel.</span></span> <span data-ttu-id="63c19-108">Além disso, o servidor de chat persistente inclui uma coleção de cmdlets do Windows PowerShell para administrar e gerenciar categorias persistentes do servidor de chat, salas (incluindo a exclusão de salas e a limpeza de conteúdo obsoleto) e suplementos.</span><span class="sxs-lookup"><span data-stu-id="63c19-108">Also, Persistent Chat Server includes a collection of Windows PowerShell cmdlets to administer and manage Persistent Chat Server categories, rooms (including deleting rooms and purging obsolete content), and add-ins.</span></span>
+
+<div>
+
+## <a name="see-also"></a><span data-ttu-id="63c19-109">Confira também</span><span class="sxs-lookup"><span data-stu-id="63c19-109">See Also</span></span>
+
+
+[<span data-ttu-id="63c19-110">Visão geral do Servidor de Chat Persistente no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="63c19-110">Overview of Persistent Chat Server in Lync Server 2013</span></span>](lync-server-2013-overview-of-persistent-chat-server.md)  
+
+
+[<span data-ttu-id="63c19-111">Gerenciar Lync Server 2013, Servidor de Chat Persistente</span><span class="sxs-lookup"><span data-stu-id="63c19-111">Managing Lync Server 2013, Persistent Chat Server</span></span>](managing-lync-server-2013-persistent-chat-server.md)  
+  
+
+<span data-ttu-id="63c19-112"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="63c19-112"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
