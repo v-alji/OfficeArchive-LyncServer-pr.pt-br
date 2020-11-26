@@ -1,0 +1,76 @@
+---
+title: Configurar o Lync Server para trabalhar com o System Center Operations Manager
+description: Configurar o Lync Server para trabalhar com o System Center Operations Manager.
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Configuring Lync Server to work with System Center Operations Manager
+ms:assetid: b55a24ab-648b-4142-b3cd-3792860ba872
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ205188(v=OCS.15)
+ms:contentKeyID: 48185179
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: f58126c9e56d48548ba5ce6d74059809c55fecf5
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49432890"
+---
+# <a name="configuring-lync-server-2013-to-work-with-system-center-operations-manager"></a>Configurando o Lync Server 2013 para trabalhar com o System Center Operations Manager
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2012-10-22_
+
+Para configurar sua infraestrutura do Microsoft Lync Server 2013 para funcionar com o System Center Operations Manager, você deve fazer três coisas:
+
+  - Identifique e configure o servidor de gerenciamento principal do System Center Operations Manager. Configurar o servidor de gerenciamento inclui a instalação do System Center Operations Manager 2012 ou do System Center Operations Manager 2007 R2, bem como a configuração de um banco de dados back-end usando o SQL Server. A versão real do SQL Server que você precisa usar depende da versão do System Center Operations Manager que você está usando. Para obter detalhes, consulte [Configurando o servidor de gerenciamento primário no Lync server 2013](lync-server-2013-configuring-the-primary-management-server.md).
+
+  - Identifique e configure os computadores do Lync Server que você deseja monitorar. Para monitorar um computador do Lync Server usando o System Center Operations Manager, você deve instalar os arquivos de agente do System Center Operations Manager e configurar cada servidor para atuar como um proxy.
+
+  - Identifique e configure os computadores que você deseja que atue como nós do *Inspetor* do Lync Server. Os nós de Inspetor são computadores que executam periodicamente transações sintéticas do Lync Server, que são cmdlets do Windows PowerShell que verificam os principais componentes do Lync Server, como a capacidade de fazer logon no sistema ou a capacidade de trocar mensagens de chat estão funcionando conforme esperado.
+
+Os tópicos desta seção contêm instruções para executar cada uma dessas tarefas.
+
+<div>
+
+## <a name="in-this-section"></a>Nesta seção
+
+  - [Configurando o servidor de gerenciamento primário no Lync Server 2013](lync-server-2013-configuring-the-primary-management-server.md)
+
+  - [Instalar os pacotes de gerenciamento do Lync Server 2013](lync-server-2013-installing-the-lync-server-2013-management-packs.md)
+
+  - [Configurando os computadores do Lync Server que serão monitorados no Lync Server 2013](lync-server-2013-configuring-the-lync-server-computers-that-will-be-monitored.md)
+
+  - [Instalar e configurar nós do Inspetor no Lync Server 2013](lync-server-2013-installing-and-configuring-watcher-nodes.md)
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
