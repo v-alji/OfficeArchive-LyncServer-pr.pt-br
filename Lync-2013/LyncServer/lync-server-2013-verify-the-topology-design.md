@@ -1,0 +1,72 @@
+---
+title: 'Lync Server 2013: Verificar o design de topologia'
+description: 'Lync Server 2013: verificar o design da topologia.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Verify the topology design
+ms:assetid: c1b61814-239e-4101-aab0-de3db1d8793c
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Gg412951(v=OCS.15)
+ms:contentKeyID: 48185311
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: cb1e65343aacddbc11d3b909dfdff715503cab93
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49438908"
+---
+# <a name="verify-the-topology-design-in-lync-server-2013"></a>Verificar o design de topologia no Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2012-01-02_
+
+O construtor de topologias verifica automaticamente a topologia. Qualquer erro de topologia é identificado como um erro de validação, indicado pelo ícone de erro de validação ao lado da função do servidor. Também é importante verificar se a topologia representa corretamente a topologia para a implantação.
+
+<div>
+
+## <a name="to-verify-the-topology-prior-to-publication"></a>Para verificar a topologia antes da publicação
+
+1.  Verifique se todas as URLs simples estão configuradas corretamente.
+
+2.  Verifique se o servidor baseado em SQL Server está online e disponível para o computador no qual o Construtor de Topologias está instalado, incluindo quaisquer regras de firewall necessárias.
+
+3.  Confirme se o compartilhamento de arquivos está disponível e se tem as permissões adequadas definidas.
+
+4.  Verifique se as funções de servidor corretas que atendem aos requisitos de implantação estão definidas na topologia.
+
+5.  Verifique se os servidores existem nos serviços de domínio Active Directory. Isso ocorrerá automaticamente se você tiver ingressado nos servidores do domínio.
+
+Após a verificação da topologia, se não houver erros de validação, você estará pronto para publicar a topologia. Se houver erros de validação, você deve corrigi-los para poder publicar a topologia. Para obter detalhes sobre como publicar sua topologia, consulte [publicar a topologia no Lync Server 2013](lync-server-2013-publish-the-topology.md).
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
