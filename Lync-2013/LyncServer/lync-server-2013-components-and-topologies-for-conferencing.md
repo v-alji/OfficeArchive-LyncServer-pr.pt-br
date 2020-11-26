@@ -1,0 +1,181 @@
+---
+title: 'Lync Server 2013: Componentes e topologias para conferências'
+description: Componentes e topologias do Lync Server 2013 para conferência.
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Components and topologies for conferencing
+ms:assetid: eb83052a-3360-4ba1-a6a0-6ee419942809
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Gg399061(v=OCS.15)
+ms:contentKeyID: 48185707
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 719fe81d0f634b1eab1e79c2e7e665e89b0a791a
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49434624"
+---
+# <a name="components-and-topologies-for-conferencing-in-lync-server-2013"></a><span data-ttu-id="c6812-103">Componentes e topologias para conferências no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="c6812-103">Components and topologies for conferencing in Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="c6812-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="c6812-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="c6812-105">_**Tópico da última modificação:** 2013-02-04_</span><span class="sxs-lookup"><span data-stu-id="c6812-105">_**Topic Last Modified:** 2013-02-04_</span></span>
+
+<span data-ttu-id="c6812-106">Quando você seleciona conferência no construtor de topologias, a conferência é implantada como parte do servidor front-end ou do servidor Standard Edition.</span><span class="sxs-lookup"><span data-stu-id="c6812-106">When you select conferencing in Topology Builder, conferencing is deployed as part of the Front End Server or Standard Edition server.</span></span> <span data-ttu-id="c6812-107">A conferência discada e o compartilhamento do PowerPoint exigem componentes e configurações adicionais.</span><span class="sxs-lookup"><span data-stu-id="c6812-107">Dial-in conferencing and PowerPoint sharing requires additional components and configuration.</span></span> <span data-ttu-id="c6812-108">As seções a seguir descrevem os componentes e topologias com suporte para conferência Web, conferência A/V e conferência discada.</span><span class="sxs-lookup"><span data-stu-id="c6812-108">The following sections describe the supported components and topologies for web conferencing, A/V conferencing, and dial-in conferencing.</span></span>
+
+<div>
+
+## <a name="supported-components"></a><span data-ttu-id="c6812-109">Componentes com suporte</span><span class="sxs-lookup"><span data-stu-id="c6812-109">Supported Components</span></span>
+
+<span data-ttu-id="c6812-110">Os únicos componentes da webconferência e da Conferência A/V exigem os servidores front-end da sua organização ou servidores Standard Edition.</span><span class="sxs-lookup"><span data-stu-id="c6812-110">The only components web conferencing and A/V conferencing require are your organization’s Front End Servers or Standard Edition servers.</span></span> <span data-ttu-id="c6812-111">Para obter uma lista dos requisitos de hardware e software para os servidores de front-end e os servidores de edição padrão, consulte suporte a [hardware com suporte para o Lync server 2013](lync-server-2013-supported-hardware.md) e [para o software do servidor e a infraestrutura do Lync Server 2013](lync-server-2013-server-software-and-infrastructure-support.md).</span><span class="sxs-lookup"><span data-stu-id="c6812-111">For a list of hardware and software requirements for the Front End Servers and Standard Edition servers, see [Supported hardware for Lync Server 2013](lync-server-2013-supported-hardware.md) and [Server software and infrastructure support in Lync Server 2013](lync-server-2013-server-software-and-infrastructure-support.md).</span></span>
+
+<span data-ttu-id="c6812-112">O Lync Server 2013 usa o Office Web Apps e o Office Web Apps Server para lidar com o compartilhamento e a renderização de apresentações do PowerPoint.</span><span class="sxs-lookup"><span data-stu-id="c6812-112">Lync Server 2013 uses Office Web Apps and the Office Web Apps Server to handle sharing and rendering of PowerPoint presentations.</span></span> <span data-ttu-id="c6812-113">Para obter detalhes sobre como instalar e configurar o Office Web Apps Server, consulte [Configurando a integração com o Office Web Apps Server e o Lync Server 2013](lync-server-2013-enabling-office-web-apps-server-and-lync-server-2013.md).</span><span class="sxs-lookup"><span data-stu-id="c6812-113">For details about installing and configuring the Office Web Apps Server, see [Configuring integration with Office Web Apps Server and Lync Server 2013](lync-server-2013-enabling-office-web-apps-server-and-lync-server-2013.md).</span></span>
+
+<span data-ttu-id="c6812-114">Além dos requisitos de conferência via Web e conferência A/V, a conferência discada usa os seguintes componentes do Lync Server 2013:</span><span class="sxs-lookup"><span data-stu-id="c6812-114">In addition to the requirements for web conferencing and A/V conferencing, dial-in conferencing uses the following Lync Server 2013 components:</span></span>
+
+  - <span data-ttu-id="c6812-115">**Serviço de aplicativo**   O serviço de aplicativo fornece uma plataforma para implantação, hospedagem e gerenciamento de aplicativos de comunicação unificada (UC).</span><span class="sxs-lookup"><span data-stu-id="c6812-115">**Application service**   Application service provides a platform for deploying, hosting, and managing unified communications (UC) applications.</span></span> <span data-ttu-id="c6812-116">A conferência discada usa dois aplicativos de comunicação unificada que exigem serviço de aplicativo: anúncio de conferência e atendedor de conferências.</span><span class="sxs-lookup"><span data-stu-id="c6812-116">Dial-in conferencing uses two UC applications that require Application service: Conferencing Attendant and Conferencing Announcement.</span></span> <span data-ttu-id="c6812-117">O serviço de aplicativo é instalado e ativado por padrão em todos os servidores front-end em um pool Front-end e em cada servidor Standard Edition quando você implanta uma carga de trabalho de conferência e seleciona a opção conferência discada.</span><span class="sxs-lookup"><span data-stu-id="c6812-117">Application service is installed and activated by default on every Front End Server in a Front End pool and on every Standard Edition server when you deploy a Conferencing workload and select the dial-in conferencing option.</span></span>
+
+  - <span data-ttu-id="c6812-118">**Aplicativo de atendedor de conferência**   Aplicativo de atendedor de conferência é um aplicativo de comunicação unificado que aceita chamadas PSTN (rede telefônica pública comutada), reproduz solicitações e une as chamadas a uma conferência A/V.</span><span class="sxs-lookup"><span data-stu-id="c6812-118">**Conferencing Attendant application**   Conferencing Attendant application is a unified communications application that accepts public switched telephone network (PSTN) calls, plays prompts, and joins the calls to an A/V conference.</span></span> <span data-ttu-id="c6812-119">O aplicativo assistente de conferência é instalado e ativado por padrão quando você implanta uma carga de trabalho de conferência e seleciona a opção conferência discada.</span><span class="sxs-lookup"><span data-stu-id="c6812-119">Conferencing Attendant application is installed and activated by default when you deploy a Conferencing workload and select the dial-in conferencing option.</span></span>
+
+  - <span data-ttu-id="c6812-120">**Aplicativo de anúncio de conferência**   Aplicativo de anúncio de conferência é um aplicativo de comunicação unificado que reproduz toques e avisa para participantes PSTN em determinadas ações, como quando os participantes se unem ou saem de uma conferência, os participantes estão com mudo ou desativados, alguém entra no lobby da conferência ou quando a conferência está bloqueada ou desbloqueada.</span><span class="sxs-lookup"><span data-stu-id="c6812-120">**Conferencing Announcement application**   Conferencing Announcement application is a unified communications application that plays tones and prompts to PSTN participants on certain actions, such as when participants join or leave a conference, participants are muted or unmuted, someone enters the conference lobby, or the conference is locked or unlocked.</span></span> <span data-ttu-id="c6812-121">O aplicativo de anúncio de conferência também oferece suporte a comandos DTMF (Multifrequency) de dois tons do teclado do telefone.</span><span class="sxs-lookup"><span data-stu-id="c6812-121">Conferencing Announcement application also supports dual-tone multifrequency (DTMF) commands from the phone keypad.</span></span> <span data-ttu-id="c6812-122">O aplicativo de anúncio de conferência é automaticamente instalado e ativado por padrão quando você implanta uma carga de trabalho de conferência e seleciona a opção conferência discada.</span><span class="sxs-lookup"><span data-stu-id="c6812-122">Conferencing Announcement application is automatically installed and activated by default when you deploy a Conferencing workload and select the dial-in conferencing option.</span></span>
+
+  - <span data-ttu-id="c6812-123">**Página de configurações da conferência discada**   A página Configurações de conferência discada exibe os números de discagem de conferência com os idiomas disponíveis, as informações de conferência atribuídas (isto é, para reuniões que não precisam ser agendadas) e os controles DTMF em conferência e suporte o gerenciamento de PIN (número de identificação pessoal) e informações de conferência atribuídas.</span><span class="sxs-lookup"><span data-stu-id="c6812-123">**Dial-in Conferencing Settings page**   The Dial-in Conferencing Settings page displays conference dial-in numbers with their available languages, assigned conference information (that is, for meetings that do not need to be scheduled), and in-conference DTMF controls, and supports management of personal identification number (PIN) and assigned conferencing information.</span></span> <span data-ttu-id="c6812-124">A página de Configurações da Conferência Discada é automaticamente instalada como parte dos serviços da Web.</span><span class="sxs-lookup"><span data-stu-id="c6812-124">The Dial-in Conferencing Settings page is automatically installed as part of Web Services.</span></span>
+
+  - <span data-ttu-id="c6812-125">**Lync server 2013, servidor de mediação e gateway PSTN**   A conferência discada requer que um servidor de mediação traduza sinalização (e mídia, em algumas configurações) entre o Lync Server 2013 e o gateway PSTN e um gateway PSTN para traduzir a sinalização e a mídia entre o servidor de mediação e o gateway PSTN.</span><span class="sxs-lookup"><span data-stu-id="c6812-125">**Lync Server 2013, Mediation Server and PSTN gateway**   Dial-in conferencing requires a Mediation Server to translate signaling (and media, in some configurations) between Lync Server 2013 and the PSTN gateway, and a PSTN gateway to translate signaling and media between the Mediation Server and the PSTN gateway.</span></span> <span data-ttu-id="c6812-126">Para conferência discada, você deve implantar pelo menos um servidor de mediação e pelo menos um dos seguintes:</span><span class="sxs-lookup"><span data-stu-id="c6812-126">For dial-in conferencing, you must deploy at least one Mediation Server and at least one of the following:</span></span>
+    
+      - <span data-ttu-id="c6812-127">Gateway PSTN</span><span class="sxs-lookup"><span data-stu-id="c6812-127">PSTN gateway</span></span>
+    
+      - <span data-ttu-id="c6812-128">IP-PBX</span><span class="sxs-lookup"><span data-stu-id="c6812-128">IP-PBX</span></span>
+    
+      - <span data-ttu-id="c6812-129">Controlador de Borda de Sessão (SBC) (para um provedor de serviços de telefonia pela Internet ao qual você se conecta configurando um tronco SIP)</span><span class="sxs-lookup"><span data-stu-id="c6812-129">Session Border Controller (SBC) (for an Internet telephony service provider to which you connect by configuring a SIP trunk)</span></span>
+    
+    <div>
+    
+
+    > [!NOTE]  
+    > <span data-ttu-id="c6812-130">Se você também estiver implantando o Enterprise Voice, o servidor de mediação e os gateways PSTN fazem parte da implantação do Enterprise Voice.</span><span class="sxs-lookup"><span data-stu-id="c6812-130">If you are also deploying Enterprise Voice, Mediation Server and PSTN gateways are part of the Enterprise Voice deployment.</span></span> <span data-ttu-id="c6812-131">Se não estiver implantando o Enterprise Voice, você precisará implantar pelo menos um servidor de mediação e pelo menos um gateway PSTN, PBX IP ou SBC para conferência discada.</span><span class="sxs-lookup"><span data-stu-id="c6812-131">If you are not deploying Enterprise Voice, you need to deploy at least one Mediation Server and at least one PSTN gateway, IP-PBX, or SBC for dial-in conferencing.</span></span>
+
+    
+    </div>
+
+  - <span data-ttu-id="c6812-132">**Repositório de arquivos**   O armazenamento de arquivos é usado para arquivos de áudio de nome gravados.</span><span class="sxs-lookup"><span data-stu-id="c6812-132">**File store**   File store is used for recorded name audio files.</span></span> <span data-ttu-id="c6812-133">O Repositório de Arquivos é um componente padrão de todas as implantações do Enterprise Edition ou Standard Edition.</span><span class="sxs-lookup"><span data-stu-id="c6812-133">File Store is a standard component in every Enterprise Edition or Standard Edition deployment.</span></span>
+
+  - <span data-ttu-id="c6812-134">**Repositório de usuários**   O repositório de usuários é usado para armazenar PINs do usuário do Lync Server 2013.</span><span class="sxs-lookup"><span data-stu-id="c6812-134">**User store**   User store is used to store user Lync Server 2013 PINs.</span></span> <span data-ttu-id="c6812-135">Os PINs são marcados por hash.</span><span class="sxs-lookup"><span data-stu-id="c6812-135">PINs are hashed.</span></span> <span data-ttu-id="c6812-136">O armazenamento de Usuários é um componente padrão em todas as implantações de Enterprise Edition ou Standard Edition.</span><span class="sxs-lookup"><span data-stu-id="c6812-136">The User store is a standard component in every Enterprise Edition or Standard Edition deployment.</span></span>
+
+  - <span data-ttu-id="c6812-137">**Painel de controle do Lync Server**   Algumas configurações de discagem podem ser configuradas usando o painel de controle do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="c6812-137">**Lync Server Control Panel**   Some dial-in settings can be configured by using Lync Server Control Panel.</span></span>
+
+  - <span data-ttu-id="c6812-138">**Shell de gerenciamento do Lync Server**   Todas as configurações de discagem podem ser configuradas usando cmdlets do Shell de gerenciamento do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="c6812-138">**Lync Server Management Shell**   All dial-in settings can be configured by using Lync Server Management Shell cmdlets.</span></span> <span data-ttu-id="c6812-139">Os cmdlets do Shell de gerenciamento do Lync Server estão disponíveis para implantar, configurar, executar, monitorar e solucionar problemas do aplicativo atendedor de conferências e do aplicativo de anúncio de conferências.</span><span class="sxs-lookup"><span data-stu-id="c6812-139">Lync Server Management Shell cmdlets are available for deploying, configuring, running, monitoring, and troubleshooting Conferencing Attendant application and Conferencing Announcement application.</span></span> <span data-ttu-id="c6812-140">Para obter detalhes sobre cmdlets específicos, consulte documentação do Shell de gerenciamento do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="c6812-140">For details about specific cmdlets, see Lync Server Management Shell documentation.</span></span>
+
+</div>
+
+<div>
+
+## <a name="supported-topologies"></a><span data-ttu-id="c6812-141">Topologias suportadas</span><span class="sxs-lookup"><span data-stu-id="c6812-141">Supported Topologies</span></span>
+
+<span data-ttu-id="c6812-142">No Lync Server 2013, o servidor que executa serviços de conferência é sempre posicionado com os servidores front-end ou servidores Standard Edition.</span><span class="sxs-lookup"><span data-stu-id="c6812-142">In Lync Server 2013, the server running conferencing services is always collocated with the Front End Servers or Standard Edition servers.</span></span> <span data-ttu-id="c6812-143">Durante a implantação inicial, o construtor de topologias oferece a opção de incluir conferências na sua topologia.</span><span class="sxs-lookup"><span data-stu-id="c6812-143">During your initial deployment, Topology Builder gives you the option to include conferencing in your topology.</span></span> <span data-ttu-id="c6812-144">Você também pode usar o Construtor de Topologias para adicionar conferências a uma implantação existente.</span><span class="sxs-lookup"><span data-stu-id="c6812-144">You can also use Topology Builder to add conferencing to an existing deployment.</span></span> <span data-ttu-id="c6812-145">Para obter detalhes, consulte [definindo e configurando a topologia no Lync Server 2013](lync-server-2013-defining-and-configuring-the-topology.md).</span><span class="sxs-lookup"><span data-stu-id="c6812-145">For details, see [Defining and configuring the topology in Lync Server 2013](lync-server-2013-defining-and-configuring-the-topology.md).</span></span>
+
+<div>
+
+## <a name="dial-in-conferencing-toplogies"></a><span data-ttu-id="c6812-146">Toplogies de conferência discada</span><span class="sxs-lookup"><span data-stu-id="c6812-146">Dial in Conferencing Toplogies</span></span>
+
+<span data-ttu-id="c6812-147">Você pode implantar a conferência discada nas seguintes topologias e configurações:</span><span class="sxs-lookup"><span data-stu-id="c6812-147">You can deploy dial-in conferencing in the following topologies and configurations:</span></span>
+
+  - <span data-ttu-id="c6812-148">Lync Server 2013 Standard Edition</span><span class="sxs-lookup"><span data-stu-id="c6812-148">Lync Server 2013 Standard Edition</span></span>
+
+  - <span data-ttu-id="c6812-149">Lync Server 2013 Enterprise Edition</span><span class="sxs-lookup"><span data-stu-id="c6812-149">Lync Server 2013 Enterprise Edition</span></span>
+
+  - <span data-ttu-id="c6812-150">Com ou sem Enterprise Voice</span><span class="sxs-lookup"><span data-stu-id="c6812-150">With or without Enterprise Voice</span></span>
+
+<span data-ttu-id="c6812-151">Você pode implantar o serviço de aplicativo, o aplicativo do atendente de conferência e o aplicativo de anúncio de conferência em um site central, mas não em um site de filial.</span><span class="sxs-lookup"><span data-stu-id="c6812-151">You can deploy Application service, Conferencing Attendant application, and Conferencing Announcement application in a central site, but not in a branch site.</span></span>
+
+<div>
+
+
+> [!NOTE]  
+> <span data-ttu-id="c6812-152">Se você implantar a conferência discada, será necessário implantá-la em cada pool onde implantar a conferência do Lync Server 2013.</span><span class="sxs-lookup"><span data-stu-id="c6812-152">If you deploy dial-in conferencing, you must deploy it in every pool where you deploy Lync Server 2013 conferencing.</span></span> <span data-ttu-id="c6812-153">Não é necessário atribuir números de acesso em cada pool, mas é necessário implantar o recurso de conferência discada em cada pool.</span><span class="sxs-lookup"><span data-stu-id="c6812-153">You do not need to assign access numbers in every pool, but you must deploy the dial-in conferencing feature in every pool.</span></span> <span data-ttu-id="c6812-154">Esse requisito dá suporte ao recurso de nome registrado quando um usuário chama um número de acesso de um pool para ingressar em uma conferência do Lync Server 2013 em um pool diferente.</span><span class="sxs-lookup"><span data-stu-id="c6812-154">This requirement supports the recorded name feature when a user calls an access number from one pool to join a Lync Server 2013 conference in a different pool.</span></span>
+
+
+
+</div>
+
+</div>
+
+<div>
+
+## <a name="supported-topologies-for-lync-server-2013-and-office-web-apps"></a><span data-ttu-id="c6812-155">Topologias com suporte para o Lync Server 2013 e Office Web Apps</span><span class="sxs-lookup"><span data-stu-id="c6812-155">Supported Topologies for Lync Server 2013 and Office Web Apps</span></span>
+
+<span data-ttu-id="c6812-156">O Lync Server 2013 fornece as seguintes maneiras de configurar o servidor do Office Web Apps.</span><span class="sxs-lookup"><span data-stu-id="c6812-156">Lync Server 2013 provides the following ways to configure Office Web Apps Server.</span></span> <span data-ttu-id="c6812-157">Dependendo de seus requisitos, você pode:</span><span class="sxs-lookup"><span data-stu-id="c6812-157">Depending on your needs you can:</span></span>
+
+  - <span data-ttu-id="c6812-158">**Instale o Lync Server 2013 e o Office Web Apps Server no local por trás do firewall da sua organização e na mesma zona de rede.**</span><span class="sxs-lookup"><span data-stu-id="c6812-158">**Install both Lync Server 2013 and Office Web Apps Server on-premises behind your organization’s firewall, and in the same network zone.**</span></span> <span data-ttu-id="c6812-159">Com essa topologia, o acesso externo ao servidor do Office Web Apps será fornecido por meio do servidor de proxy reverso.</span><span class="sxs-lookup"><span data-stu-id="c6812-159">With this topology, external access to Office Web Apps Server will be provided through your reverse proxy server.</span></span> <span data-ttu-id="c6812-160">O Lync Server 2013 e o Office Web Apps Server (ou um Office Web Apps Server farm) são instalados no local e atrás do firewall da sua organização.</span><span class="sxs-lookup"><span data-stu-id="c6812-160">Both Lync Server 2013 and Office Web Apps Server (or an Office Web Apps Server farm) are installed on-premises and behind your organization's firewall.</span></span> <span data-ttu-id="c6812-161">Idealmente, você deve instalar o Office Web Apps Server na mesma zona de rede do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="c6812-161">Ideally, you should install Office Web Apps Server in the same network zone as Lync Server.</span></span>
+    
+    <span data-ttu-id="c6812-162">Os clientes externos do Lync podem se conectar ao Lync Server 2013 e ao Office Web Apps Server usando um servidor proxy reverso, que é um servidor que recebe solicitações da Internet e as encaminha para a rede interna.</span><span class="sxs-lookup"><span data-stu-id="c6812-162">External Lync clients can connect to Lync Server 2013 and to Office Web Apps Server by using a reverse proxy server, which is a server that takes requests from the Internet and forwards them to the internal network.</span></span> <span data-ttu-id="c6812-163">(Os clientes internos não precisam usar o servidor proxy reverso porque podem se conectar ao servidor do Office Web Apps diretamente.) Essa topologia funciona melhor se você quiser usar um farm de servidores dedicado do Office Web Apps que é usado apenas pelo Lync Server 2013.</span><span class="sxs-lookup"><span data-stu-id="c6812-163">(Internal clients do not need to use the reverse proxy server because they can connect to Office Web Apps Server directly.) This topology works best if you want to use a dedicated Office Web Apps Server farm that is only used by Lync Server 2013.</span></span>
+
+  - <span data-ttu-id="c6812-164">**Usando um servidor Office Web Apps implantado externamente**</span><span class="sxs-lookup"><span data-stu-id="c6812-164">**Using an externally deployed Office Web Apps Server**</span></span>
+    
+    <span data-ttu-id="c6812-165">Nessa topologia, o Lync Server 2013 é implantado local e usa um servidor Office Web Apps que é implantado fora da zona de rede do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="c6812-165">In this topology, Lync Server 2013 is deployed on-premises, and uses an Office Web Apps Server that is deployed outside of Lync Server network zone.</span></span> <span data-ttu-id="c6812-166">Isso pode acontecer quando o Office Web Apps Server é compartilhado entre vários aplicativos na empresa e é implantado em uma rede que requer o Lync Server para usar a interface externa do servidor do Office Web Apps e vice-versa.</span><span class="sxs-lookup"><span data-stu-id="c6812-166">This may happen when Office Web Apps Server is shared across multiple applications in the corporation and is deployed in a network requiring Lync Server to use the external interface of Office Web Apps Server and vice versa.</span></span>
+    
+    <span data-ttu-id="c6812-167">Você não precisa instalar um servidor proxy reverso; em vez disso, todas as solicitações do servidor do Office Web Apps para o Lync Server 2013 são roteadas pelo servidor de borda.</span><span class="sxs-lookup"><span data-stu-id="c6812-167">You do not need to install a reverse proxy server; instead, all the requests from the Office Web Apps Server to Lync Server 2013 are routed through your Edge Server.</span></span> <span data-ttu-id="c6812-168">Os seus clientes internos e externos do Lync se conectam ao servidor do Office Web Apps usando a URL externa.</span><span class="sxs-lookup"><span data-stu-id="c6812-168">Both your internal and your external Lync clients connect to Office Web Apps Server using the external URL.</span></span>
+    
+    <span data-ttu-id="c6812-169">Se o Office Web Apps Server for implantado fora do seu firewall interno, selecione a opção o **servidor do Office Web Apps será implantado em uma rede externa (ou seja, perímetro/Internet)** no construtor de topologias.</span><span class="sxs-lookup"><span data-stu-id="c6812-169">If the Office Web Apps Server is deployed outside your internal firewall, then select the option **Office Web Apps Server is deployed in an external network (that is, perimeter/Internet)** in Topology Builder.</span></span> <span data-ttu-id="c6812-170">Para obter mais detalhes, consulte [Configurando a integração com o Office Web Apps Server e o Lync Server 2013](lync-server-2013-enabling-office-web-apps-server-and-lync-server-2013.md).</span><span class="sxs-lookup"><span data-stu-id="c6812-170">For more details see [Configuring integration with Office Web Apps Server and Lync Server 2013](lync-server-2013-enabling-office-web-apps-server-and-lync-server-2013.md).</span></span>
+
+<span data-ttu-id="c6812-171">Independentemente da topologia selecionada, é fundamental que as portas do firewall certas estejam abertas.</span><span class="sxs-lookup"><span data-stu-id="c6812-171">Regardless of the topology you select, it is critical that the correct firewall ports be opened.</span></span> <span data-ttu-id="c6812-172">Você deve certificar-se de que nomes DNS, endereços IP e portas não sejam bloqueados por firewalls no servidor do Office Web Apps, o balanceador de carga ou o Lync Server.</span><span class="sxs-lookup"><span data-stu-id="c6812-172">You must make sure that DNS names, IP addresses, and ports are not blocked by firewalls on the Office Web Apps Server, the load balancer, or Lync Server.</span></span>
+
+<div>
+
+
+> [!NOTE]  
+> <span data-ttu-id="c6812-173">Outra opção para fornecer acesso externo ao servidor do Office Web Apps é implantar o servidor na rede de perímetro.</span><span class="sxs-lookup"><span data-stu-id="c6812-173">Another option for providing external access to Office Web Apps Server is to deploy the server in the perimeter network.</span></span> <span data-ttu-id="c6812-174">Se você optar por fazer isso, lembre-se de que a instalação do servidor do Office Web Apps exige que o computador do servidor seja membro do seu domínio do Active Directory.</span><span class="sxs-lookup"><span data-stu-id="c6812-174">If you elect to do this, keep in mind that Office Web Apps Server setup requires the server computer to be a member of your Active Directory domain.</span></span> <span data-ttu-id="c6812-175">A menos que sua política de rede permita que os computadores na rede de perímetro sejam membros do domínio do Active Directory, é recomendável que você não instale o servidor do Office Web Apps na rede de perímetro.</span><span class="sxs-lookup"><span data-stu-id="c6812-175">Unless your network policy allows computers in the perimeter network to be Active Directory domain members, it is recommended that you do not install Office Web Apps Server in the perimeter network.</span></span> <span data-ttu-id="c6812-176">Em vez disso, você deve instalar o Office Web Apps Server na rede interna e oferecer acesso externo ao usuário por meio do servidor proxy reverso.</span><span class="sxs-lookup"><span data-stu-id="c6812-176">Instead, you should install Office Web Apps Server in the internal network and provide external user access through your reverse proxy server.</span></span>
+
+
+
+<span data-ttu-id="c6812-177"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="c6812-177"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+

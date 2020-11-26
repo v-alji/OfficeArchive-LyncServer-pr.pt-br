@@ -1,0 +1,197 @@
+---
+title: 'Lync Server 2013: verificar certificados do servidor do Lync Server 2013'
+description: 'Lync Server 2013: verificar certificados do servidor do Lync Server 2013.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Check server certificates
+ms:assetid: 7b0474e8-0efe-47f0-84eb-a1ba575dabfd
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Dn725210(v=OCS.15)
+ms:contentKeyID: 63969620
+ms.date: 01/27/2015
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 641651cb425b4fe8bd820bcebfa277084233bb1d
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49435016"
+---
+# <a name="check-lync-server-2013-server-certificates"></a><span data-ttu-id="87f0e-103">Verificar os certificados do servidor do Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="87f0e-103">Check Lync Server 2013 server certificates</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="87f0e-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="87f0e-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="87f0e-105">_**Tópico da última modificação:** 2014-11-01_</span><span class="sxs-lookup"><span data-stu-id="87f0e-105">_**Topic Last Modified:** 2014-11-01_</span></span>
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><span data-ttu-id="87f0e-106">Cronograma de verificação</span><span class="sxs-lookup"><span data-stu-id="87f0e-106">Verification schedule</span></span></p></td>
+<td><p><span data-ttu-id="87f0e-107">Mensal</span><span class="sxs-lookup"><span data-stu-id="87f0e-107">Monthly</span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="87f0e-108">Ferramenta de teste</span><span class="sxs-lookup"><span data-stu-id="87f0e-108">Testing tool</span></span></p></td>
+<td><p><span data-ttu-id="87f0e-109">Windows PowerShell</span><span class="sxs-lookup"><span data-stu-id="87f0e-109">Windows PowerShell</span></span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="87f0e-110">Permissões necessárias</span><span class="sxs-lookup"><span data-stu-id="87f0e-110">Permissions required</span></span></p></td>
+<td><p><span data-ttu-id="87f0e-111">Quando executado localmente usando o Shell de gerenciamento do Lync Server, os usuários devem ser membros do grupo de segurança RTCUniversalServerAdmins.</span><span class="sxs-lookup"><span data-stu-id="87f0e-111">When run locally using the Lync Server Management Shell, users must be members of the RTCUniversalServerAdmins security group.</span></span></p>
+<p><span data-ttu-id="87f0e-112">Quando executado usando uma instância remota do Windows PowerShell, os usuários devem receber uma função RBAC que tenha permissão para executar o cmdlet Get-CsCertificate.</span><span class="sxs-lookup"><span data-stu-id="87f0e-112">When run using a remote instance of Windows PowerShell, users must be assigned an RBAC role that has permission to run the Get-CsCertificate cmdlet.</span></span> <span data-ttu-id="87f0e-113">Para ver uma lista de todas as funções RBAC que podem usar esse cmdlet, execute o seguinte comando no prompt do Windows PowerShell:</span><span class="sxs-lookup"><span data-stu-id="87f0e-113">To see a list of all RBAC roles that can use this cmdlet, run the following command from the Windows PowerShell prompt:</span></span></p>
+<p><code>Get-CsAdminRole | Where-Object {$_.Cmdlets -match &quot;Get-CsCertificate&quot;}</code></p></td>
+</tr>
+</tbody>
+</table>
+
+
+<div>
+
+## <a name="description"></a><span data-ttu-id="87f0e-114">Descrição</span><span class="sxs-lookup"><span data-stu-id="87f0e-114">Description</span></span>
+
+<span data-ttu-id="87f0e-115">O cmdlet Get-CsCertificate permite que você recupere informações sobre cada um dos seus certificados do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="87f0e-115">The Get-CsCertificate cmdlet enables you to retrieve information about each of your Lync Server certificates.</span></span> <span data-ttu-id="87f0e-116">Isso é especialmente importante porque os certificados têm uma data de expiração interna.</span><span class="sxs-lookup"><span data-stu-id="87f0e-116">That’s especially important because certificates have a built-in expiration date.</span></span> <span data-ttu-id="87f0e-117">Por exemplo, os certificados emitidos em particular geralmente expiram após 12 meses.</span><span class="sxs-lookup"><span data-stu-id="87f0e-117">For example,, privately-issued certificates typically expire after 12 months.</span></span> <span data-ttu-id="87f0e-118">Se algum dos seus certificados do Lync Server expirar, você perderá a funcionalidade correspondente até que esse certificado seja renovado ou substituído.</span><span class="sxs-lookup"><span data-stu-id="87f0e-118">If any of your Lync Server certificates expire then you'll lose the accompanying functionality until that certificate is renewed or replaced.</span></span>
+
+</div>
+
+<div>
+
+## <a name="running-the-test"></a><span data-ttu-id="87f0e-119">Executar o teste</span><span class="sxs-lookup"><span data-stu-id="87f0e-119">Running the test</span></span>
+
+<span data-ttu-id="87f0e-120">Para retornar informações sobre cada um dos seus certificados do Lync Server, basta executar o seguinte comando:</span><span class="sxs-lookup"><span data-stu-id="87f0e-120">To return information about each of your Lync Server certificates just run the following command:</span></span>
+
+`Get-CsCertificate`
+
+<span data-ttu-id="87f0e-121">Ou, você pode filtrar as informações do certificado de retorno com base na data de vencimento.</span><span class="sxs-lookup"><span data-stu-id="87f0e-121">Or, you can filter the return certificate information based on expiration date.</span></span> <span data-ttu-id="87f0e-122">Por exemplo, esse comando limita os dados retornados a certificados que expiram (não pode ser usado após) 1 de junho de 2014:</span><span class="sxs-lookup"><span data-stu-id="87f0e-122">For example, this command limits the returned data to certificates that expire (cannot be used after) June 1, 2014:</span></span>
+
+`Get-CsCertificate | Where-Object {$_.NotAfter -lt "6/1/2014"}`
+
+<span data-ttu-id="87f0e-123">Para obter mais informações, consulte a documentação da ajuda para o cmdlet Get-CsCertificate.</span><span class="sxs-lookup"><span data-stu-id="87f0e-123">For more information, see the Help documentation for the Get-CsCertificate cmdlet.</span></span>
+
+<span data-ttu-id="87f0e-124">Observe que, embora o cmdlet Test-CsCertificateConfiguration exista, ele não é muito útil para administradores.</span><span class="sxs-lookup"><span data-stu-id="87f0e-124">Note that, although the Test-CsCertificateConfiguration cmdlet exists, it is not very useful to administrators.</span></span> <span data-ttu-id="87f0e-125">(Em vez disso, esse cmdlet é usado principalmente pelo assistente de certificado.) Embora o cmdlet funcione, as informações que ele retorna são do valor mínimo, conforme mostrado no exemplo de saída a seguir:</span><span class="sxs-lookup"><span data-stu-id="87f0e-125">(Instead, that cmdlet is primarily used by the Certificate wizard.) Although the cmdlet works, the information that it returns is of minimal value as shown in the following output example:</span></span>
+
+<span data-ttu-id="87f0e-126">Uso de impressão digital</span><span class="sxs-lookup"><span data-stu-id="87f0e-126">Thumbprint Use</span></span>
+
+<span data-ttu-id="87f0e-127">\---------- ---</span><span class="sxs-lookup"><span data-stu-id="87f0e-127">\---------- ---</span></span>
+
+<span data-ttu-id="87f0e-128">A9D51A2911C74FABFF7F2A8A994B20857D399107 padrão</span><span class="sxs-lookup"><span data-stu-id="87f0e-128">A9D51A2911C74FABFF7F2A8A994B20857D399107 Default</span></span>
+
+</div>
+
+<div>
+
+## <a name="reviewing-the-output"></a><span data-ttu-id="87f0e-129">Revisando a saída</span><span class="sxs-lookup"><span data-stu-id="87f0e-129">Reviewing the output</span></span>
+
+<span data-ttu-id="87f0e-130">O cmdlet Get-CsCertificate retorna informações semelhantes às seguintes para cada um dos seus certificados do Lync Server:</span><span class="sxs-lookup"><span data-stu-id="87f0e-130">The Get-CsCertificate cmdlet returns information similar to the following for each of your Lync Server certificates:</span></span>
+
+<span data-ttu-id="87f0e-131">Emissor: CN = FabrikamCA</span><span class="sxs-lookup"><span data-stu-id="87f0e-131">Issuer : CN=FabrikamCA</span></span>
+
+<span data-ttu-id="87f0e-132">Não depois: 12/28/2015 3:35:41 PM</span><span class="sxs-lookup"><span data-stu-id="87f0e-132">NotAfter : 12/28/2015 3:35:41 PM</span></span>
+
+<span data-ttu-id="87f0e-133">Não antes: 1/2/2014 12:49:37 PM</span><span class="sxs-lookup"><span data-stu-id="87f0e-133">NotBefore : 1/2/2014 12:49:37 PM</span></span>
+
+<span data-ttu-id="87f0e-134">SerialNumber: 611BB01200000000000C</span><span class="sxs-lookup"><span data-stu-id="87f0e-134">SerialNumber : 611BB01200000000000C</span></span>
+
+<span data-ttu-id="87f0e-135">Assunto: CN = LYNC-SE.fabrikam.com</span><span class="sxs-lookup"><span data-stu-id="87f0e-135">Subject : CN=LYNC-SE.fabrikam.com</span></span>
+
+<span data-ttu-id="87f0e-136">Alternativos: {sip.fabrikam.com, LYNC-SE.fabrikam.com,</span><span class="sxs-lookup"><span data-stu-id="87f0e-136">AlternativeNames : {sip.fabrikam.com, LYNC-SE.fabrikam.com,</span></span>
+
+<span data-ttu-id="87f0e-137">meet.fabrikam.com, admin.fabrikam.com...}</span><span class="sxs-lookup"><span data-stu-id="87f0e-137">meet.fabrikam.com, admin.fabrikam.com...}</span></span>
+
+<span data-ttu-id="87f0e-138">Impressão digital: A9D51A2911C74FABFF7F2A8A994B20857D399107</span><span class="sxs-lookup"><span data-stu-id="87f0e-138">Thumbprint : A9D51A2911C74FABFF7F2A8A994B20857D399107</span></span>
+
+<span data-ttu-id="87f0e-139">Usar: padrão</span><span class="sxs-lookup"><span data-stu-id="87f0e-139">Use : Default</span></span>
+
+<span data-ttu-id="87f0e-140">Como regra, os principais problemas que envolvem os certificados do Lync Server envolvem datas e horas, como quando os certificados entram em vigor (não antes) ou quando expiram (não depois).</span><span class="sxs-lookup"><span data-stu-id="87f0e-140">As a rule, the top issues involving Lync Server certificates involve dates and times, such as when certificates take effect (NotBefore) or when they expire (NotAfter).</span></span> <span data-ttu-id="87f0e-141">Como essas datas e horas são tão importantes, talvez você queira limitar os dados retornados às informações como o uso do certificado, o número de série do certificado e a data de expiração do certificado; em seguida, você pode revisar rapidamente todos os certificados e quando eles vão expirar.</span><span class="sxs-lookup"><span data-stu-id="87f0e-141">Because these dates and times are so important, you might want to limit the returned data to information such as the certificate use, the certificate serial number, and the certificate expiration date; then you can quickly review all the certificates and when they will expire.</span></span> <span data-ttu-id="87f0e-142">Para retornar apenas essas informações, use o comando juntamente com as opções conforme mostrado:</span><span class="sxs-lookup"><span data-stu-id="87f0e-142">To return just that information, use the command together with the options as shown:</span></span>
+
+`Get-CsCertificate | Select-Object Use, SerialNumber, NotAfter | Sort-Object NotAfter`
+
+<span data-ttu-id="87f0e-143">Esse comando retorna dados semelhantes aos seguintes, com os certificados classificados em ordem de data de validade:</span><span class="sxs-lookup"><span data-stu-id="87f0e-143">That command returns data similar to the following, with the certificates sorted in order of their expiration date:</span></span>
+
+<span data-ttu-id="87f0e-144">Usar SerialNumber não após</span><span class="sxs-lookup"><span data-stu-id="87f0e-144">Use SerialNumber NotAfter</span></span>
+
+<span data-ttu-id="87f0e-145">\--- ------------ --------</span><span class="sxs-lookup"><span data-stu-id="87f0e-145">\--- ------------ --------</span></span>
+
+<span data-ttu-id="87f0e-146">611BB01200000000000C padrão 12/28/2015 3:35:41 PM</span><span class="sxs-lookup"><span data-stu-id="87f0e-146">Default 611BB01200000000000C 12/28/2015 3:35:41 PM</span></span>
+
+<span data-ttu-id="87f0e-147">WebServicesInteral 32980AA20BBB20000191 02/15/2016 2:16:12 PM</span><span class="sxs-lookup"><span data-stu-id="87f0e-147">WebServicesInteral 32980AA20BBB20000191 02/15/2016 2:16:12 PM</span></span>
+
+<span data-ttu-id="87f0e-148">WebServicesExternal 0451B012003872651A0C 02/20/2016 7:11:58 AM</span><span class="sxs-lookup"><span data-stu-id="87f0e-148">WebServicesExternal 0451B012003872651A0C 02/20/2016 7:11:58 AM</span></span>
+
+<span data-ttu-id="87f0e-149">Se você tiver problemas com o certificado, talvez queira revisar osnames como configurados para um certificado.</span><span class="sxs-lookup"><span data-stu-id="87f0e-149">If you have certificate problems, you might want to review the AlternativeNames configured for a certificate.</span></span> <span data-ttu-id="87f0e-150">À primeira vista, isso parece ser um problema.</span><span class="sxs-lookup"><span data-stu-id="87f0e-150">At first glance, that seems to be a problem.</span></span> <span data-ttu-id="87f0e-151">Por padrão, e dependendo do tamanho da janela do console, Get-CsCertificate pode não ser capaz de exibir todos os nomes:</span><span class="sxs-lookup"><span data-stu-id="87f0e-151">By default, and depending on the size of your console window, Get-CsCertificate might not be able to display all the names:</span></span>
+
+<span data-ttu-id="87f0e-152">Alternativos: {sip.fabrikam.com, LYNC.fabrikam.com,</span><span class="sxs-lookup"><span data-stu-id="87f0e-152">AlternativeNames : {sip.fabrikam.com, LYNC.fabrikam.com,</span></span>
+
+<span data-ttu-id="87f0e-153">meet.fabrikam.com, admin. Fabrika...}</span><span class="sxs-lookup"><span data-stu-id="87f0e-153">meet.fabrikam.com, admin.fabrika...}</span></span>
+
+<span data-ttu-id="87f0e-154">Para ver todos os nomes alternativos atribuídos a um certificado, use um comando semelhante a este:</span><span class="sxs-lookup"><span data-stu-id="87f0e-154">To see all the alternative names assigned to a certificate use a command similar to this one:</span></span>
+
+`Get-CsCertificate | Where-Object {$_.SerialNumber -eq "611BB01200000000000C"} | Select-Object -ExpandProperty AlternativeNames`
+
+<span data-ttu-id="87f0e-155">Isso deve mostrar todos os nomes alternativos no certificado:</span><span class="sxs-lookup"><span data-stu-id="87f0e-155">That should show you all of the alternative names on the certificate:</span></span>
+
+<span data-ttu-id="87f0e-156">sip.fabrikam.com</span><span class="sxs-lookup"><span data-stu-id="87f0e-156">sip.fabrikam.com</span></span>
+
+<span data-ttu-id="87f0e-157">LYNC.fabrikam.com</span><span class="sxs-lookup"><span data-stu-id="87f0e-157">LYNC.fabrikam.com</span></span>
+
+<span data-ttu-id="87f0e-158">meet.fabrikam.com</span><span class="sxs-lookup"><span data-stu-id="87f0e-158">meet.fabrikam.com</span></span>
+
+<span data-ttu-id="87f0e-159">admin.fabrikam.com</span><span class="sxs-lookup"><span data-stu-id="87f0e-159">admin.fabrikam.com</span></span>
+
+<span data-ttu-id="87f0e-160">LYNC-SE.fabrikam.com</span><span class="sxs-lookup"><span data-stu-id="87f0e-160">LYNC-SE.fabrikam.com</span></span>
+
+<span data-ttu-id="87f0e-161">Dialin.fabrikam.com</span><span class="sxs-lookup"><span data-stu-id="87f0e-161">Dialin.fabrikam.com</span></span>
+
+</div>
+
+<div>
+
+## <a name="see-also"></a><span data-ttu-id="87f0e-162">Confira também</span><span class="sxs-lookup"><span data-stu-id="87f0e-162">See Also</span></span>
+
+
+[<span data-ttu-id="87f0e-163">Get-CsCertificate</span><span class="sxs-lookup"><span data-stu-id="87f0e-163">Get-CsCertificate</span></span>](https://docs.microsoft.com/powershell/module/skype/Get-CsCertificate)  
+  
+
+<span data-ttu-id="87f0e-164"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="87f0e-164"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+

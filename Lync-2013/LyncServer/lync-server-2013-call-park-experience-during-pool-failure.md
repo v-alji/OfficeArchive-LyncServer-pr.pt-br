@@ -1,0 +1,117 @@
+---
+title: 'Lync Server 2013: Experiência de Estacionamento de Chamadas durante falha de pool'
+description: 'Lync Server 2013: experiência de estacionamento de chamada durante a falha do pool.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Call Park experience during pool failure
+ms:assetid: f6303e69-8771-492a-9e8b-c3d7ba231309
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ205383(v=OCS.15)
+ms:contentKeyID: 48185831
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 6b97a0af13d378b0753979c32b6d5ffe7a525cf0
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49435695"
+---
+# <a name="call-park-experience-in-lync-server-2013-during-pool-failure"></a><span data-ttu-id="d17b1-103">Experiência de Estacionamento de Chamadas no Lync Server 2013 durante falha de pool</span><span class="sxs-lookup"><span data-stu-id="d17b1-103">Call Park experience in Lync Server 2013 during pool failure</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="d17b1-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="d17b1-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="d17b1-105">_**Tópico da última modificação:** 2012-09-10_</span><span class="sxs-lookup"><span data-stu-id="d17b1-105">_**Topic Last Modified:** 2012-09-10_</span></span>
+
+<span data-ttu-id="d17b1-106">Quando um pool de front-end fica indisponível devido a um incidente não planejado, as chamadas que foram estacionadas, mas que ainda não foram recuperadas, são desconectadas.</span><span class="sxs-lookup"><span data-stu-id="d17b1-106">When a Front End pool becomes unavailable due an unplanned incident, calls that have been parked but not yet retrieved are disconnected.</span></span> <span data-ttu-id="d17b1-107">Durante o failover para um pool de backup, os usuários são redirecionados para o pool de backup e estão no modo de resiliência.</span><span class="sxs-lookup"><span data-stu-id="d17b1-107">During failover to a backup pool, users are redirected to the backup pool and are in resiliency mode.</span></span> <span data-ttu-id="d17b1-108">Enquanto estiver no modo de resiliência, os usuários não podem estacionar chamadas, mas podem fazer chamadas em espera e transferi-las.</span><span class="sxs-lookup"><span data-stu-id="d17b1-108">While in resiliency mode, users cannot park calls, but they can place calls on hold and transfer them.</span></span> <span data-ttu-id="d17b1-109">Quando o failover é concluído, as chamadas podem ser novamente estacionadas e recuperadas normalmente.</span><span class="sxs-lookup"><span data-stu-id="d17b1-109">When failover is complete, calls can again be parked and retrieved as usual.</span></span> <span data-ttu-id="d17b1-110">Durante o failback, os usuários não podem estacionar chamadas até que estejam fora do modo de resiliência.</span><span class="sxs-lookup"><span data-stu-id="d17b1-110">During failback, users cannot park calls until they are out of resiliency mode.</span></span>
+
+<span data-ttu-id="d17b1-111">Durante a recuperação de desastres, os usuários que foram redirecionados para o pool de backup como parte do processo de failover usam o aplicativo de estacionamento de chamada que é implantado no pool de backup.</span><span class="sxs-lookup"><span data-stu-id="d17b1-111">During disaster recovery, users who have been redirected to the backup pool as part of the failover process use the Call Park application that is deployed in the backup pool.</span></span> <span data-ttu-id="d17b1-112">Portanto, os usuários que são redirecionados para o pool de backup usam as configurações de estacionamento de chamadas configuradas para o aplicativo de estacionamento de chamadas no pool de backup.</span><span class="sxs-lookup"><span data-stu-id="d17b1-112">Therefore, users who are redirected to the backup pool use the call park settings that are configured for the Call Park application in the backup pool.</span></span>
+
+<span data-ttu-id="d17b1-113">A tabela a seguir resume a experiência de estacionamento de chamadas pelas fases da recuperação de desastres.</span><span class="sxs-lookup"><span data-stu-id="d17b1-113">The following table summarizes the Call Park experience through the phases of disaster recovery.</span></span>
+
+### <a name="user-experience-during-disaster-recovery"></a><span data-ttu-id="d17b1-114">Experiência do usuário durante a recuperação de desastres</span><span class="sxs-lookup"><span data-stu-id="d17b1-114">User Experience During Disaster Recovery</span></span>
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span data-ttu-id="d17b1-115">Estado da chamada</span><span class="sxs-lookup"><span data-stu-id="d17b1-115">Call state</span></span></th>
+<th><span data-ttu-id="d17b1-116">Quando ocorrer uma paralisação</span><span class="sxs-lookup"><span data-stu-id="d17b1-116">When outage occurs</span></span></th>
+<th><span data-ttu-id="d17b1-117">Durante o failover</span><span class="sxs-lookup"><span data-stu-id="d17b1-117">During failover</span></span></th>
+<th><span data-ttu-id="d17b1-118">Durante o failback</span><span class="sxs-lookup"><span data-stu-id="d17b1-118">During failback</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><span data-ttu-id="d17b1-119">Chamada ainda não estacionada</span><span class="sxs-lookup"><span data-stu-id="d17b1-119">Call not yet parked</span></span></p></td>
+<td><p><span data-ttu-id="d17b1-120">A chamada ainda está conectada, mas não pode ser estacionada.</span><span class="sxs-lookup"><span data-stu-id="d17b1-120">Call remains connected, but cannot be parked.</span></span></p></td>
+<td><ul>
+<li><p><span data-ttu-id="d17b1-121">Durante o failover, a chamada não pode ser estacionada enquanto os usuários estão no modo de resiliência, mas podem ser colocados em espera e transferidos.</span><span class="sxs-lookup"><span data-stu-id="d17b1-121">During failover, call cannot be parked while users are in resiliency mode, but can be put on hold and transferred.</span></span></p></li>
+<li><p><span data-ttu-id="d17b1-122">Quando o failover é concluído, a chamada pode ser estacionada e recuperada.</span><span class="sxs-lookup"><span data-stu-id="d17b1-122">When failover completes, call can be parked and retrieved.</span></span></p></li>
+</ul></td>
+<td><ul>
+<li><p><span data-ttu-id="d17b1-123">Durante o failback, a chamada não pode ser estacionada enquanto os usuários estão no modo de resiliência, mas podem ser colocados em espera e transferidos.</span><span class="sxs-lookup"><span data-stu-id="d17b1-123">During failback, call cannot be parked while users are in resiliency mode, but can be put on hold and transferred.</span></span></p></li>
+<li><p><span data-ttu-id="d17b1-124">Quando o failback é concluído, a chamada pode ser estacionada e recuperada.</span><span class="sxs-lookup"><span data-stu-id="d17b1-124">When failback completes, call can be parked and retrieved.</span></span></p></li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="d17b1-125">Chamada estacionada, mas ainda não recuperada</span><span class="sxs-lookup"><span data-stu-id="d17b1-125">Call parked, but not yet retrieved</span></span></p></td>
+<td><p><span data-ttu-id="d17b1-126">A chamada está desconectada.</span><span class="sxs-lookup"><span data-stu-id="d17b1-126">Call is disconnected.</span></span></p></td>
+<td><p><span data-ttu-id="d17b1-127">Não há chamadas nesse estado.</span><span class="sxs-lookup"><span data-stu-id="d17b1-127">No calls in this state.</span></span></p></td>
+<td><p><span data-ttu-id="d17b1-128">A chamada permanece estacionada.</span><span class="sxs-lookup"><span data-stu-id="d17b1-128">Call remains parked.</span></span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="d17b1-129">Chamada estacionada já recuperada</span><span class="sxs-lookup"><span data-stu-id="d17b1-129">Parked call already retrieved</span></span></p></td>
+<td><p><span data-ttu-id="d17b1-130">A chamada permanecerá conectada.</span><span class="sxs-lookup"><span data-stu-id="d17b1-130">Call remains connected.</span></span></p></td>
+<td><p><span data-ttu-id="d17b1-131">A chamada permanecerá conectada.</span><span class="sxs-lookup"><span data-stu-id="d17b1-131">Call remains connected.</span></span></p></td>
+<td><p><span data-ttu-id="d17b1-132">A chamada permanecerá conectada.</span><span class="sxs-lookup"><span data-stu-id="d17b1-132">Call remains connected.</span></span></p></td>
+</tr>
+</tbody>
+</table><span data-ttu-id="d17b1-133">
+
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="d17b1-133">
+
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
