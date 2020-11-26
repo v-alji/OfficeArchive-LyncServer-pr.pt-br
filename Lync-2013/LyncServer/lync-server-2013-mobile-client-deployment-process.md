@@ -1,0 +1,129 @@
+---
+title: 'Lync Server 2013: processo de implantação de cliente móvel'
+description: 'Lync Server 2013: processo de implantação de cliente móvel.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Mobile client deployment process
+ms:assetid: 6498235b-2fa9-421d-bfa0-0ccc09508dbd
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Hh690982(v=OCS.15)
+ms:contentKeyID: 51541484
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 4fa4e9e1d272915e06009df5c06480309ce104e0
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49425560"
+---
+# <a name="mobile-client-deployment-process-in-lync-server-2013"></a>Processo de implantação de cliente móvel no Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2013-02-20_
+
+Após a conclusão da implantação do Microsoft Lync Server 2013, os usuários podem instalar o aplicativo Lync 2013 do Mobile Marketplace em que estão acostumados a usar para seu dispositivo específico.
+
+<div>
+
+## <a name="lync-mobile-deployment-process"></a>Processo de implantação do Lync Mobile
+
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fase</th>
+<th>Etapas</th>
+<th>Permissões</th>
+<th>Documentação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Executar tarefas anteriores à configuração.</p></td>
+<td><ol>
+<li><p>Verifique a implantação do Lync Server 2013.</p></li>
+<li><p>Verifique os requisitos de certificado.</p></li>
+</ol></td>
+<td><p>Administrador</p></td>
+<td><p><a href="lync-server-2013-planning-for-mobility.md">Planejando a mobilidade no Lync Server 2013</a> na documentação de planejamento do servidor.</p>
+<p><a href="lync-server-2013-deploying-mobility.md">Implantação de mobilidade no Lync Server 2013</a> na documentação de implantação do servidor.</p>
+<p><a href="lync-server-2013-certificate-infrastructure-requirements.md">Requisitos de infraestrutura de certificado para o Lync Server 2013</a> na documentação de planejamento do servidor.</p></td>
+</tr>
+<tr class="even">
+<td><p>Instale o aplicativo do Lync em um dispositivo de teste.</p></td>
+<td><ol>
+<li><p>Instalar pré-requisitos.</p></li>
+<li><p>Instale do Marketplace específico para o dispositivo móvel.</p></li>
+</ol></td>
+<td><p>Administrador</p></td>
+<td><p>Instruções de instalação específicas ao dispositivo móvel em <a href="lync-server-2013-deploying-mobile-clients.md">implantando clientes móveis no Lync Server 2013</a>.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Configurar o cliente.</p></td>
+<td><ul>
+<li><p>Configurar as configurações de entrada e as informações do servidor.</p></li>
+</ul></td>
+<td><p>Administrador</p></td>
+<td><p><a href="lync-server-2013-deploying-mobile-clients.md">Implantando clientes móveis no Lync Server 2013</a></p></td>
+</tr>
+<tr class="even">
+<td><p>Testar cenários móveis.</p></td>
+<td><ol>
+<li><p>Testar mensagens instantâneas (IM) e presença.</p></li>
+<li><p>Teste a conferência discada.</p></li>
+<li><p>Procure um contato no diretório corporativo.</p></li>
+<li><p>Teste as notificações por push.</p></li>
+</ol></td>
+<td><p>Administrador</p></td>
+<td><p>Instruções de verificação específicas do dispositivo móvel em <a href="lync-server-2013-deploying-mobile-clients.md">implantando clientes móveis no Lync Server 2013</a>.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Instale o aplicativo do Lync em telefones celulares.</p></td>
+<td><ol>
+<li><p>Instalar pré-requisitos.</p></li>
+<li><p>Instale do Marketplace específico para o dispositivo móvel.</p></li>
+</ol></td>
+<td><p>Usuário</p></td>
+<td><p>Instruções de instalação específicas ao dispositivo móvel em <a href="lync-server-2013-deploying-mobile-clients.md">implantando clientes móveis no Lync Server 2013</a>.</p></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
