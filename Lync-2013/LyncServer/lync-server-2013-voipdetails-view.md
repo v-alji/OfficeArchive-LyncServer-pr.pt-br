@@ -1,0 +1,133 @@
+---
+title: 'Lync Server 2013: modo de exibição VoIPDetails'
+description: 'Lync Server 2013: modo de exibição VoIPDetails.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: VoIPDetails view
+ms:assetid: 14c44736-71ba-4fc5-82c7-1df65bf6261c
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ687973(v=OCS.15)
+ms:contentKeyID: 49733561
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 5ecd34be0c8568eef29d773f088e8503a8065743
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49446181"
+---
+# <a name="voipdetails-view-in-lync-server-2013"></a>Exibição VoIPDetails no Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2012-10-18_
+
+A exibição VoIPDetails armazena informações sobre sessões ponto a ponto, onde pelo menos um usuário é um usuário de VoIP. Este modo de exibição foi apresentado no Microsoft Lync Server 2013.
+
+<div>
+
+
+> [!NOTE]  
+> A exibição VoIPDetails contém todas as colunas na <A href="lync-server-2013-sessiondetails-view.md">exibição SessionDetails do Lync Server 2013</A> , além das colunas listadas abaixo.
+
+
+
+</div>
+
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Coluna</th>
+<th>Tipo de dados</th>
+<th>Detalhes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>FromPhone</strong></p></td>
+<td><p>nvarchar (450)</p></td>
+<td><p>URI do telefone do usuário que iniciou a sessão.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Por telefone</strong></p></td>
+<td><p>nvarchar (450)</p></td>
+<td><p>URI do telefone do usuário que ingressou na sessão.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>DisconnectedByUri</strong></p></td>
+<td><p>nvarchar (450)</p></td>
+<td><p>URL do usuário que desconectou a sessão.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>DisconnectedByUriType</strong></p></td>
+<td><p>nvarchar(256)</p></td>
+<td><p>Tipo de URI do usuário que desconectou a sessão. Consulte a <a href="lync-server-2013-uritypes-table.md">tabela UriTypes no Lync Server 2013</a> para obter mais informações.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>DisconnectedByTenant</strong></p></td>
+<td><p>nvarchar(256)</p></td>
+<td><p>Locatário do usuário que desconectou a sessão.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>DisconnectedByPhone</strong></p></td>
+<td><p>nvarchar (450)</p></td>
+<td><p>URI do telefone do usuário que desconectou a sessão.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>FromMediationServer</strong></p></td>
+<td><p>nvarchar(256)</p></td>
+<td><p>Servidor de mediação usado pelo usuário que iniciou a sessão.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>ToMediationServer</strong></p></td>
+<td><p>nvarchar(256)</p></td>
+<td><p>Servidor de mediação usado pelo usuário que ingressou na sessão.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>FromGateway</strong></p></td>
+<td><p>nvarchar(256)</p></td>
+<td><p>O gateway usado pelo usuário que iniciou a sessão.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Togateway</strong></p></td>
+<td><p>nvarchar(256)</p></td>
+<td><p>O gateway usado pelo usuário que ingressou na sessão.</p></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
