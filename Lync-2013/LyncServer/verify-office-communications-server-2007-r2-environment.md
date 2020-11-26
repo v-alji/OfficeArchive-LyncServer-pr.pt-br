@@ -1,0 +1,84 @@
+---
+title: Verificar o ambiente do Office Communications Server 2007 R2
+description: Verifique o ambiente do Office Communications Server 2007 R2.
+ms.reviewer: ''
+ms.author: serdars
+author: serdarsoysal
+f1.keywords:
+- NOCSH
+TOCTitle: Verify Office Communications Server 2007 R2 environment
+ms:assetid: e051bdd5-e7ef-4754-8705-900b2c57f37c
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ721906(v=OCS.15)
+ms:contentKeyID: 49733840
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: eb200941b3a35ece2b587bcfc89be743c9960d1f
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49443631"
+---
+# <a name="verify-office-communications-server-2007-r2-environment"></a>Verificar o ambiente do Office Communications Server 2007 R2
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2012-10-16_
+
+Antes de implantar o Lync Server 2013 em um estado de coexistência com o Office Communications Server 2007 R2, você precisa verificar se os serviços do Office Communications Server 2007 R2 estão configurados e iniciados.
+
+**Verifique se o pool é iniciado usando a ferramenta administrativa do Office Communications Server 2007 R2**
+
+1.  Abra a ferramenta administrativa do Office Communications Server 2007 R2.
+
+2.  Expanda o nó da **floresta** , expanda o nó **servidores de edição padrão** ou **pools corporativos** e, em seguida, expanda o pool ou o nome do servidor.
+
+3.  Verifique se os serviços estão em execução no servidor Standard Edition ou no pool corporativo.
+    
+    ![Console de administração do Office Communications Server 2007 R2](images/JJ721906.76897b6d-f433-47d2-930d-0816fc30a3c2(OCS.15).jpg "Console de administração do Office Communications Server 2007 R2")
+
+**Revisar os usuários configurados para o Office Communications Server 2007 R2**
+
+1.  Abra a ferramenta administrativa do Office Communications Server 2007 R2.
+
+2.  Expanda o nó da **floresta** , expanda o nó **servidores de edição padrão** ou **pools corporativos** e, em seguida, expanda o pool ou o nome do servidor.
+
+3.  Clique em **usuários**.
+
+4.  Verifique a lista de usuários do Office Communications Server 2007 R2.
+    
+    ![Listar usuários da ferramenta de administração do OCS](images/JJ721906.f6bb7c4f-cbed-4389-8d0a-69a28577f17a(OCS.15).jpg "Listar usuários da ferramenta de administração do OCS")
+
+**Verificar a configuração de parceiro federado do XMPP herdado**
+
+1.  No servidor herdado XMPP, navegue até o applet Serviços de ferramentas administrativas \\ .
+
+2.  Verifique se o serviço do Gateway XMPP do Office Communications Server foi iniciado.
+    
+    ![Serviço de Gateway XMPP do Office Communications Server](images/JJ721906.23223724-3c4b-4cb9-ace2-1cab2c3c91c3(OCS.15).jpg "Serviço de Gateway XMPP do Office Communications Server")
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
