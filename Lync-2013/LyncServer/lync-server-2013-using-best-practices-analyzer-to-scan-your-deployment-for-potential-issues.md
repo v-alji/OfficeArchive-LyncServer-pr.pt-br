@@ -1,0 +1,124 @@
+---
+title: Usar o analisador de práticas recomendadas para verificar a implantação em busca de possíveis problemas
+description: Usar o analisador de práticas recomendadas para verificar a implantação em busca de possíveis problemas.
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Using Best Practices Analyzer to scan your deployment for potential issues
+ms:assetid: 09c84509-dc91-4e7b-882b-3c467b6b026d
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Gg591343(v=OCS.15)
+ms:contentKeyID: 48183359
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 032f5b46d8d5a28894e5f746e0cbc2aff6c5eaa2
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49443479"
+---
+# <a name="using-best-practices-analyzer-to-scan-your-lync-server-2013-deployment-for-potential-issues"></a><span data-ttu-id="9bf28-103">Usar o analisador de práticas recomendadas para verificar a implantação do Lync Server 2013 em busca de possíveis problemas</span><span class="sxs-lookup"><span data-stu-id="9bf28-103">Using Best Practices Analyzer to scan your Lync Server 2013 deployment for potential issues</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="9bf28-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="9bf28-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="9bf28-105">_**Tópico da última modificação:** 2012-10-21_</span><span class="sxs-lookup"><span data-stu-id="9bf28-105">_**Topic Last Modified:** 2012-10-21_</span></span>
+
+<span data-ttu-id="9bf28-106">Para executar uma verificação do analisador de práticas recomendadas, você deve especificar o seguinte:</span><span class="sxs-lookup"><span data-stu-id="9bf28-106">To run a Best Practices Analyzer scan, you must specify the following:</span></span>
+
+  - <span data-ttu-id="9bf28-107">**As credenciais**   Para executar uma verificação, você deve fazer logon em um computador no qual o Best Practices Analyzer está instalado usando uma conta que seja membro do grupo Administradores local.</span><span class="sxs-lookup"><span data-stu-id="9bf28-107">**Credentials**   To run a scan, you must log on to a computer on which Best Practices Analyzer is installed by using an account that is a member of the local Administrators group.</span></span> <span data-ttu-id="9bf28-108">Além disso, você precisa fazer logon usando uma conta de usuário que tenha os direitos de usuário e as permissões necessárias para executar as verificações adequadas ou especificar as credenciais que têm direitos e permissões de usuário apropriados ao executar o analisador de práticas recomendadas.</span><span class="sxs-lookup"><span data-stu-id="9bf28-108">Additionally, you need to log on by using a user account that has the user rights and permissions required to run the appropriate scans, or you must specify credentials that have the appropriate user rights and permissions when you run Best Practices Analyzer.</span></span> <span data-ttu-id="9bf28-109">Para obter detalhes, consulte [associações de grupo e requisitos de direitos de usuário para o analisador de práticas recomendadas no Lync Server 2013](lync-server-2013-group-memberships-and-user-rights-requirements-for-best-practices-analyzer.md).</span><span class="sxs-lookup"><span data-stu-id="9bf28-109">For details, see [Group memberships and user rights requirements for Best Practices Analyzer in Lync Server 2013](lync-server-2013-group-memberships-and-user-rights-requirements-for-best-practices-analyzer.md).</span></span>
+
+  - <span data-ttu-id="9bf28-110">**Escopo da verificação**   Para especificar o escopo da verificação, selecione as categorias e os servidores que você deseja verificar.</span><span class="sxs-lookup"><span data-stu-id="9bf28-110">**Scope of scan**   To specify the scope of the scan, select the categories and servers that you want to scan.</span></span> <span data-ttu-id="9bf28-111">Você pode selecionar todas as categorias, uma ou mais categorias ou um ou mais servidores em uma categoria específica em seu ambiente do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="9bf28-111">You can select all categories, one or more categories, or one or more servers within a specific category in your Lync Server environment.</span></span>
+
+  - <span data-ttu-id="9bf28-112">**Tipo de verificação**   Atualmente, o exame de verificação de integridade é o único tipo de verificação disponível (selecionada por padrão).</span><span class="sxs-lookup"><span data-stu-id="9bf28-112">**Type of scan**   Currently, the Health Check scan is the only type of scan available (selected by default).</span></span> <span data-ttu-id="9bf28-113">A verificação de verificação de integridade gera um relatório que inclui erros, avisos e outras informações para todos os servidores especificados no escopo.</span><span class="sxs-lookup"><span data-stu-id="9bf28-113">The Health Check scan generates a report that includes errors, warnings, and other information for all servers specified in the scope.</span></span>
+
+  - <span data-ttu-id="9bf28-114">**Velocidade da rede**   As opções de velocidade de rede incluem LAN rápida (100 Mbps ou mais), LAN (10 Mbps), WAN rápida (1,5 Mbps) ou WAN (64 Kbps).</span><span class="sxs-lookup"><span data-stu-id="9bf28-114">**Network speed**   Network speed options include Fast LAN (100 Mbps or more), LAN (10 Mbps), Fast WAN (1.5 Mbps), or WAN (64 kbps).</span></span> <span data-ttu-id="9bf28-115">O tempo estimado para concluir a verificação é baseado nessa configuração.</span><span class="sxs-lookup"><span data-stu-id="9bf28-115">The estimated time to complete the scan is based on this setting.</span></span> <span data-ttu-id="9bf28-116">Essa configuração também é usada para definir o período de tempo limite.</span><span class="sxs-lookup"><span data-stu-id="9bf28-116">This setting is also used to set the time-out period.</span></span> <span data-ttu-id="9bf28-117">Durante a verificação, o analisador de práticas recomendadas aguarda uma resposta de um servidor por um período especificado.</span><span class="sxs-lookup"><span data-stu-id="9bf28-117">During the scan, the Best Practices Analyzer waits for a response from a server for a specified time.</span></span> <span data-ttu-id="9bf28-118">Se não receber uma resposta dentro do período de tempo limite especificado, ela será movida para o próximo servidor na verificação.</span><span class="sxs-lookup"><span data-stu-id="9bf28-118">If it does not receive a response within the specified time-out period, it moves to the next server in the scan.</span></span> <span data-ttu-id="9bf28-119">Em redes mais lentas, esse período de tempo limite especificado está mais em conta com latências de rede mais longas.</span><span class="sxs-lookup"><span data-stu-id="9bf28-119">On slower networks, this specified time-out period is longer to account for longer network latencies.</span></span> <span data-ttu-id="9bf28-120">Recomendamos que você selecione o link mais lento na sua topologia para esse parâmetro, para que a ferramenta não tenha tempo limite muito rápido.</span><span class="sxs-lookup"><span data-stu-id="9bf28-120">We recommend that you select the slowest link in your topology for this parameter so that the tool does not time out too quickly.</span></span>
+
+<div>
+
+## <a name="to-scan-your-lync-server-2013-deployment"></a><span data-ttu-id="9bf28-121">Para verificar a implantação do Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="9bf28-121">To scan your Lync Server 2013 deployment</span></span>
+
+1.  <span data-ttu-id="9bf28-122">Faça logon em um computador no qual o analisador de práticas recomendadas está instalado usando uma conta que é membro do grupo Administradores local e tem outros direitos e permissões de usuário necessários.</span><span class="sxs-lookup"><span data-stu-id="9bf28-122">Log on to a computer on which Best Practices Analyzer is installed by using an account that is a member of the local Administrators group, and has other required user rights and permissions.</span></span>
+
+2.  <span data-ttu-id="9bf28-123">Clique em **Iniciar**, aponte para **todos os programas**, clique em **Microsoft Lync Server 2013** e, em seguida, clique em **analisador de práticas recomendadas**.</span><span class="sxs-lookup"><span data-stu-id="9bf28-123">Click **Start**, point to **All Programs**, click **Microsoft Lync Server 2013**, and then click **Best Practices Analyzer**.</span></span>
+
+3.  <span data-ttu-id="9bf28-124">Na tela de **boas-vindas** , clique em **selecionar opções para uma nova digitalização**.</span><span class="sxs-lookup"><span data-stu-id="9bf28-124">On the **Welcome** screen, click **Select options for a new scan**.</span></span>
+
+4.  <span data-ttu-id="9bf28-125">Na página **conectar-se ao Active Directory** , verifique o nome especificado no **servidor do Active Directory** e siga um destes procedimentos:</span><span class="sxs-lookup"><span data-stu-id="9bf28-125">On the **Connect to Active Directory** page, verify the name specified in **Active Directory Server**, and then do one of the following:</span></span>
+    
+      - <span data-ttu-id="9bf28-126">Para executar uma verificação usando as credenciais que você usou para fazer logon no computador, clique em **conectar-se ao servidor do Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="9bf28-126">To run a scan using the credentials that you used to log on to the computer, click **Connect to the Active Directory server**.</span></span>
+    
+      - <span data-ttu-id="9bf28-127">Para especificar credenciais diferentes que você deseja usar nos serviços de domínio Active Directory, no servidor de borda ou no Exchange Server, clique em **Mostrar opções de logon avançadas**, marque cada caixa de seleção para a qual as credenciais separadas são necessárias, especifique as credenciais para cada caixa de seleção e clique em **conectar ao servidor do Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="9bf28-127">To specify different credentials that you want to use for Active Directory Domain Services, Edge Server, or Exchange Server, click **Show advanced logon options**, select each check box for which separate credentials are required, specify the credentials for each selected check box, and then click **Connect to the Active Directory server**.</span></span>
+    
+    <div>
+    
+
+    > [!NOTE]
+    > <span data-ttu-id="9bf28-128">Antes de iniciar a verificação, o analisador de práticas recomendadas executa uma verificação de rede e permissões para garantir que as credenciais de conta especificadas sejam válidas e que o analisador de práticas recomendadas possa se conectar aos serviços de domínio do Active Directory.</span><span class="sxs-lookup"><span data-stu-id="9bf28-128">Before beginning the scan, Best Practices Analyzer performs a network and permissions check to ensure that the specified account credentials are valid and that Best Practices Analyzer can connect to Active Directory Domain Services.</span></span> <span data-ttu-id="9bf28-129">Se a ferramenta estiver em execução em um servidor de grupo de trabalho, a ferramenta também verificará se ela pode se conectar a servidores de borda na rede de perímetro (isto é, se estiverem incluídos na verificação).</span><span class="sxs-lookup"><span data-stu-id="9bf28-129">If the tool is running on a workgroup server, the tool also verifies that it can connect to Edge Servers in the perimeter network (that is, if they are included in the scan).</span></span>
+
+    
+    </div>
+
+5.  <span data-ttu-id="9bf28-130">Na página **iniciar uma nova verificação de práticas recomendadas** , selecione as opções que você deseja incluir na verificação, especifique a velocidade da rede e clique em **Iniciar verificação**.</span><span class="sxs-lookup"><span data-stu-id="9bf28-130">On the **Start a new Best Practices scan** page, select the options that you want to include in the scan, specify the network speed, and then click **Start scanning**.</span></span>
+
+6.  <span data-ttu-id="9bf28-131">Na página **scanning Completed Completed** , clique em **exibir um relatório desta análise de práticas recomendadas**.</span><span class="sxs-lookup"><span data-stu-id="9bf28-131">On the **Scanning Completed** page, click **View a report of this Best Practices scan**.</span></span>
+
+7.  <span data-ttu-id="9bf28-132">Na página **Exibir relatório de práticas recomendadas** , siga um destes procedimentos:</span><span class="sxs-lookup"><span data-stu-id="9bf28-132">On the **View Best Practices Report** page, do one of the following:</span></span>
+    
+      - <span data-ttu-id="9bf28-133">Para exibir relatórios em uma lista organizada por componente de servidor, clique em **relatórios de lista** e, em seguida, clique na guia **todos os problemas** ou **itens informativos** .</span><span class="sxs-lookup"><span data-stu-id="9bf28-133">To view reports in a list organized by server component, click **List Reports**, and then click either the **All Issues** tab or the **Informational Items** tab.</span></span>
+    
+      - <span data-ttu-id="9bf28-134">Para exibir relatórios como uma lista hierárquica organizada por tipos de resultados, clique em **relatórios de árvore** e, em seguida, clique na guia modo de **exibição detalhado** ou na guia **modo de exibição de resumo** .</span><span class="sxs-lookup"><span data-stu-id="9bf28-134">To view reports as a hierarchical list organized by types of results, click **Tree Reports**, and then click either the **Detailed View** tab or the **Summary View** tab.</span></span>
+    
+      - <span data-ttu-id="9bf28-135">Para ver outros relatórios, clique em **outros relatórios**.</span><span class="sxs-lookup"><span data-stu-id="9bf28-135">To view other reports, click **Other Reports**.</span></span>
+    
+    <div>
+    
+
+    > [!NOTE]
+    > <span data-ttu-id="9bf28-136">Para obter detalhes sobre os relatórios do analisador de práticas recomendadas e os problemas que eles identificam, consulte <A href="lync-server-2013-viewing-and-working-with-reports-created-by-best-practices-analyzer.md">exibindo e trabalhando com relatórios criados pelo analisador de práticas recomendadas no Lync server 2013</A> e <A href="lync-server-2013-analyzing-and-resolving-issues-identified-by-best-practices-analyzer.md">analisando e resolvendo problemas identificados pelo analisador de práticas recomendadas no Lync Server 2013</A>.</span><span class="sxs-lookup"><span data-stu-id="9bf28-136">For details about the Best Practices Analyzer reports and the issues they identify, see <A href="lync-server-2013-viewing-and-working-with-reports-created-by-best-practices-analyzer.md">Viewing and working with reports created by Best Practices Analyzer in Lync Server 2013</A> and <A href="lync-server-2013-analyzing-and-resolving-issues-identified-by-best-practices-analyzer.md">Analyzing and resolving issues identified by Best Practices Analyzer in Lync Server 2013</A>.</span></span>
+
+    
+    <span data-ttu-id="9bf28-137"></div>
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="9bf28-137"></div>
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+

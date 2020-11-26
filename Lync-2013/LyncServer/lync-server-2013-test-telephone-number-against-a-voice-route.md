@@ -1,0 +1,171 @@
+---
+title: 'Lync Server 2013: teste o número de telefone em uma rota de voz'
+description: 'Lync Server 2013: teste o número de telefone em uma rota de voz.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Test telephone number against a voice route
+ms:assetid: 9a77ed6d-9394-4bef-9344-3d91b6959b97
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Dn725211(v=OCS.15)
+ms:contentKeyID: 63969631
+ms.date: 01/27/2015
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 789f4a538a992a72abf61f4c1fbdb98370f2e643
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49444235"
+---
+# <a name="test-telephone-number-against-a-voice-route-in-lync-server-2013"></a><span data-ttu-id="9bcf8-103">Teste o número de telefone em uma rota de voz no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="9bcf8-103">Test telephone number against a voice route in Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="9bcf8-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="9bcf8-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="9bcf8-105">_**Tópico da última modificação:** 2014-05-20_</span><span class="sxs-lookup"><span data-stu-id="9bcf8-105">_**Topic Last Modified:** 2014-05-20_</span></span>
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p><span data-ttu-id="9bcf8-106">Cronograma de verificação</span><span class="sxs-lookup"><span data-stu-id="9bcf8-106">Verification schedule</span></span></p></td>
+<td><p><span data-ttu-id="9bcf8-107">Mensal</span><span class="sxs-lookup"><span data-stu-id="9bcf8-107">Monthly</span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="9bcf8-108">Ferramenta de teste</span><span class="sxs-lookup"><span data-stu-id="9bcf8-108">Testing tool</span></span></p></td>
+<td><p><span data-ttu-id="9bcf8-109">Windows PowerShell</span><span class="sxs-lookup"><span data-stu-id="9bcf8-109">Windows PowerShell</span></span></p></td>
+</tr>
+<tr class="odd">
+<td><p><span data-ttu-id="9bcf8-110">Permissões necessárias</span><span class="sxs-lookup"><span data-stu-id="9bcf8-110">Permissions required</span></span></p></td>
+<td><p><span data-ttu-id="9bcf8-111">Quando executado localmente usando o Shell de gerenciamento do Lync Server, os usuários devem ser membros do grupo de segurança RTCUniversalServerAdmins.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-111">When run locally using the Lync Server Management Shell, users must be members of the RTCUniversalServerAdmins security group.</span></span></p>
+<p><span data-ttu-id="9bcf8-112">Quando executado usando uma instância remota do Windows PowerShell, os usuários devem receber uma função RBAC que tenha permissão para executar o cmdlet Test-CsVoiceRoute.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-112">When run using a remote instance of Windows PowerShell, users must be assigned an RBAC role that has permission to run the Test-CsVoiceRoute cmdlet.</span></span> <span data-ttu-id="9bcf8-113">Para ver uma lista de todas as funções RBAC que podem usar esse cmdlet, execute o seguinte comando no prompt do Windows PowerShell:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-113">To see a list of all RBAC roles that can use this cmdlet, run the following command from the Windows PowerShell prompt:</span></span></p>
+<p><code>Get-CsAdminRole | Where-Object {$_.Cmdlets -match &quot;Test-CsVoiceRoute&quot;}</code></p></td>
+</tr>
+</tbody>
+</table>
+
+
+<div>
+
+## <a name="description"></a><span data-ttu-id="9bcf8-114">Descrição</span><span class="sxs-lookup"><span data-stu-id="9bcf8-114">Description</span></span>
+
+<span data-ttu-id="9bcf8-115">As rotas de voz trabalham em conjunto com as políticas de voz para ajudar a rotear chamadas do Enterprise Voice para a rede PSTN.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-115">Voice routes work together with voice policies to help route Enterprise Voice calls to the PSTN network.</span></span> <span data-ttu-id="9bcf8-116">Cada rota de voz inclui uma expressão regular (um padrão de número) que identifica os números de telefone que serão roteados por meio de uma determinada rota de voz: a rota será capaz de manipular os números de telefone correspondentes a essa expressão regular.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-116">Each voice route includes a regular expression (a number pattern) that identifies the phone numbers that will be routed through a given voice route: the route will be able to handle any phone numbers that match this regular expression.</span></span> <span data-ttu-id="9bcf8-117">Por exemplo, uma rota de voz pode ter uma expressão regular que a permita manipular qualquer número de 10 dígitos.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-117">For example, a voice route might have a regular expression that enables it to handle any 10-digit number.</span></span> <span data-ttu-id="9bcf8-118">Isso significa que a rota seria capaz de manipular um número de telefone como este:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-118">That means the route would be able to handle a phone number such as this:</span></span>
+
+  - <span data-ttu-id="9bcf8-119">2065551219</span><span class="sxs-lookup"><span data-stu-id="9bcf8-119">2065551219</span></span>
+
+<span data-ttu-id="9bcf8-120">A rota não seria capaz de manipular um dos dois números a seguir, e nenhum deles tem 10 dígitos:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-120">The route would not be able to handle either of the following two numbers, neither of which has 10 digits:</span></span>
+
+  - <span data-ttu-id="9bcf8-121">5551219</span><span class="sxs-lookup"><span data-stu-id="9bcf8-121">5551219</span></span>
+
+  - <span data-ttu-id="9bcf8-122">12065551219</span><span class="sxs-lookup"><span data-stu-id="9bcf8-122">12065551219</span></span>
+
+<span data-ttu-id="9bcf8-123">O cmdlet Test-CsVoiceRoute verifica se uma determinada rota de voz pode direcionar um número de telefone especificado.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-123">The Test-CsVoiceRoute cmdlet verifies whether a given voice route can route a specified phone number.</span></span>
+
+</div>
+
+<div>
+
+## <a name="running-the-test"></a><span data-ttu-id="9bcf8-124">Executar o teste</span><span class="sxs-lookup"><span data-stu-id="9bcf8-124">Running the test</span></span>
+
+<span data-ttu-id="9bcf8-125">Verificar se a capacidade de uma rota de voz para direcionar um número de telefone especificado é um processo de duas etapas.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-125">Verifying the ability of a voice route to route a specified phone number is a two-step process.</span></span> <span data-ttu-id="9bcf8-126">Primeiro, você precisa usar o cmdlet Get-CsVoiceRoute para retornar uma instância dessa rota de voz e, em seguida, usar o cmdlet Test-CsVoiceRoute para verificar a capacidade dessa rota para manipular o número de telefone de destino.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-126">First you have to use the Get-CsVoiceRoute cmdlet to return an instance of that voice route, and then you have to use the Test-CsVoiceRoute cmdlet to verify the ability of that route to handle the target phone number.</span></span> <span data-ttu-id="9bcf8-127">Por exemplo, esse comando verifica se a rota de voz RedmondVoiceRoute pode direcionar o número de telefone 2065551219:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-127">For example, this command verifies whether the RedmondVoiceRoute voice route can route the phone number 2065551219:</span></span>
+
+`Get-CsVoiceRoute -Identity "RedmondVoiceRoute" | Test-CsVoiceRoute -TargetNumber "2065551219"`
+
+<span data-ttu-id="9bcf8-128">Observe que o número de telefone deve ser digitado, pois você espera que os usuários disquem esse número.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-128">Note that the phone number should be typed as you expect users to dial that number.</span></span> <span data-ttu-id="9bcf8-129">Por exemplo, se você não espera que os usuários incluam o código do país e o código de área ao discar, use uma sintaxe semelhante a esta:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-129">For example, if you do not expect users to include the country code and area code when dialing, then use syntax similar to this:</span></span>
+
+`-TargetNumber "5551219"`
+
+<span data-ttu-id="9bcf8-130">Nesse caso, o número de destino deixará o código de país e o código de área.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-130">In this case, the target number leaves out both the country code and the area code.</span></span>
+
+<span data-ttu-id="9bcf8-131">Para usar um único comando para testar todas as rotas de voz em relação a um número de destino especificado, use a sintaxe como a seguinte:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-131">To use a single command to test all the voice routes against a specified target number, use syntax such as the following:</span></span>
+
+`Get-CsVoiceRoute | Test-CsVoiceRoute -TargetNumber "2065551219"`
+
+<span data-ttu-id="9bcf8-132">Para obter mais informações, consulte a documentação da ajuda para o cmdlet Test-CsVoiceRoute.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-132">For more information, see the Help documentation for the Test-CsVoiceRoute cmdlet.</span></span>
+
+</div>
+
+<div>
+
+## <a name="determining-success-or-failure"></a><span data-ttu-id="9bcf8-133">Determinação do sucesso ou falha</span><span class="sxs-lookup"><span data-stu-id="9bcf8-133">Determining success or failure</span></span>
+
+<span data-ttu-id="9bcf8-134">Se a rota de voz puder direcionar o número de telefone de destino, o cmdlet Test-CsVoiceRoute retornará o valor true:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-134">If the voice route can route the target phone number the Test-CsVoiceRoute cmdlet just returns the value True:</span></span>
+
+<span data-ttu-id="9bcf8-135">MatchesPattern</span><span class="sxs-lookup"><span data-stu-id="9bcf8-135">MatchesPattern</span></span>
+
+\--------------
+
+<span data-ttu-id="9bcf8-136">Verdadeiro</span><span class="sxs-lookup"><span data-stu-id="9bcf8-136">True</span></span>
+
+<span data-ttu-id="9bcf8-137">Isso significa que a rota pode manipular números semelhantes ao número de destino.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-137">That means that route can handle numbers similar to the target number.</span></span> <span data-ttu-id="9bcf8-138">Se a rota de voz não puder manipular o número de destino, Test-CsVoiceRoute retornará o valor false:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-138">If the voice route is can't handle the target number then Test-CsVoiceRoute returns the value False:</span></span>
+
+<span data-ttu-id="9bcf8-139">MatchesPattern</span><span class="sxs-lookup"><span data-stu-id="9bcf8-139">MatchesPattern</span></span>
+
+\--------------
+
+<span data-ttu-id="9bcf8-140">Falso</span><span class="sxs-lookup"><span data-stu-id="9bcf8-140">False</span></span>
+
+</div>
+
+<div>
+
+## <a name="reasons-why-the-test-might-have-failed"></a><span data-ttu-id="9bcf8-141">Motivos pelos quais o teste pode ter falhado</span><span class="sxs-lookup"><span data-stu-id="9bcf8-141">Reasons why the test might have failed</span></span>
+
+<span data-ttu-id="9bcf8-142">Ao testar as rotas de voz, "falha" é um termo relativo.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-142">When testing voice routes, “failure” is a relative term.</span></span> <span data-ttu-id="9bcf8-143">Nesse caso, não significa que a rota está de alguma forma "interrompida;" em vez disso, significa que a rota não pode manipular o número de destino.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-143">In this case, it doesn’t mean that the route is somehow “broken;” instead, it just means that the route can't handle the target number.</span></span> <span data-ttu-id="9bcf8-144">Isso pode ser porque a rota de voz foi configurada incorretamente.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-144">That could be because the voice route was configured incorrectly.</span></span> <span data-ttu-id="9bcf8-145">Também pode significar que a rota nunca se destina a manipular números usando esse padrão.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-145">It could also mean that the route was never intended to handle numbers using this pattern.</span></span> <span data-ttu-id="9bcf8-146">Por exemplo, se você não quiser direcionar chamadas para outros países em uma determinada rota, essa rota pode ser configurada para rejeitar todos os números de telefone que incluem um código de país.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-146">For example, if you do not want to route calls to other countries over a given route that route might be configured to reject all phone numbers that include a country code.</span></span> <span data-ttu-id="9bcf8-147">Se Test-CsVoiceRoute retornar false quando você espera retornar true, verifique se digitou o número de destino corretamente.</span><span class="sxs-lookup"><span data-stu-id="9bcf8-147">If Test-CsVoiceRoute returns False when you expected it to return True, verify that you typed the target number in correctly.</span></span> <span data-ttu-id="9bcf8-148">Se você fez isso, use um comando semelhante a este para exibir o NumberPattern configurado para a rota:</span><span class="sxs-lookup"><span data-stu-id="9bcf8-148">If you did, then use a command similar to this one to view the NumberPattern configured for the route:</span></span>
+
+`Get-CsVoiceRoute -Identity "RedmondVoiceRoute" | Select-Object NumberPattern`
+
+</div>
+
+<div>
+
+## <a name="see-also"></a><span data-ttu-id="9bcf8-149">Confira também</span><span class="sxs-lookup"><span data-stu-id="9bcf8-149">See Also</span></span>
+
+
+[<span data-ttu-id="9bcf8-150">Test-CsVoiceRoute</span><span class="sxs-lookup"><span data-stu-id="9bcf8-150">Test-CsVoiceRoute</span></span>](https://docs.microsoft.com/powershell/module/skype/Test-CsVoiceRoute)  
+  
+
+<span data-ttu-id="9bcf8-151"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="9bcf8-151"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
