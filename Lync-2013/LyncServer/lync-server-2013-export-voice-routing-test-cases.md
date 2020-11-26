@@ -1,0 +1,82 @@
+---
+title: 'Lync Server 2013: Exportar casos de teste de roteamento de voz'
+description: 'Lync Server 2013: exportar casos de teste de roteamento de voz.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Export voice routing test cases
+ms:assetid: 489ac472-1a35-4755-b390-48f7cdf31e94
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Gg425957(v=OCS.15)
+ms:contentKeyID: 48184050
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 934bd183a17c46cf82fe5bc04faaa55a9bbe4731
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49428346"
+---
+# <a name="export-voice-routing-test-cases-in-lync-server-2013"></a>Exportar casos de teste de roteamento de voz no Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2012-11-01_
+
+Os casos de teste fornecem uma maneira de testar as rotas de voz em sua organização: você define itens como o número a ser discado e o plano de discagem e a política de voz a ser empregado, e o Lync Server pode, em seguida, verificar se, dadas essas condições, o número fornecido pode ser roteado com êxito para a rede PSTN.
+
+Os casos de teste, que podem ser criados usando o painel de controle do Lync Server, geralmente são salvos apenas no servidor em que o caso foi originalmente criado e executado. No entanto, esses casos de teste podem ser exportados como arquivos XML (com a extensão. vtest) e depois importados em outros servidores. Isso permite que você execute os mesmos testes em computadores diferentes localizados em diferentes pontos da topologia.
+
+<div>
+
+## <a name="to-export-a-voice-routing-test-case"></a>Para exportar um caso de teste de roteamento de voz
+
+1.  No painel de controle do Lync Server, clique em **Roteamento de voz** e, em seguida, clique em **testar roteamento de voz**.
+
+2.  Na guia **Roteamento de voz de teste** , selecione o caso de teste (ou casos de teste) a ser exportado. Para selecionar vários casos de teste, clique no primeiro caso para ser exportado, mantenha a tecla Ctrl pressionada e selecione os casos adicionais a serem exportados.
+
+3.  Clique em **ação** e, em seguida, clique em **Exportar casos de teste**.
+
+4.  Na caixa de diálogo **salvar como** , selecione uma pasta para armazenar os casos de teste exportados e digite um nome para o arquivo XML resultante na caixa **nome do arquivo** . Observe que, se você estiver exportando vários casos vários testes, todos esses casos de teste serão salvos em um único arquivo XML.
+
+5.  Para salvar os casos de teste, clique em **salvar**.
+
+</div>
+
+<div>
+
+## <a name="see-also"></a>Confira também
+
+
+[Importar casos de teste de roteamento de voz no Lync Server 2013](lync-server-2013-import-voice-routing-test-cases.md)  
+  
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
