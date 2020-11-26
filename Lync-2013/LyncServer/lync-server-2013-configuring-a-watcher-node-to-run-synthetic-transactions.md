@@ -1,0 +1,101 @@
+---
+title: 'Lync Server 2013: Configurando um nó de inspetor para executar transações sintéticas'
+description: 'Lync Server 2013: Configurando um nó de inspetor para executar transações sintéticas.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Configuring a watcher node to run synthetic transactions
+ms:assetid: cedda508-8881-4079-88d5-49798f342ddf
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ205314(v=OCS.15)
+ms:contentKeyID: 48185578
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: bd5fdb3d1a1499a6ef79e962a41d9eb3ee174c33
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49433463"
+---
+# <a name="configuring-a-watcher-node-to-run-synthetic-transactions-in-lync-server-2013"></a><span data-ttu-id="6bc3d-103">Configurando um nó de inspetor para executar transações sintéticas no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="6bc3d-103">Configuring a watcher node to run synthetic transactions in Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="6bc3d-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="6bc3d-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="6bc3d-105">_**Tópico da última modificação:** 2014-02-07_</span><span class="sxs-lookup"><span data-stu-id="6bc3d-105">_**Topic Last Modified:** 2014-02-07_</span></span>
+
+<span data-ttu-id="6bc3d-106">Após a instalação dos arquivos do agente do System Center, você deve configurar o próprio nó do Inspetor.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-106">After the System Center agent files have been installed, you must next configure the watcher node itself.</span></span> <span data-ttu-id="6bc3d-107">As etapas que você seguir para configurar um nó de Inspetor variam de acordo com o fato de o computador do nó do Inspetor estar dentro da sua rede de perímetro ou de fora da sua rede de perímetro.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-107">The steps you take to configure a watcher node will vary depending on whether your watcher node computer lies inside your perimeter network or outside your perimeter network.</span></span>
+
+<span data-ttu-id="6bc3d-108">Ao configurar um nó do observador, você também deve escolher o tipo de método de autenticação a ser implantado neste nó.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-108">When you configure a watcher node, you must also choose the type of authentication method to be employed by that node.</span></span> <span data-ttu-id="6bc3d-109">O Lync Server 2013 permite que você escolha um dos dois métodos de autenticação: servidor confiável ou autenticação de credenciais.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-109">Lync Server 2013 enables you to choose one of two authentication methods: Trusted Server or Credential Authentication.</span></span> <span data-ttu-id="6bc3d-110">As diferenças entre esses dois métodos são descritas na tabela a seguir:</span><span class="sxs-lookup"><span data-stu-id="6bc3d-110">The differences between these two methods are outlined in the following table:</span></span>
+
+
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span data-ttu-id="6bc3d-111">Configuração</span><span class="sxs-lookup"><span data-stu-id="6bc3d-111">Configuration</span></span></th>
+<th><span data-ttu-id="6bc3d-112">Descrição</span><span class="sxs-lookup"><span data-stu-id="6bc3d-112">Description</span></span></th>
+<th><span data-ttu-id="6bc3d-113">Locais com suporte</span><span class="sxs-lookup"><span data-stu-id="6bc3d-113">Locations Supported</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><span data-ttu-id="6bc3d-114">Servidor confiável</span><span class="sxs-lookup"><span data-stu-id="6bc3d-114">Trusted Server</span></span></p></td>
+<td><p><span data-ttu-id="6bc3d-115">Usa uma certificação para personificar um servidor interno e desafios de autenticação de bypass.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-115">Uses a certificate to impersonate an internal server and bypass authentication challenges.</span></span></p>
+<p><span data-ttu-id="6bc3d-116">Isso é útil para administradores que preferem gerenciar um único certificado em vez de muitas senhas de usuário em cada nó de Inspetor.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-116">This is useful for administrators who would prefer to manage a single certificate instead of many user passwords on each watcher node.</span></span></p></td>
+<td><p><span data-ttu-id="6bc3d-117">Dentro da empresa.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-117">Inside the enterprise.</span></span></p>
+<p><span data-ttu-id="6bc3d-118">Observe que, com esse método, o nó do Inspetor deve estar no mesmo domínio que os pools sendo monitorados.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-118">Note that, with this method, the watcher node must be in the same domain as the pools being monitored.</span></span> <span data-ttu-id="6bc3d-119">Se o nó do Inspetor e os pools monitorados estiverem em domínios diferentes, use a autenticação de credenciais em vez disso.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-119">If the watcher node and the monitored pools are in different domains, use Credential Authentication instead.</span></span></p></td>
+</tr>
+<tr class="even">
+<td><p><span data-ttu-id="6bc3d-120">Autenticação de credenciais</span><span class="sxs-lookup"><span data-stu-id="6bc3d-120">Credential Authentication</span></span></p></td>
+<td><p><span data-ttu-id="6bc3d-121">Armazena os nomes de usuário e senhas com segurança no Gerenciador de Credencial do Windows no nó do observador.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-121">Stores user names and passwords securely in Windows Credential Manager on each watcher node.</span></span></p>
+<p><span data-ttu-id="6bc3d-122">Esse modo requer mais gerenciamento de senha, mas é a única opção para nós de Inspetor localizados fora da empresa.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-122">This mode requires more password management, but is the only option for watcher nodes located outside of the enterprise.</span></span> <span data-ttu-id="6bc3d-123">Estes nós do observador não podem ser tratados como um ponto de extremidade confiável para autenticação.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-123">These watcher nodes cannot be treated as an endpoint trusted for authentication.</span></span></p></td>
+<td><p><span data-ttu-id="6bc3d-124">Fora da empresa.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-124">Outside the enterprise.</span></span></p>
+<p><span data-ttu-id="6bc3d-125">Dentro da empresa.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-125">Inside the enterprise.</span></span></p></td>
+</tr>
+</tbody>
+</table>
+
+
+<span data-ttu-id="6bc3d-126">Verifique também se o seu firewall tem regras de entrada para MonitoringHost.exe e PowerShell.exe.</span><span class="sxs-lookup"><span data-stu-id="6bc3d-126">You should also verify that your firewall has inbound rules for both MonitoringHost.exe and PowerShell.exe.</span></span> <span data-ttu-id="6bc3d-127">Se esses processos estiverem bloqueados pelo firewall, suas transações sintéticas falharão com um erro 504 (tempo limite do servidor).</span><span class="sxs-lookup"><span data-stu-id="6bc3d-127">If these processes are blocked by the firewall then your synthetic transactions will fail with a 504 (server timeout) error.</span></span>
+
+<span data-ttu-id="6bc3d-128"></div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="6bc3d-128"></div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+

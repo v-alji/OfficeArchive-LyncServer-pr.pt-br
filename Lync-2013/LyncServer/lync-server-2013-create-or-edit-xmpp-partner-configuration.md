@@ -1,0 +1,147 @@
+---
+title: 'Lync Server 2013: Criar ou editar configuração do parceiro XMPP'
+description: 'Lync Server 2013: crie ou edite a configuração de parceiro XMPP.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Create or edit XMPP partner configuration
+ms:assetid: 362dbe5e-8ee9-4aba-8c26-5907312b4a60
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/JJ552447(v=OCS.15)
+ms:contentKeyID: 48679558
+ms.date: 09/03/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 19289df1920287984f104bb1bdfa214d6f83f5cf
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49431852"
+---
+# <a name="create-or-edit-xmpp-partner-configuration-in-lync-server-2013"></a><span data-ttu-id="b6259-103">Criar ou editar configuração do parceiro XMPP no Lync Server 2013</span><span class="sxs-lookup"><span data-stu-id="b6259-103">Create or edit XMPP partner configuration in Lync Server 2013</span></span>
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody"><span data-ttu-id="b6259-104">
+
+<span> </span></span><span class="sxs-lookup"><span data-stu-id="b6259-104">
+
+<span> </span></span></span>
+
+<span data-ttu-id="b6259-105">_**Tópico da última modificação:** 2014-09-03_</span><span class="sxs-lookup"><span data-stu-id="b6259-105">_**Topic Last Modified:** 2014-09-03_</span></span>
+
+<span data-ttu-id="b6259-106">O Microsoft Lync Server 2013 integra um proxy Extensible Messaging and Presence Protocol (XMPP) no servidor de borda e um Gateway XMPP no servidor front-end ou no pool de front-end.</span><span class="sxs-lookup"><span data-stu-id="b6259-106">Microsoft Lync Server 2013 integrates an Extensible Messaging and Presence Protocol (XMPP) proxy on the Edge Server and an XMPP Gateway on the Front End Server or Front End pool.</span></span> <span data-ttu-id="b6259-107">Para permitir conexões de outras implantações do XMPP, você deve configurar o XMPP no painel de controle do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="b6259-107">To allow connections from other XMPP deployments, you must configure XMPP in the Lync Server Control Panel.</span></span> <span data-ttu-id="b6259-108">Você define as configurações na base de domínio do XMPP.</span><span class="sxs-lookup"><span data-stu-id="b6259-108">You configure settings on an XMPP domain basis.</span></span> <span data-ttu-id="b6259-109">Para criar uma nova associação de parceiro, faça o seguinte:</span><span class="sxs-lookup"><span data-stu-id="b6259-109">To create a new partner association, you do the following:</span></span>
+
+<div>
+
+## <a name="to-create-a-new-federated-partner-or-edit-an-existing-configuration"></a><span data-ttu-id="b6259-110">Para criar um novo parceiro federado ou editar uma configuração existente</span><span class="sxs-lookup"><span data-stu-id="b6259-110">To create a new federated partner or edit an existing configuration</span></span>
+
+1.  <span data-ttu-id="b6259-111">Usando uma conta de usuário que é membro do grupo RTCUniversalServerAdmins (ou tem direitos de usuário equivalentes), ou está atribuída à função CsAdministrator, faça logon em qualquer computador de sua implantação interna.</span><span class="sxs-lookup"><span data-stu-id="b6259-111">From a user account that is a member of the RTCUniversalServerAdmins group (or has equivalent user rights), or is assigned to the CsAdministrator role, log on to any computer in your internal deployment.</span></span>
+
+2.  <span data-ttu-id="b6259-112">Abra uma janela do navegador e, em seguida, insira a URL de administração para abrir o painel de controle do Lync Server.</span><span class="sxs-lookup"><span data-stu-id="b6259-112">Open a browser window, and then enter the Admin URL to open the Lync Server Control Panel.</span></span> <span data-ttu-id="b6259-113">Para obter detalhes sobre os diferentes métodos que você pode usar para iniciar o painel de controle do Lync Server, consulte [abrir ferramentas administrativas do Lync server 2013](lync-server-2013-open-lync-server-administrative-tools.md).</span><span class="sxs-lookup"><span data-stu-id="b6259-113">For details about the different methods you can use to start Lync Server Control Panel, see [Open Lync Server 2013 administrative tools](lync-server-2013-open-lync-server-administrative-tools.md).</span></span>
+
+3.  <span data-ttu-id="b6259-114">Na barra de navegação à esquerda, clique em **Federação e acesso externo** e, em seguida, clique em **parceiros federados do XMPP**.</span><span class="sxs-lookup"><span data-stu-id="b6259-114">In the left navigation bar, click **Federation and External Access**, and then click **XMPP Federated Partners**.</span></span>
+
+4.  <span data-ttu-id="b6259-115">Para criar uma nova configuração, clique em **novo**</span><span class="sxs-lookup"><span data-stu-id="b6259-115">To create a new configuration, click **New**</span></span>
+
+5.  <span data-ttu-id="b6259-116">Para editar uma configuração existente, selecione a configuração e clique em **Editar** .</span><span class="sxs-lookup"><span data-stu-id="b6259-116">To edit an existing configuration, select the configuration and click **Edit**</span></span>
+
+6.  <span data-ttu-id="b6259-117">Para criar ou editar configurações para **parceiros federados do XMPP**, defina as seguintes configurações:</span><span class="sxs-lookup"><span data-stu-id="b6259-117">To create or edit configurations for **XMPP Federated Partners**, you define the following settings:</span></span>
+
+7.  <span data-ttu-id="b6259-118">**Domínio primário** (obrigatório).</span><span class="sxs-lookup"><span data-stu-id="b6259-118">**Primary domain** (Required).</span></span> <span data-ttu-id="b6259-119">O domínio primário é o domínio base do parceiro XMPP.</span><span class="sxs-lookup"><span data-stu-id="b6259-119">The primary domain is the base domain of the XMPP partner.</span></span> <span data-ttu-id="b6259-120">Por exemplo, você digitaria **fabrikam.com** para o nome de domínio do parceiro XMPP.</span><span class="sxs-lookup"><span data-stu-id="b6259-120">For example, you would enter **fabrikam.com** for the XMPP partner domain name.</span></span> <span data-ttu-id="b6259-121">Esta é uma entrada obrigatória.</span><span class="sxs-lookup"><span data-stu-id="b6259-121">This is a required entry.</span></span>
+
+8.  <span data-ttu-id="b6259-122">**Descrição**.</span><span class="sxs-lookup"><span data-stu-id="b6259-122">**Description**.</span></span> <span data-ttu-id="b6259-123">A descrição é para anotações ou outras informações de identificação para essa configuração específica.</span><span class="sxs-lookup"><span data-stu-id="b6259-123">The description is for notes or other identifying information for this particular configuration.</span></span> <span data-ttu-id="b6259-124">Esta entrada é opcional.</span><span class="sxs-lookup"><span data-stu-id="b6259-124">This entry is optional.</span></span>
+
+9.  <span data-ttu-id="b6259-125">**Domínios adicionais**.</span><span class="sxs-lookup"><span data-stu-id="b6259-125">**Additional domains**.</span></span> <span data-ttu-id="b6259-126">Domínios adicionais são domínios que fazem parte do domínio do seu parceiro XMPP que devem ser incluídos como parte da comunicação XMPP permitida.</span><span class="sxs-lookup"><span data-stu-id="b6259-126">Additional domains are domains that are a part of your XMPP partner’s domain that should be included as part of the allowed XMPP communication.</span></span> <span data-ttu-id="b6259-127">Por exemplo, se o domínio primário for **fabrikam.com**, você listará todos os outros domínios que estão sob fabrikam.com com os quais você irá se comunicar por meio de XMPP.</span><span class="sxs-lookup"><span data-stu-id="b6259-127">For example, if the primary domain is **fabrikam.com**, then you would list all other domains that are under fabrikam.com that you will communicate with by way of XMPP.</span></span> <span data-ttu-id="b6259-128">Por exemplo, você pode inserir **Corp.fabrikam.com** e **it.fabrikam.com** para o domínio XMPP corporativo e o domínio de tecnologias de informação XMPP no domínio principal do XMPP da Fabrikam.</span><span class="sxs-lookup"><span data-stu-id="b6259-128">For example, you might enter **corp.fabrikam.com** and **it.fabrikam.com** for the Corporate XMPP domain and the Information Technologies XMPP domain under fabrikam.com’s main XMPP domain.</span></span>
+
+10. <span data-ttu-id="b6259-129">**Tipo de parceiro**.</span><span class="sxs-lookup"><span data-stu-id="b6259-129">**Partner type**.</span></span> <span data-ttu-id="b6259-130">O **tipo de parceiro** é uma configuração obrigatória e oferece uma seleção de três opções em um menu suspenso.</span><span class="sxs-lookup"><span data-stu-id="b6259-130">The **Partner type** is a required setting and gives you a selection of three choices in a drop-down menu.</span></span> <span data-ttu-id="b6259-131">Você deve escolher uma das seguintes opções para descrever e reforçar quais contatos podem ser adicionados.</span><span class="sxs-lookup"><span data-stu-id="b6259-131">You must choose one of the following to describe and enforce what contacts can be added.</span></span> <span data-ttu-id="b6259-132">Você pode selecionar:</span><span class="sxs-lookup"><span data-stu-id="b6259-132">You can select from:</span></span>
+    
+      - <span data-ttu-id="b6259-133">**Federado**.</span><span class="sxs-lookup"><span data-stu-id="b6259-133">**Federated**.</span></span> <span data-ttu-id="b6259-134">Um tipo de parceiro **federado** é uma conexão confiável entre uma implantação de parceiro do Lync Server ou do Office Communications Server 2007 R2.</span><span class="sxs-lookup"><span data-stu-id="b6259-134">A **Federated** partner type is a trusted connection between a Lync Server or Office Communications Server 2007 R2 partner deployment.</span></span>
+    
+      - <span data-ttu-id="b6259-135">**Público verificado**.</span><span class="sxs-lookup"><span data-stu-id="b6259-135">**Public verified**.</span></span> <span data-ttu-id="b6259-136">Um parceiro **verificado público** ocorre quando os contatos que fazem parte de uma implantação verificada pelo provedor podem ser adicionados à lista de contatos do seu usuário.</span><span class="sxs-lookup"><span data-stu-id="b6259-136">A **Public verified** partner is when contacts that are part of a deployment that are verified by the provider can be added to your user’s list of contacts.</span></span> <span data-ttu-id="b6259-137">Os convites podem ser enviados pelo usuário do Lync ou o usuário do Lync pode aceitar convites do contato do parceiro.</span><span class="sxs-lookup"><span data-stu-id="b6259-137">Invites can be sent from the Lync user or the Lync user can accept invites from the partner contact.</span></span>
+    
+      - <span data-ttu-id="b6259-138">**Pública não verificada**.</span><span class="sxs-lookup"><span data-stu-id="b6259-138">**Public unverified**.</span></span> <span data-ttu-id="b6259-139">Uma relação não **verificada pública** implica que não há status estabelecido e verificável entre as duas implantações.</span><span class="sxs-lookup"><span data-stu-id="b6259-139">A **Public unverified** relationship implies that there is no established and verifiable status between the two deployments.</span></span> <span data-ttu-id="b6259-140">Um usuário do Lync deve convidar o contato não verificado para esse contato para poder adicionar o usuário do Lync à sua lista de contatos.</span><span class="sxs-lookup"><span data-stu-id="b6259-140">A Lync user must invite the unverified contact for that contact to be able to add the Lync user to his contact list.</span></span> <span data-ttu-id="b6259-141">Por exemplo, o Google GTalk não é um serviço de XMPP verificado público como se relaciona ao Lync Server.</span><span class="sxs-lookup"><span data-stu-id="b6259-141">For example, Google GTalk is not a public verified XMPP service as it relates to Lync Server.</span></span> <span data-ttu-id="b6259-142">Um usuário do GTalk não poderá adicionar o usuário do Lync como um contato, a menos que haja um convite explícito enviado pelo usuário do Lync.</span><span class="sxs-lookup"><span data-stu-id="b6259-142">A GTalk user will not be able to add the Lync user as a contact unless there is an explicit invite sent from the Lync user.</span></span>
+
+11. <span data-ttu-id="b6259-143">Observações sobre negociação de fluxo e os métodos de segurança Transport Layer Security (TLS) e Authentication and Security Layer (SASL):</span><span class="sxs-lookup"><span data-stu-id="b6259-143">Notes on stream negotiation and the security methods Transport Layer Security (TLS) and Software Authentication and Security Layer (SASL):</span></span>
+    
+    <span data-ttu-id="b6259-144">A **base de padrões de XMPP** (xsf) e a **Internet Engineering Task Force** (IETF) definem um conjunto de regras e padrões para usar e gerenciar certificados de cliente TLS, certificados de servidor TLS e o mecanismo SASL.</span><span class="sxs-lookup"><span data-stu-id="b6259-144">The **XMPP Standards Foundation** (XSF) and the **Internet Engineering Task Force** (IETF) define a set of rules and standards for using and managing TLS client certificates, TLS server certificates, and the SASL mechanism.</span></span> <span data-ttu-id="b6259-145">Usar TLS e SASL é o processo obrigatório para proteger o fluxo de XMPP.</span><span class="sxs-lookup"><span data-stu-id="b6259-145">Using TLS and SASL is the required process for securing the XMPP stream.</span></span> <span data-ttu-id="b6259-146">A partir do documento de padrões do XMPP **-XEP-0178**", especifica um fluxo de protocolo recomendado para usar o mecanismo externo SASL com certificados PKIX, especialmente quando um serviço XMPP indica que o TLS é obrigatório para negociar."</span><span class="sxs-lookup"><span data-stu-id="b6259-146">From the XMPP Standards document **XEP-0178**, “specifies a recommended protocol flow for use of the SASL EXTERNAL mechanism with PKIX certificates, especially when an XMPP service indicates that TLS is mandatory-to-negotiate.”</span></span> <span data-ttu-id="b6259-147">PKIX, conforme declarado na documentação do XSF, refere-se à infraestrutura de chave pública, também conhecida como PKI.</span><span class="sxs-lookup"><span data-stu-id="b6259-147">PKIX, as stated in the XSF documentation, refers to public key infrastructure, also known as PKI.</span></span>
+    
+    <span data-ttu-id="b6259-148">Confira o documento XSF XEP-0178 para obter mais detalhes sobre os requisitos do XMPP.</span><span class="sxs-lookup"><span data-stu-id="b6259-148">Refer to the XSF document XEP-0178 for more details on the XMPP requirements.</span></span> <span data-ttu-id="b6259-149">Para obter detalhes, consulte "XEP-0178: práticas recomendadas para uso de SASL externo com certificados".</span><span class="sxs-lookup"><span data-stu-id="b6259-149">For details, refer to “XEP-0178: Best Practices for Use of SASL EXTERNAL with Certificates”.</span></span> <http://xmpp.org/extensions/xep-0178.html>
+    
+    <span data-ttu-id="b6259-150">Consulte o documento IETF "protocolo de mensagens extensíveis e presença (XMPP): Core", seção 5,0, negociação STARTTLS <https://tools.ietf.org/html/rfc6120> .</span><span class="sxs-lookup"><span data-stu-id="b6259-150">Refer to the IETF document “Extensible Messaging and Presence Protocol (XMPP): Core“, Section 5.0, STARTTLS Negotiation <https://tools.ietf.org/html/rfc6120>.</span></span>
+    
+      - <span data-ttu-id="b6259-151">**Negociação de TLS**.</span><span class="sxs-lookup"><span data-stu-id="b6259-151">**TLS Negotiation**.</span></span> <span data-ttu-id="b6259-152">Define as regras de negociação de TLS.</span><span class="sxs-lookup"><span data-stu-id="b6259-152">Defines the TLS negotiation rules.</span></span> <span data-ttu-id="b6259-153">Um serviço XMPP pode exigir o TLS, pode criar a TLS opcional ou você define que o TLS não é compatível.</span><span class="sxs-lookup"><span data-stu-id="b6259-153">An XMPP service can require TLS, can make TLS optional, or you define that TLS is not supported.</span></span> <span data-ttu-id="b6259-154">Escolher opcional deixa a necessidade de até o serviço XMPP para uma decisão obrigatória a negociação.</span><span class="sxs-lookup"><span data-stu-id="b6259-154">Choosing Optional leaves the requirement up to the XMPP service for a mandatory-to-negotiate decision.</span></span> <span data-ttu-id="b6259-155">Para ver todas as configurações e os detalhes possíveis para a negociação SASL, TLS e Dialback, incluindo configurações de erro não válidas e conhecidas-consulte [configurações de negociação para XMPP parceiros federados no Lync Server 2013](lync-server-2013-negotiation-settings-for-xmpp-federated-partners.md).</span><span class="sxs-lookup"><span data-stu-id="b6259-155">To view all possible settings and details for SASL, TLS and Dialback negotiation –including not valid and known error configurations - see [Negotiation settings for XMPP federated partners in Lync Server 2013](lync-server-2013-negotiation-settings-for-xmpp-federated-partners.md).</span></span>
+        
+          - <span></span>  
+            <span data-ttu-id="b6259-156">**Obrigatório**.</span><span class="sxs-lookup"><span data-stu-id="b6259-156">**Required**.</span></span> <span data-ttu-id="b6259-157">O serviço XMPP requer a negociação TLS.</span><span class="sxs-lookup"><span data-stu-id="b6259-157">The XMPP service requires TLS negotiation.</span></span>
+        
+          - <span></span>  
+            <span data-ttu-id="b6259-158">**Opcional**.</span><span class="sxs-lookup"><span data-stu-id="b6259-158">**Optional**.</span></span> <span data-ttu-id="b6259-159">O serviço XMPP indica que o TLS é obrigatório para negociar.</span><span class="sxs-lookup"><span data-stu-id="b6259-159">The XMPP service indicates that TLS is mandatory-to-negotiate.</span></span>
+        
+          - <span></span>  
+            <span data-ttu-id="b6259-160">**Sem suporte**.</span><span class="sxs-lookup"><span data-stu-id="b6259-160">**Not Supported**.</span></span> <span data-ttu-id="b6259-161">O serviço XMPP não dá suporte a TLS.</span><span class="sxs-lookup"><span data-stu-id="b6259-161">The XMPP service does not support TLS.</span></span>
+    
+      - <span data-ttu-id="b6259-162">**Negociação SASL**.</span><span class="sxs-lookup"><span data-stu-id="b6259-162">**SASL negotiation**.</span></span> <span data-ttu-id="b6259-163">Define as regras de negociação SASL.</span><span class="sxs-lookup"><span data-stu-id="b6259-163">Defines the SASL negotiation rules.</span></span> <span data-ttu-id="b6259-164">Um serviço XMPP pode exigir SASL, pode deixar SASL opcional, ou você define que SASL não é compatível.</span><span class="sxs-lookup"><span data-stu-id="b6259-164">An XMPP service can require SASL, can make SASL optional, or you define that SASL is not supported.</span></span> <span data-ttu-id="b6259-165">Escolher opcional deixa o requisito para o serviço de XMPP do parceiro para uma decisão obrigatória-para-negociação.</span><span class="sxs-lookup"><span data-stu-id="b6259-165">Choosing Optional leaves the requirement up to the partner XMPP service for a mandatory-to-negotiate decision.</span></span>
+        
+        <div>
+        
+
+        > [!WARNING]  
+        > <span data-ttu-id="b6259-166">SASL requer TLS.</span><span class="sxs-lookup"><span data-stu-id="b6259-166">SASL requires TLS.</span></span> <span data-ttu-id="b6259-167">Para usar o SASL, o TLS deve ser obrigatório ou opcional.</span><span class="sxs-lookup"><span data-stu-id="b6259-167">To use SASL, TLS must either be required or optional.</span></span> <span data-ttu-id="b6259-168">Qualquer configuração que defina SASL como obrigatório ou opcional deve ter o suporte a TLS.</span><span class="sxs-lookup"><span data-stu-id="b6259-168">Any configuration that defines SASL as either required or optional must have TLS support.</span></span> <span data-ttu-id="b6259-169">Ao clicar em <STRONG>confirmar</STRONG> para salvar as alterações, se você não definiu o TLS como obrigatório ou opcional, você será avisado de que a SASL deve ter suporte a TLS e suas alterações não serão salvas.</span><span class="sxs-lookup"><span data-stu-id="b6259-169">When clicking <STRONG>Commit</STRONG> to save your changes, if you have not set TLS to required or optional, you will be warned that SASL must have TLS support and your changes are not saved.</span></span> <span data-ttu-id="b6259-170">Para resolver o erro, defina TLS como <STRONG>obrigatório</STRONG> ou <STRONG>opcional</STRONG>.</span><span class="sxs-lookup"><span data-stu-id="b6259-170">To resolve the error, set TLS to <STRONG>Required</STRONG> or <STRONG>Optional</STRONG>.</span></span> <span data-ttu-id="b6259-171">Se o uso de SASL for opcional e o suporte de negociação TLS não for possível, você deve definir a negociação SASL para <STRONG>não compatível</STRONG>.</span><span class="sxs-lookup"><span data-stu-id="b6259-171">If use of SASL is optional and TLS negotiation support is not possible, you must set SASL negotiation to <STRONG>Not Supported</STRONG>.</span></span> <span data-ttu-id="b6259-172">Confirme com o serviço do XMPP qual deve ser o fluxo de negociação apropriado para TLS e SASL, ou interrupção do serviço.</span><span class="sxs-lookup"><span data-stu-id="b6259-172">Confirm with the XMPP service what the proper negotiation streams must be for TLS and SASL or service interruption will occur.</span></span>
+
+        
+        </div>
+        
+          - <span></span>  
+            <span data-ttu-id="b6259-173">**Obrigatório**.</span><span class="sxs-lookup"><span data-stu-id="b6259-173">**Required**.</span></span> <span data-ttu-id="b6259-174">O serviço XMPP requer negociação SASL.</span><span class="sxs-lookup"><span data-stu-id="b6259-174">The XMPP service requires SASL negotiation.</span></span>
+        
+          - <span></span>  
+            <span data-ttu-id="b6259-175">**Opcional**.</span><span class="sxs-lookup"><span data-stu-id="b6259-175">**Optional**.</span></span> <span data-ttu-id="b6259-176">O serviço XMPP indica que a SASL é obrigatória para negociar.</span><span class="sxs-lookup"><span data-stu-id="b6259-176">The XMPP service indicates that SASL is mandatory-to-negotiate.</span></span>
+        
+          - <span></span>  
+            <span data-ttu-id="b6259-177">**Sem suporte**.</span><span class="sxs-lookup"><span data-stu-id="b6259-177">**Not Supported**.</span></span> <span data-ttu-id="b6259-178">O serviço XMPP não dá suporte a SASL.</span><span class="sxs-lookup"><span data-stu-id="b6259-178">The XMPP service does not support SASL.</span></span>
+    
+      - <span data-ttu-id="b6259-179">**Negociação de Dialback**.</span><span class="sxs-lookup"><span data-stu-id="b6259-179">**Dialback negotiation**.</span></span> <span data-ttu-id="b6259-180">A negociação Dialback é definida pelo XSF no documento **XEP-220: Server Dialback** <http://xmpp.org/extensions/xep-0220.html> .</span><span class="sxs-lookup"><span data-stu-id="b6259-180">Dialback negotiation is defined by the XSF in document **XEP-220 : Server Dialback** <http://xmpp.org/extensions/xep-0220.html>.</span></span> <span data-ttu-id="b6259-181">O processo de dialback do servidor usa o sistema de nomes de domínio (DNS) e um servidor autoritativo para verificar se a solicitação veio de um parceiro XMPP válido.</span><span class="sxs-lookup"><span data-stu-id="b6259-181">The server dialback process uses the domain name system (DNS) and an authoritative server to verify that the request came from a valid XMPP partner.</span></span> <span data-ttu-id="b6259-182">Para fazer isso, o servidor de origem cria uma mensagem de um tipo específico com uma chave dialback gerada e procura o servidor de recebimento no DNS.</span><span class="sxs-lookup"><span data-stu-id="b6259-182">To do this, the originating server creates a message of a specific type with a generated dialback key and looks up the receiving server in DNS.</span></span> <span data-ttu-id="b6259-183">O servidor de origem envia a chave em um fluxo de XML para a pesquisa de DNS resultante, supostamente o servidor de recebimento.</span><span class="sxs-lookup"><span data-stu-id="b6259-183">The originating server sends the key in an XML stream to the resulting DNS lookup, presumably the receiving server.</span></span> <span data-ttu-id="b6259-184">No recebimento da chave sobre o fluxo XML, o servidor de recebimento não responde ao servidor de origem, mas envia a chave para um servidor autoritativo conhecido.</span><span class="sxs-lookup"><span data-stu-id="b6259-184">On receipt of the key over the XML stream, the receiving server does not respond to the originating server, but sends the key to a known authoritative server.</span></span> <span data-ttu-id="b6259-185">O servidor autoritativo verifica se a chave é válida ou não é válida.</span><span class="sxs-lookup"><span data-stu-id="b6259-185">The authoritative server verifies that the key is either valid or not valid.</span></span> <span data-ttu-id="b6259-186">Se não for válido, o servidor de recebimento não responderá ao servidor de origem.</span><span class="sxs-lookup"><span data-stu-id="b6259-186">If not valid, the receiving server does not respond to the originating server.</span></span> <span data-ttu-id="b6259-187">Se a chave for válida, o servidor de recebimento informa ao servidor de origem que a identidade e a chave são válidas e que a conversa pode começar.</span><span class="sxs-lookup"><span data-stu-id="b6259-187">If the key is valid, the receiving server informs the originating server that the identity and key is valid and the conversation can commence.</span></span>
+        
+        <span data-ttu-id="b6259-188">Há dois Estados válidos para a **negociação do Dialback**:</span><span class="sxs-lookup"><span data-stu-id="b6259-188">There are two valid states for **Dialback negotiation**:</span></span>
+        
+          - <span></span>  
+            <span data-ttu-id="b6259-189">**Verdadeiro**.</span><span class="sxs-lookup"><span data-stu-id="b6259-189">**True**.</span></span> <span data-ttu-id="b6259-190">O servidor XMPP está configurado para usar a negociação Dialback caso uma solicitação seja recebida de um servidor de origem</span><span class="sxs-lookup"><span data-stu-id="b6259-190">The XMPP server is configured to use Dialback negotiation if a request should be received from an originating server</span></span>
+        
+          - <span></span>  
+            <span data-ttu-id="b6259-191">**Falso**.</span><span class="sxs-lookup"><span data-stu-id="b6259-191">**False**.</span></span> <span data-ttu-id="b6259-192">O servidor XMPP não está configurado para usar a negociação Dialback e, caso uma solicitação seja recebida de um servidor de origem, ela será ignorada</span><span class="sxs-lookup"><span data-stu-id="b6259-192">The XMPP server is not configured to use Dialback negotiation and if a request should be received from an originating server, it will be ignored</span></span>
+
+<span data-ttu-id="b6259-193"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span><span class="sxs-lookup"><span data-stu-id="b6259-193"></div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</span></span></div>
+
