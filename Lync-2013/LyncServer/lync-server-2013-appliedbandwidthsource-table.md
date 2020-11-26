@@ -1,0 +1,87 @@
+---
+title: 'Lync Server 2013: Tabela AppliedBandwidthSource'
+description: 'Lync Server 2013: AppliedBandwidthSource Table.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: AppliedBandwidthSource table
+ms:assetid: 24fb3caf-19b3-4c0a-90d7-ca5d53de32ad
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Gg425725(v=OCS.15)
+ms:contentKeyID: 48183638
+ms.date: 07/23/2014
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 3dc22d3a978a99cb13317e2a32fdb65382ce106c
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49440595"
+---
+# <a name="appliedbandwidthsource-table-in-lync-server-2013"></a>Tabela AppliedBandwidthSource no Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2012-10-02_
+
+A tabela AppliedBandwidthSource é uma tabela de suporte. Cada registro representa uma fonte.
+
+
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Coluna</strong></th>
+<th><strong>Tipo de dados</strong></th>
+<th><strong>Chave/índice</strong></th>
+<th><strong>Detalhes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>AppliedBandwidthSourceKey</strong></p></td>
+<td><p>int</p></td>
+<td><p>Primária</p></td>
+<td><p>Número exclusivo que identifica a fonte.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>AppliedBandwidthSource</strong></p></td>
+<td><p>varchar (256)</p></td>
+<td><p>Exclusividade</p></td>
+<td><p>Essa é a origem do limite de largura de banda que está sendo imposto. Ele descreve para onde o limite de largura de banda é proveniente (por exemplo, "servidor de políticas", "Ativar servidor" ou "modalidade").</p></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+

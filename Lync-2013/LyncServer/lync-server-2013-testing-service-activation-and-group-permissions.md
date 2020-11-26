@@ -1,0 +1,131 @@
+---
+title: 'Lync Server 2013: testar a ativação do serviço e as permissões do grupo'
+description: 'Lync Server 2013: testar a ativação do serviço e as permissões do grupo.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Testing service activation and group permissions
+ms:assetid: 2c59e603-ba85-40ba-91a7-51c6fd39472e
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Dn743833(v=OCS.15)
+ms:contentKeyID: 63969594
+ms.date: 01/27/2015
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 116cf939f3110616ce395eb14c7945890bdb89b7
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49440980"
+---
+# <a name="testing-service-activation-and-group-permissions-in-lync-server-2013"></a>Testar a ativação do serviço e as permissões de grupo no Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2014-06-05_
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p>Cronograma de verificação</p></td>
+<td><p>Diário</p></td>
+</tr>
+<tr class="even">
+<td><p>Ferramenta de teste</p></td>
+<td><p>Windows PowerShell</p></td>
+</tr>
+<tr class="odd">
+<td><p>Permissões necessárias</p></td>
+<td><p>Quando executado localmente usando o Shell de gerenciamento do Lync Server, os usuários devem ser membros do grupo de segurança RTCUniversalServerAdmins.</p>
+<p>Quando executado usando uma instância remota do Windows PowerShell, os usuários devem receber uma função RBAC que tenha permissão para executar o cmdlet Test-CsTopology. Para ver uma lista de todas as funções RBAC que podem usar esse cmdlet, execute o seguinte comando no prompt do Windows PowerShell:</p>
+<pre><code>Get-CsAdminRole | Where-Object {$_.Cmdlets -match &quot;Test-CsTopology&quot;}</code></pre></td>
+</tr>
+</tbody>
+</table>
+
+
+<div>
+
+## <a name="description"></a>Descrição
+
+O cmdlet Test-CsTopology permite que você verifique se o Lync Server 2013 está funcionando corretamente em um escopo global. Por padrão, o cmdlet verifica toda a infraestrutura do Lync Server, verificando se os serviços necessários estão em execução e se as permissões apropriadas são definidas para esses serviços e para os grupos de segurança universal criados quando você instala o Lync Server.
+
+Além de verificar a validade da instalação do Lync Server, Test-CsTopology também permite verificar a validade de um serviço específico. Por exemplo, esse comando verifica o estado do servidor de conferência A/V no pool atl-cs-001.litwareinc.com:
+
+    Test-CsTopology -Service "ConferencingServer:atl-cs-001.litwareinc.com"
+
+</div>
+
+<div>
+
+## <a name="running-the-test"></a>Executar o teste
+
+Por padrão, Test-CsTopology exibe um pouco de saída na tela. Em vez disso, as informações retornadas pelo cmdlet são gravadas em um arquivo HTML. O parâmetro Report permite que você especifique um caminho de arquivo e um nome de arquivo para o arquivo HTML gerado por Test-CsTopology. Se você não incluir o parâmetro do relatório, o arquivo HTML será salvo automaticamente na pasta usuários e receberá um nome semelhante a este: ce84964a-c4da-4622-ad34-c54ff3ed361f.html.
+
+O comando de exemplo a seguir é executado Test-CsTopology e salva a saída em um arquivo chamado C: \\ Logs \\ComputerTest.html:
+
+    Test-CsTopology -Report "C:\Logs\ComputerTest.html" -Verbose
+
+Para obter mais informações, consulte a documentação da ajuda para o cmdlet [Test-CsTopology](https://docs.microsoft.com/powershell/module/skype/Test-CsTopology) .
+
+</div>
+
+<div>
+
+## <a name="determining-success-or-failure"></a>Determinação do sucesso ou falha
+
+Ao contrário da maioria dos cmdlets de teste, Test-CsTopology não relata sucesso ou falha. Em parte, isso se deve ao grande número de verificações de verificação que o cmdlet deve fazer sempre que for executado. Em vez disso, os dados são salvos em um relatório HTML que pode ser visualizado usando o Internet Explorer.
+
+</div>
+
+<div>
+
+## <a name="reasons-why-the-test-might-have-failed"></a>Motivos pelos quais o teste pode ter falhado
+
+Veja a seguir alguns motivos comuns para que Test-CsTopology possam falhar:
+
+  - A replicação pode não estar atualizada no computador de teste. Você pode verificar o status de replicação atual para um computador executando o cmdlet Get-CsManagementStoreReplicationStatus:
+    
+        Get-CsManagementStoreReplicationStatus -ReplicaFqdn "atl-cs-001.litwareinc.com"
+    
+    Se o status de replicação não for atualizado, você pode forçar manualmente a ocorrência da replicação usando um comando semelhante a este:
+    
+        Invoke-CsManagementStoreReplication -ReplicaFqdn "atl-cs-001.litwareinc.com"
+
+  - A topologia pode ter que ser ativada. Se você alterar a topologia do Lync Server (alterações que podem afetar o computador local), será necessário habilitar a nova topologia. Você pode habilitar a topologia a qualquer momento executando este comando:
+    
+        Enable-CsTopology
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+

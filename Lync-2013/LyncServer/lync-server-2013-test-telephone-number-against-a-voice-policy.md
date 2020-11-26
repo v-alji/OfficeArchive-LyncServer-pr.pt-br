@@ -1,0 +1,163 @@
+---
+title: 'Lync Server 2013: teste o número de telefone em uma política de voz'
+description: 'Lync Server 2013: teste o número de telefone em uma política de voz.'
+ms.reviewer: ''
+ms.author: v-lanac
+author: lanachin
+f1.keywords:
+- NOCSH
+TOCTitle: Test telephone number against a voice policy
+ms:assetid: 30c51700-17c6-4c57-891a-8d5ec30b50ee
+ms:mtpsurl: https://technet.microsoft.com/en-us/library/Dn725207(v=OCS.15)
+ms:contentKeyID: 63969596
+ms.date: 01/27/2015
+manager: serdars
+mtps_version: v=OCS.15
+ms.openlocfilehash: 5a6523e7657bd4c30c23909bb02e2569b6067298
+ms.sourcegitcommit: 36fee89bb887bea4f18b19f17a8c69daf5bc423d
+ms.translationtype: MT
+ms.contentlocale: pt-BR
+ms.lasthandoff: 11/26/2020
+ms.locfileid: "49441218"
+---
+# <a name="test-telephone-number-against-a-voice-policy-in-lync-server-2013"></a>Teste o número de telefone em uma política de voz no Lync Server 2013
+
+<div data-xmlns="http://www.w3.org/1999/xhtml">
+
+<div class="topic" data-xmlns="http://www.w3.org/1999/xhtml" data-msxsl="urn:schemas-microsoft-com:xslt" data-cs="https://msdn.microsoft.com/">
+
+<div data-asp="https://msdn2.microsoft.com/asp">
+
+
+
+</div>
+
+<div id="mainSection">
+
+<div id="mainBody">
+
+<span> </span>
+
+_**Tópico da última modificação:** 2014-05-20_
+
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p>Cronograma de verificação</p></td>
+<td><p>Mensal</p></td>
+</tr>
+<tr class="even">
+<td><p>Ferramenta de teste</p></td>
+<td><p>Windows PowerShell</p></td>
+</tr>
+<tr class="odd">
+<td><p>Permissões necessárias</p></td>
+<td><p>Quando executado localmente usando o Shell de gerenciamento do Lync Server, os usuários devem ser membros do grupo de segurança RTCUniversalServerAdmins.</p>
+<p>Quando executado usando uma instância remota do Windows PowerShell, os usuários devem receber uma função RBAC que tenha permissão para executar o cmdlet Test-CsVoicePolicy. Para ver uma lista de todas as funções RBAC que podem usar esse cmdlet, execute o seguinte comando no prompt do Windows PowerShell:</p>
+<p><code>Get-CsAdminRole | Where-Object {$_.Cmdlets -match &quot;Test-CsVoicePolicy&quot;}</code></p></td>
+</tr>
+</tbody>
+</table>
+
+
+<div>
+
+## <a name="description"></a>Descrição
+
+A capacidade dos usuários do Enterprise Voice de fazer chamadas telefônicas de saída por meio das dobradiças da PSTN (rede telefônica pública comutada), em grande parte, em três coisas:
+
+  - A política de voz atribuída ao usuário.
+
+  - As rotas de voz usadas para direcionar chamadas do Lync Server para a rede PSTN.
+
+  - O uso da PSTN, uma propriedade do Lync Server que conecta uma política de voz a uma rota de voz.
+
+O uso da PSTN é especialmente importante: é a propriedade que conecta uma política de voz a uma rota de voz. (Uma política de voz e uma rota de voz são consideradas conectadas se tiverem pelo menos um uso de PSTN em comum.) As políticas de voz podem ser configuradas sem especificar um uso de PSTN. Nesse caso, os usuários que receberam essa política não poderão fazer chamadas por meio da rede PSTN. Da mesma forma, as rotas de voz que não tiverem pelo menos um uso PSTN especificado não poderão rotear chamadas para a rede PSTN.
+
+O cmdlet Test-CsVoicePolicy verifica se uma determinada política de voz tem um uso PSTN e que o uso é compartilhado por pelo menos uma rota de voz. Se a verificação executada por Test-CsVoicePolicy for bem-sucedida, o cmdlet reportará o nome da primeira rota de voz válida que encontrar e também o nome do uso de PSTN que conecta a política à rota.
+
+</div>
+
+<div>
+
+## <a name="running-the-test"></a>Executar o teste
+
+Para executar o cmdlet Test-CsVoicePolicy você deve primeiro usar o cmdlet Get-CsVoicePolicy recuperar uma instância da política de voz a ser testada; essa instância deve então ser canalizada para Test-CsVoicePolicy. Por exemplo:
+
+`Get-CsVoicePolicy -Identity "Global" | Test-CsVoicePolicy -TargetNumber "+12065551219"`
+
+Observe que esse comando, que não usa Get-CsVoicePolicy para recuperar uma instância de política de voz, falhará:
+
+`Test-CsVoicePolicy -TargetNumber "+12065551219" -VoicePolicy "Global"`
+
+Se você quiser verificar todas as políticas de voz em relação a um número de telefone especificado, use um comando semelhante a este:
+
+`Get-CsVoicePolicy | Test-CsVoicePolicy -TargetNumber "+12065551219"`
+
+Observe que o TargetNumber deve ser especificado usando o formato E. 164. Test-CsVoicePolicy não tentará normalizar ou traduzir números de telefone no formato E. 164.
+
+Para obter mais informações, consulte a documentação da ajuda para o cmdlet Test-CsVoicePolicy.
+
+</div>
+
+<div>
+
+## <a name="determining-success-or-failure"></a>Determinação do sucesso ou falha
+
+Se a política de voz puder encontrar uma rota de voz correspondente e um uso de PSTN correspondente, tanto o roteiro quanto o uso serão exibidos na tela:
+
+FirstMatchingRoute MatchingUsage
+
+\------------------ -------------
+
+RedmondVoiceRoute RedmondPstnUsage
+
+Se uma rota de voz apropriada ou um uso de PSTN apropriado não puder ser encontrado, os valores de propriedades em branco serão exibidos na tela:
+
+FirstMatchingRoute MatchingUsage
+
+\------------------ -------------
+
+</div>
+
+<div>
+
+## <a name="reasons-why-the-test-might-have-failed"></a>Motivos pelos quais o teste pode ter falhado
+
+Se Test-CsVoicePolicy não retornar uma correspondência que possa significar que a política de voz não compartilha um uso de PSTN com uma rota de voz. Para verificar isso, use um cmdlet semelhante ao seguinte para verificar se os usos de PSTN atribuídos à política de voz:
+
+`Get-CsVoicePolicy -Identity "Global" | Select-Object PstnUsages | Format-List`
+
+Em seguida, execute esse comando para determinar os usos de PSTN atribuídos a cada um dos seus roteiros de voz:
+
+`Get-CsVoiceRoute | Select-Object Identity, PstnUsages`
+
+Se você vir qualquer correspondência (ou seja, se vir uma ou mais rotas de voz que compartilham pelo menos um uso de PSTN com a política de voz), execute o cmdlet Test-CsVoiceRoute para verificar se a rota de voz pode discar o número de telefone fornecido.
+
+</div>
+
+<div>
+
+## <a name="see-also"></a>Confira também
+
+
+[Test-CsVoicePolicy](https://docs.microsoft.com/powershell/module/skype/Test-CsVoicePolicy)  
+  
+
+</div>
+
+</div>
+
+<span> </span>
+
+</div>
+
+</div>
+
+</div>
+
